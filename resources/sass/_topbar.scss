@@ -1,0 +1,42 @@
+#topbar {
+  height: 50px;
+  padding: 10px 15px 5px 5px;
+  color: #aaa;
+
+  i {
+    cursor: pointer;
+    font-size: 20px;
+
+    &:hover {
+      color: #777;
+    }
+  }
+
+  .breadcrumb {
+    padding: 0 1rem;
+    background-color: transparent;
+    font-size: 13px;
+
+    li:before, a {
+      font-size: 13px;
+    }
+  }
+
+  .profile-button {
+    cursor: pointer;
+
+    &:hover {
+      i {
+        color: #777;
+      }
+
+      span {
+        color: #555;
+      }
+    }
+
+    span {
+      color: #888;
+    }
+  }
+}

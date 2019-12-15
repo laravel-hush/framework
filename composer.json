@@ -1,12 +1,17 @@
 {
     "name": "scary-layer/hush",
-    "type": "library",
+    "authors": [
+        {
+            "name": "artur.osipenko",
+            "email": "artur.osipenko@hotmail.com"
+        }
+    ],
     "require": {
         "laravel/framework": "^6.0"
     },
     "autoload": {
         "psr-4": {
-            "ScaryLayer\\Hush\\": "app/"
+            "ScaryLayer\\Hush\\": "app"
         }
     },
     "extra": {
@@ -15,11 +20,5 @@
                 "ScaryLayer\\Hush\\Providers\\ServiceProvider"
             ]
         }
-    },
-    "authors": [
-        {
-            "name": "artur.osipenko",
-            "email": "artur.osipenko@hotmail.com"
-        }
-    ]
+    }
 }
