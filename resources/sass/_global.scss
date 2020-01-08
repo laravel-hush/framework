@@ -1,24 +1,91 @@
 a {
-    color: $text_color;
-    font-size: 15px;
+  color: $text_color;
+  font-size: 14px;
 
-    &:hover {
-        color: $link_hover_color;
-        text-decoration: none;
-    }
+  &:hover {
+    color: $link_hover_color;
+    text-decoration: none;
+  }
 }
 
 body {
-    background-color: #f3f2f1;
-    color: $text_color;
-    font-size: 15px;
-    font-family: Raleway, helvetica;
+  background-color: #f8f9f9;
+  color: $text_color;
+  font-size: 14px;
+  font-family: Raleway, helvetica;
 }
 
-.row {
-    margin: 0;
+label {
+  font-size: 14px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+
+  i + span {
+    margin-left: 3px;
+    font-weight: bold;
+    font-size: 13px;
+  }
+
+  &-additional {
+    color: #fff;
+    background-color: $additional_color;
+    border-color: $additional_color;
+
+    &:hover,
+    &:focus {
+      color: #fff;
+      box-shadow: 0 0 0 0.2rem mix($additional_color, #fff, 40%);
+    }
+  }
+
+  &-danger {
+    background-color: $danger_color;
+    border-color: $danger_color;
+
+    &:hover,
+    &:focus {
+      background-color: $danger_color;
+      border-color: $danger_color;
+      box-shadow: 0 0 0 0.2rem mix($danger_color, #fff, 40%);
+    }
+  }
+
+  &-light {
+    background-color: $light_color;
+    border-color: $light_color;
+    color: #414549;
+  }
+
+  &-primary {
+    background-color: $primary_color;
+    border-color: $primary_color;
+
+    &:hover,
+    &:focus {
+      background-color: $primary_color;
+      border-color: $primary_color;
+      box-shadow: 0 0 0 0.2rem mix($primary_color, #fff, 40%);
+    }
+  }
+
+  &-round {
+    border-radius: 50%;
+    height: fit-content;
+    padding: 0.375rem;
+  }
+
+  &-rounded {
+    border-radius: 50px;
+  }
 }
 
 .col {
-    padding: 0;
+  padding: 0;
+}
+
+.row {
+  margin: 0;
 }

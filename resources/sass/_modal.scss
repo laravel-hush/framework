@@ -1,0 +1,26 @@
+.modal {
+    &-header {
+        border: 0;
+
+        h5 {
+            letter-spacing: 2px;
+        }
+    }
+
+    &-content {
+        border: 0;
+    }
+
+    &-footer {
+        border: 0;
+        justify-content: center;
+    }
+
+    .close {
+        font-weight: normal;
+
+        &:focus {
+            outline: 0;
+        }
+    }
+}

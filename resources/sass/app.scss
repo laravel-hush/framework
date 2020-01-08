@@ -1,11 +1,24 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~chosen-js/chosen.min.css';
+@import "~codemirror/lib/codemirror.css";
+
+@import "~trumbowyg/dist/ui/trumbowyg.min.css";
+@import "~trumbowyg/dist/plugins/colors/ui/trumbowyg.colors.css";
+@import "~trumbowyg/dist/plugins/emoji/ui/trumbowyg.emoji.css";
+@import "~trumbowyg/dist/plugins/table/ui/trumbowyg.table.css";
 
 @import 'variables';
 
 @import 'global';
 
+@import 'chosen';
+@import 'codemirror';
 @import 'fonts';
 @import 'inputs';
 @import 'layout';
+@import 'modal';
 @import 'sidebar';
+@import 'swal';
+@import 'table';
 @import 'topbar';
+@import 'trumbowyg';

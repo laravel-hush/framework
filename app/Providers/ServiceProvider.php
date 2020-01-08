@@ -2,7 +2,9 @@
 
 namespace ScaryLayer\Hush\Providers;
 
-class ServiceProvider extends \Illuminate\Support\ServiceProvider
+use Illuminate\Support\ServiceProvider as Provider;
+
+class ServiceProvider extends Provider
 {
     public function register()
     {
@@ -17,7 +19,7 @@ class ServiceProvider extends \Illuminate\Support\ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../../resources/views', 'hush');
 
         $this->publishes([
-            __DIR__ . '/../../config/app.php'      => config_path('hush/app.php'),
+            __DIR__ . '/../../config'              => config_path('hush'),
             __DIR__ . '/../../public'              => public_path('vendor/hush'),
             __DIR__ . '/../../resources/lang'      => resource_path('lang/vendor/hush')
         ]);

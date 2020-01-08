@@ -1,0 +1,38 @@
+.table {
+  .head {
+    .col {
+      font-size: 12px;
+      font-weight: normal;
+    }
+  }
+
+  .row {
+    align-items: center;
+    min-height: 50px;
+    padding: 10px 20px;
+
+    &:nth-of-type(odd) {
+      background-color: $grey_color;
+      border-radius: 5px;
+    }
+
+    .col {
+      vertical-align: middle;
+
+      &.id {
+        flex: 0 0 5%;
+      }
+
+      &.actions {
+        align-items: center;
+        display: flex;
+        flex: 0 0 200px;
+        justify-content: flex-end;
+
+        .btn {
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}

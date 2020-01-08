@@ -12,6 +12,8 @@
     "dependencies": {
         "axios": "^0.19.0",
         "bootstrap": "^4.3.1",
+        "chosen-js": "^1.8.7",
+        "codemirror": "^5.50.2",
         "cross-env": "^6.0.3",
         "fibers": "^4.0.2",
         "jquery": "^3.4.1",
@@ -21,7 +23,9 @@
         "popper.js": "^1.16.0",
         "resolve-url-loader": "^3.1.1",
         "sass": "^1.23.6",
-        "sass-loader": "^8.0.0"
+        "sass-loader": "^8.0.0",
+        "sweetalert2": "^9.5.3",
+        "trumbowyg": "^2.21.0"
     },
     "devDependencies": {
         "vue-template-compiler": "^2.6.10"

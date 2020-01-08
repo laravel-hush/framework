@@ -1,0 +1,17 @@
+.CodeMirror {
+  background: $grey_color;
+  border-radius: 5px;
+
+  &-cursor {
+      height: 20px !important;
+  }
+
+  &-gutters {
+    background: $disabled_color;
+    border: 0;
+  }
+
+  &-linenumber {
+    text-align: center;
+  }
+}

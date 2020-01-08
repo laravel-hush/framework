@@ -1,0 +1,30 @@
+.trumbowyg {
+  &-box {
+    background: $grey_color;
+    border: 0;
+    border-radius: 5px;
+  }
+
+  &-button-pane {
+    background: #dfdfe5;
+    border: 0;
+    border-radius: 5px;
+    padding: 5px;
+    z-index: 8;
+
+    &::after {
+      height: 0;
+    }
+  }
+
+  &-button-group {
+    &::after {
+      margin: 0 !important;
+      width: 0 !important;
+    }
+
+    button {
+      border-radius: 50px;
+    }
+  }
+}

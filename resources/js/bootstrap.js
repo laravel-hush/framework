@@ -1,4 +1,6 @@
 
+const LOCALE = 'en';
+
 window._ = require('lodash');
 
 /**
@@ -12,6 +14,7 @@ try {
     window.$ = window.jQuery = require('jquery');
 
     require('bootstrap');
+    require('chosen-js');
 } catch (e) { }
 
 /**
@@ -37,3 +40,20 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
+require('codemirror/mode/htmlmixed/htmlmixed');
+window.CodeMirror = require('codemirror/lib/codemirror');
+
+window.Swal = require('sweetalert2');
+
+require('trumbowyg');
+if (LOCALE != 'en') {
+    require('trumbowyg/dist/langs/' + LOCALE + '.js');
+}
+require('trumbowyg/dist/plugins/cleanpaste/trumbowyg.cleanpaste.min.js');
+require('trumbowyg/dist/plugins/colors/trumbowyg.colors.min.js');
+require('trumbowyg/dist/plugins/emoji/trumbowyg.emoji.min.js');
+require('trumbowyg/dist/plugins/fontfamily/trumbowyg.fontfamily.min.js');
+require('trumbowyg/dist/plugins/fontsize/trumbowyg.fontsize.min.js');
+require('trumbowyg/dist/plugins/table/trumbowyg.table.min.js');
+require('trumbowyg/dist/plugins/upload/trumbowyg.upload.min.js');

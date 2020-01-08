@@ -1,13 +1,14 @@
 .left-side {
-  min-width: $sidebar_width;
+  min-width: 190px;
   width: $sidebar_width;
-  height: 100vh;
+  height: calc(100vh - $topbar_height);
   position: fixed;
-  top: 0;
+  top: $topbar_height;
   left: 0;
   transition: all 0.4s;
-  padding: 1vh 0 0;
+  padding: 20px 0 0;
   background-color: #fff;
+  z-index: 10;
 
   &.toggled {
     left: -$sidebar_width;
@@ -16,7 +17,8 @@
 
 .right-side {
   margin-left: 14vw;
-  padding: 0 15px;
+  margin-top: $topbar_height + 25px;
+  padding: 0 10px;
   transition: all 0.4s;
 
   &.toggled {
@@ -25,21 +27,65 @@
 }
 
 .page-content {
-  margin-top: 2vh;
   transition: all 0.4s;
 
   .block {
-    padding: 1rem;
-    margin: 10px 10px 0 0;
+    padding: 20px;
+    margin: 10px;
     background: #fff;
-    border-radius: 5px;
-    box-shadow: 0 .125rem .25rem rgba(0,0,0,.075);
+    border-radius: 10px;
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+
+    .headline {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+
+      .h1 {
+        font-size: 18px;
+        letter-spacing: 2px;
+      }
+
+      .buttons {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+
+        > * {
+          margin-left: 5px;
+        }
+      }
+    }
   }
 }
 
-@media (max-width: 768px) {
-  #content {
-    width: 100%;
-    margin: 0;
+
+@media (max-width: 1300px) {
+  .left-side {
+    min-width: 220px;
+    left: -25%;
+
+    &.toggled {
+      left: 0;
+    }
+  }
+
+  .right-side {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 800px) {
+  .left-side {
+    min-width: 220px;
+    left: -50%;
+
+    &.toggled {
+      left: 0;
+    }
+  }
+
+  .right-side {
+    margin-left: 0;
   }
 }

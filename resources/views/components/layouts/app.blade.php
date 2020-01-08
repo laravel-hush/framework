@@ -11,13 +11,12 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="left-side">
+    @include ('hush::components.topbar')
+    <nav class="left-side shadow-sm">
         @include ('hush::components.sidebar')
     </nav>
 
     <div class="right-side">
-        @include ('hush::components.topbar')
-
         <div class="page-content" id="content">
             @yield ('content')
         </div>
