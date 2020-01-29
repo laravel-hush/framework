@@ -1,21 +1,41 @@
-#sidebar {
-  .nav {
-    height: calc(100vh - 50px);
+.left-side {
+  min-width: 190px;
+  width: $sidebar_width;
+  height: calc(100vh - $topbar_height);
+  position: fixed;
+  top: $topbar_height;
+  left: 0;
+  transition: left 0.4s;
+  padding: 10px 0 0;
+  background-color: #fff;
+  z-index: 10;
 
-    &-link {
-      border-left: 5px solid transparent;
-      padding: 0.8rem 1.5rem;
+  &.toggled {
+    left: -$sidebar_width;
+  }
 
-      &:hover {
-        background: #f0f0f4;
-      }
+  #sidebar {
+    .nav {
+      height: calc(100vh - 50px);
 
-      .counter {
-        background: $primary_color;
-        color: #fff;
-        padding: 0 10px;
-        border-radius: 50px;
-        margin-left: auto;
+      &-link {
+        border-left: 5px solid transparent;
+        padding: 0.8rem 1.5rem;
+        font-size: 13px;
+
+        &:hover {
+          background: #f0f0f4;
+        }
+
+        .counter {
+          background: $primary_color;
+          border-radius: 50px;
+          color: #fff;
+          font-family: helvetica;
+          font-weight: bold;
+          margin-left: auto;
+          padding: 0 10px;
+        }
       }
     }
   }

@@ -1,9 +1,15 @@
 .CodeMirror {
   background: $grey_color;
+  border: 2px solid transparent;
   border-radius: 5px;
 
+  &:focus-within {
+    border: 2px solid #80bdff !important;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+
   &-cursor {
-      height: 20px !important;
+    height: 20px !important;
   }
 
   &-gutters {

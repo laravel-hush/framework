@@ -63,7 +63,7 @@
         <input type="radio" name="name" class="form-control d-none" value="1">
     
         <div class="replacer">
-            <i class="material-icons">fiber_manual_record</i>
+            <i class="material-icons">done</i>
         </div>
         <span class="text">Some radiobutton</span>
     </label>
@@ -71,7 +71,7 @@
         <input type="radio" name="name" class="form-control d-none" value="1">
     
         <div class="replacer">
-            <i class="material-icons">fiber_manual_record</i>
+            <i class="material-icons">done</i>
         </div>
         <span class="text">Some radiobutton</span>
     </label>

@@ -1,0 +1,17 @@
+.left-side.dark {
+  background-color: #151b26;
+
+  #sidebar {
+    .nav {
+      &-link {
+        color: #dbe4eb;
+
+        &:hover {
+          background: #252b36;
+          color: #fff;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

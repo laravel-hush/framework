@@ -1,5 +1,6 @@
 require('./bootstrap');
+require('./functions');
 
 require('./actions');
-require('./global');
+require('./ready');
 require('./sidebar');

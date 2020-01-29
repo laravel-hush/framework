@@ -12,7 +12,7 @@
 </head>
 <body>
     @include ('hush::components.topbar')
-    <nav class="left-side shadow-sm">
+    <nav class="left-side dark shadow-sm">
         @include ('hush::components.sidebar')
     </nav>
 

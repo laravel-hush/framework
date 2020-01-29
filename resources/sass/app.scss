@@ -2,6 +2,9 @@
 @import '~chosen-js/chosen.min.css';
 @import "~codemirror/lib/codemirror.css";
 
+@import "~noty/src/noty.scss";
+@import "~noty/src/themes/metroui.scss";
+
 @import "~trumbowyg/dist/ui/trumbowyg.min.css";
 @import "~trumbowyg/dist/plugins/colors/ui/trumbowyg.colors.css";
 @import "~trumbowyg/dist/plugins/emoji/ui/trumbowyg.emoji.css";
@@ -22,3 +25,5 @@
 @import 'table';
 @import 'topbar';
 @import 'trumbowyg';
+
+@import 'dark/sidebar';
