@@ -1,26 +1,18 @@
 #topbar {
   position: fixed;
-  width: 100%;
+  width: 100vw - $sidebar_width;
   top: 0;
-  left: 0;
+  left: $sidebar_width;
   background: linear-gradient(45deg, $primary_color, $additional_color);
   height: $topbar_height;
-  padding: 5px 25px 5px 5px;
+  padding: 5px 35px 5px 5px;
   color: #fff;
+  transition: width 0.4s, left 0.4s;
   z-index: 10;
 
-  .sitename {
-    width: $sidebar_width;
-    color: #fff;
-    font-size: 25px;
-    padding-left: 25px;
-    text-transform: lowercase;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    font-weight: bold;
-    letter-spacing: 5px;
-    display: block;
+  &.toggled {
+    left: 0;
+    width: 100%;
   }
 
   i {
@@ -33,12 +25,13 @@
   }
 
   .breadcrumb {
+    align-items: center;
     padding: 0 1rem;
     background-color: transparent;
     font-size: 13px;
 
     li + li:before {
-      content: ">>";
+      content: "»‎";
     }
 
     li,
@@ -70,6 +63,38 @@
       color: #eef;
       letter-spacing: 1px;
       font-size: 13px;
+    }
+  }
+
+  .user-menu {
+    background: #fff;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+    color: #414549;
+    display: none;
+    padding: 20px;
+    position: absolute;
+    right: -10px;
+    top: 35px;
+    width: 250px;
+
+    .btn {
+      &-danger {
+        i:hover {
+          color: #fff;
+        }
+      }
+
+      &-light {
+        i:hover {
+          color: #414549;
+        }
+      }
+    }
+
+    img {
+      border-radius: 5px;
+      max-width: 100%;
     }
   }
 }

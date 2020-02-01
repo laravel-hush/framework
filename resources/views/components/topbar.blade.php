@@ -1,5 +1,4 @@
 <nav class="horizontal-nav row align-items-center" id="topbar">
-    <a href="#" class="sitename">Hush admin</a>
     <i class="material-icons mx-3" id="sidebar-toggle">menu</i>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb mb-0">
@@ -13,7 +12,24 @@
         <i class="material-icons mr-3" id="notifications-toggle">notifications</i>
         <span class="profile-button row m-0 align-items-center">
             <i class="material-icons mr-3" id="profile-toggle">account_circle</i>
-            <strong>David Lastnamovich</strong>
         </span>
+        <div class="user-menu">
+            <img src="/vendor/hush/images/user-placeholder.jpg">
+            <h5 class="text-center py-3">David Lastnamovich</h5>
+            <div class="row">
+                <div class="col">
+                    <a href="#" class="btn btn-light mx-1">
+                        <i class="material-icons">person</i>
+                        <span>Profile</span>
+                    </a>
+                </div>
+                <div class="col">
+                    <a href="#" class="btn btn-danger mx-1" data-toggle="modal" data-target="#exampleModal">
+                        <i class="material-icons">exit_to_app</i>
+                        <span>Logout</span>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </nav>

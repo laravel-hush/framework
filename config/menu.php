@@ -2,11 +2,11 @@
 
 return [
     [
-        'icon' => '<i class="material-icons mr-3">home</i>',
+        'icon' => '<i class="material-icons">home</i>',
         'text' => 'Home'
     ],
     [
-        'icon' => '<i class="material-icons mr-3">book</i>',
+        'icon' => '<i class="material-icons">book</i>',
         'text' => 'Another page',
         'counter' => [
             'value' => 'rand(0, 20)',
@@ -14,7 +14,7 @@ return [
         ]
     ],
     [
-        'icon' => '<i class="material-icons mr-3">build</i>',
+        'icon' => '<i class="material-icons">build</i>',
         'text' => 'Home'
     ],
 ];

@@ -3,6 +3,7 @@
     background: $grey_color;
     border: 2px solid transparent;
     border-radius: 5px;
+    margin: 0;
 
     &:focus-within {
       border: 2px solid #80bdff !important;
