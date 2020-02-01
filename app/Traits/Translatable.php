@@ -7,15 +7,17 @@ use Illuminate\Support\Facades\Schema;
 
 trait Translatable
 {
+    public function translations()
+    {
+        return $this->hasMany($this->getTranslationModel(), $this->translatable_related, 'id');
+    }
+
     public function __get($property)
     {
         $parent = parent::__get($property);
-        return $parent ?? $this->translate($property);
-    }
-
-    public function translations()
-    {
-        return $this->hasMany('\\' . $this->getCurrentNamespace() . '\\Translations\\' . $this->getCurrentClass() . 'Translation', $this->translatable_related, 'id');
+        return !$parent && in_array($property, $this->translatable)
+            ? $this->translate($property)
+            : $parent;
     }
 
     public function createTranslationTable()
@@ -35,15 +37,20 @@ trait Translatable
 
     public function saveTranslation($field, $values)
     {
+        if (!$values) {
+            return false;
+        }
+
         foreach ($values as $lang => $value) {
             $row = $this->translations()->firstOrNew([
-                $this->translatable_related => $this->id,
                 'field' => $field,
                 'lang' => $lang
             ]);
             $row->value = $value;
             $row->save();
         }
+
+        return true;
     }
 
     public function saveTranslations($data, $fields = null)
@@ -56,21 +63,36 @@ trait Translatable
 
     public function translate($field, $lang = null)
     {
-        return optional($this->translations
+        $row = $this->translations
             ->where('lang', $lang ?? app()->getLocale())
             ->where('field', $field)
-            ->first())->value;
+            ->first();
+
+        return optional($row)->value;
     }
 
-    private function getCurrentNamespace()
+    public function translationArray($field)
     {
-        $class = $this->getCurrentClass();
-        return explode('\\' . $class, get_called_class())[0];
+        return $this->translations
+            ->where('field', $field)
+            ->get()
+            ->pluck('value', 'lang');
     }
 
     private function getCurrentClass()
     {
         $parts = explode('\\', get_called_class());
         return end($parts);
+    }
+
+    private function getCurrentNamespace()
+    {
+        return explode('\\' . $this->getCurrentClass(), get_called_class())[0];
+    }
+
+    private function getTranslationModel()
+    {
+        $path = '\\' . $this->getCurrentNamespace() . '\\Translations\\';
+        return $path . $this->getCurrentClass() . 'Translation';
     }
 }
