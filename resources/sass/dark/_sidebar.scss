@@ -2,12 +2,18 @@
   background-color: #151b26;
 
   #sidebar {
+    .user {
+      &:hover {
+        background: #1d232e
+      }
+    }
+
     .nav {
       &-link {
         color: #dbe4eb;
 
         &:hover {
-          background: #252b36;
+          background: #1d232e;
           color: #fff;
           font-weight: bold;
         }

@@ -3,8 +3,13 @@ use ScaryLayer\Hush\Helpers\Code;
 @endphp
 
 <div id="sidebar">
-    <div class="sitename">
-        Hush admin
+    <div class="user row align-items-center">
+        <div class="image col-3 pl-0">
+            <img src="/vendor/hush/images/user-placeholder.jpg">
+        </div>
+        <div class="col-9 pl-0 name">
+            <a href="#" >David Lastnamovich</a>
+        </div>
     </div>
     <div class="nav flex-column mb-0">
         @foreach (config('hush.menu') as $item)

@@ -6,7 +6,6 @@
   top: 0;
   left: 0;
   transition: left 0.4s;
-  padding: 10px 0 0;
   background-color: #fff;
   z-index: 10;
 
@@ -15,18 +14,28 @@
   }
 
   #sidebar {
-    .sitename {
-      color: #fff;
-      display: block;
-      font-size: 20px;
-      font-weight: bold;
-      letter-spacing: 5px;
-      overflow: hidden;
-      padding: 12px 32px 18px;
-      text-overflow: ellipsis;
-      text-transform: lowercase;
-      white-space: nowrap;
-      width: $sidebar_width;
+    .user {
+      padding: 30px 32px;
+
+      &:hover {
+        background: #f0f0f4;
+      }
+
+      .image img {
+        border-radius: 2px;
+      }
+
+      .name {
+        color: #fff;
+        letter-spacing: 1px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        a {
+          color: #fff;
+        }
+      }
     }
 
     .nav {
@@ -34,8 +43,9 @@
 
       &-link {
         border-left: 5px solid transparent;
-        padding: 0.8rem 1.5rem;
         font-size: 12px;
+        padding: 0.8rem 1.5rem;
+        transition: .2s ease;
 
         &:hover {
           background: #f0f0f4;

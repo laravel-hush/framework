@@ -821,6 +821,10 @@ body {
   font-family: Raleway, helvetica;
 }
 
+img {
+  max-width: 100%;
+}
+
 label {
   font-size: 14px;
 }
@@ -1244,7 +1248,6 @@ label {
   left: 0;
   -webkit-transition: left 0.4s;
   transition: left 0.4s;
-  padding: 10px 0 0;
   background-color: #fff;
   z-index: 10;
 }
@@ -1253,18 +1256,28 @@ label {
   left: -14vw;
 }
 
-.left-side #sidebar .sitename {
+.left-side #sidebar .user {
+  padding: 30px 32px;
+}
+
+.left-side #sidebar .user:hover {
+  background: #f0f0f4;
+}
+
+.left-side #sidebar .user .image img {
+  border-radius: 2px;
+}
+
+.left-side #sidebar .user .name {
   color: #fff;
-  display: block;
-  font-size: 20px;
-  font-weight: bold;
-  letter-spacing: 5px;
+  letter-spacing: 1px;
   overflow: hidden;
-  padding: 12px 32px 18px;
   text-overflow: ellipsis;
-  text-transform: lowercase;
   white-space: nowrap;
-  width: 14vw;
+}
+
+.left-side #sidebar .user .name a {
+  color: #fff;
 }
 
 .left-side #sidebar .nav {
@@ -1273,8 +1286,10 @@ label {
 
 .left-side #sidebar .nav-link {
   border-left: 5px solid transparent;
-  padding: 0.8rem 1.5rem;
   font-size: 12px;
+  padding: 0.8rem 1.5rem;
+  -webkit-transition: .2s ease;
+  transition: .2s ease;
 }
 
 .left-side #sidebar .nav-link:hover {
@@ -1493,12 +1508,16 @@ label {
   background-color: #151b26;
 }
 
+.left-side.dark #sidebar .user:hover {
+  background: #1d232e;
+}
+
 .left-side.dark #sidebar .nav-link {
   color: #dbe4eb;
 }
 
 .left-side.dark #sidebar .nav-link:hover {
-  background: #252b36;
+  background: #1d232e;
   color: #fff;
   font-weight: bold;
 }
