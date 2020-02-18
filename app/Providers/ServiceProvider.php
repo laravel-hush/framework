@@ -2,7 +2,10 @@
 
 namespace ScaryLayer\Hush\Providers;
 
+use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider as Provider;
+use ScaryLayer\Hush\Helpers\Code;
+use ScaryLayer\Hush\Helpers\Constructor;
 
 class ServiceProvider extends Provider
 {
@@ -24,5 +27,9 @@ class ServiceProvider extends Provider
             __DIR__ . '/../../public'              => public_path('vendor/hush'),
             __DIR__ . '/../../resources/lang'      => resource_path('lang/vendor/hush')
         ]);
+
+        $loader = AliasLoader::getInstance();
+        $loader->alias('Code', Code::class);
+        $loader->alias('Constructor', Constructor::class);
     }
 }
