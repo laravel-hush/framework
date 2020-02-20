@@ -13,6 +13,7 @@
         <span class="profile-button row m-0 align-items-center">
             <i class="material-icons mr-3" id="profile-toggle">account_circle</i>
         </span>
+        {{--
         <div class="user-menu">
             <img src="/vendor/hush/images/user-placeholder.jpg">
             <h5 class="text-center py-3">David Lastnamovich</h5>
@@ -31,5 +32,6 @@
                 </div>
             </div>
         </div>
+        --}}
     </div>
 </nav>

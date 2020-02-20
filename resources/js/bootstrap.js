@@ -15,6 +15,7 @@ try {
 
     require('bootstrap');
     require('chosen-js');
+    require('jquery-validation');
 } catch (e) { }
 
 /**

@@ -26,7 +26,7 @@ class ServiceProvider extends Provider
             __DIR__ . '/../../database/seeds'      => database_path('seeds'),
             __DIR__ . '/../../public'              => public_path('vendor/hush'),
             __DIR__ . '/../../resources/lang'      => resource_path('lang/vendor/hush')
-        ]);
+        ], 'hush');
 
         $loader = AliasLoader::getInstance();
         $loader->alias('Code', Code::class);

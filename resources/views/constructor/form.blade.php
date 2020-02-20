@@ -1,36 +1,44 @@
-{!! Form::open(['url' => Constructor::link($block)]) !!}
+{!! Form::open([
+    'url' => Constructor::link($block['content']),
+    'id' => $block['content']['id'] ?? '',
+    'class' => 'submitable'
+]) !!}
 
 <div class="row">
-@foreach ($block['inputs'] as $input)
 
-    @switch ($input['type'])
+    @foreach ($block['content']['inputs'] as $input)
+    <div class="col {{ $input['width'] ?? 'col-12' }}">
+        <div class="form-group">
 
-        @case ('select')
-            <div class="col col-{{ $input['width'] ?? 12 }}">
-                <div class="form-group">
-                    {!! Form::label($input['name'], __('admin.' . $input['label'])) !!}
-                    {!! Form::{$input['type']}($input['name'], isset($input['data']) ? $input['data']() : [], $input['value'] ?? '', [
-                    'class' => 'form-control',
-                    'placeholder' => __('admin.' . ($input['placeholder'] ?? $input['label']))
-                    ]) !!}
-                </div>
-            </div>
-            @break
+            {!! Form::label($input['name'], __('hush::admin.' . $input['label'])) !!}
 
-        @default
-            <div class="col col-{{ $input['width'] ?? 12 }}">
-                <div class="form-group">
-                    {!! Form::label($input['name'], __('admin.' . $input['label'])) !!}
-                    {!! Form::{$input['type']}($input['name'], $input['value'] ?? '', [
+            @switch ($input['type'])
+
+                @case ('select')
+                    {!! Form::{$input['type']}(
+                        $input['name'],
+                        isset($input['data']) ? $input['data']() : [],
+                        Constructor::value(get_defined_vars(), $input, $input['default'] ?? []),
+                        [
+                            'class' => 'form-control',
+                            'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label']))
+                        ]
+                    ) !!}
+                    @break
+
+                @default
+                    {!! Form::{$input['type']}($input['name'], Constructor::value(get_defined_vars(), $input, $input['default'] ?? null), [
                         'class' => 'form-control',
-                        'placeholder' => __('admin.' . ($input['placeholder'] ?? $input['label']))
+                        'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label']))
                     ]) !!}
-                </div>
-            </div>
-            @break
+                    @break
 
-    @endswitch
-@endforeach
+            @endswitch
+
+        </div>
+    </div>
+    @endforeach
+
 </div>
 
 {!! Form::close() !!}

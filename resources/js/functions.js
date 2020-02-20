@@ -47,10 +47,10 @@ window.functions = class functions
 
     static initializeSubmitter()
     {
-        $('.submit').click(function (event) {
+        $('.submitable').submit(function (event) {
             event.preventDefault();
 
-            var form = $(this).closest('form');
+            var form = $(this);
             form.validate();
 
             if (form.valid()) {
@@ -71,16 +71,16 @@ window.functions = class functions
             contentType: false,
             processData: false,
             success: function (response) {
-                if (!response['success']) {
-                    functions.notify(__('An error occurred while executing the request'), 'error');
+                if (response.status != "success") {
+                    functions.notify('An error occurred while executing the request', 'error');
                 } else {
                     success(response);
 
-                    if (response['notification']) {
-                        functions.notify(response['notification']['text'], response['notification']['type']);
-                    } else if (response['redirect']) {
-                        window.location.href = response['redirect'];
-                    } else if (response['reload']) {
+                    if (response.notification) {
+                        functions.notify(response.notification.text, response.notification.type);
+                    } else if (response.redirect) {
+                        window.location.href = response.redirect;
+                    } else if (response.reload) {
                         location.reload();
                     }
                 }

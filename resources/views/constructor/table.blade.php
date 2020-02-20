@@ -2,42 +2,42 @@
 
     <div class="row head">
 
-        @foreach ($block['columns'] as $column => $settings)
-        <div class="col {{ $column }}">@lang ('admin.' . $column)</div>
+        @foreach ($block['content']['columns'] as $column => $settings)
+        <div class="col {{ $column }}">@lang ('hush::admin.' . $column)</div>
         @endforeach
 
-        <div class="col actions">@lang ('admin.actions')</div>
+        <div class="col actions">@lang ('hush::admin.actions')</div>
 
     </div>
 
-    @php ($rows = $block['rows']())
+    @php ($rows = $block['content']['rows']())
 
     @foreach ($rows as $row)
     <div class="row">
 
-        @foreach ($block['columns'] as $column => $settings)
+        @foreach ($block['content']['columns'] as $column => $settings)
         <div class="col {{ $column }}">{{ $row->{$column} }}</div>
         @endforeach
 
-        @isset ($block['actions'])
+        @isset ($block['content']['actions'])
         <div class="col actions">
-            
-            @foreach ($block['actions'] as $action)
+
+            @foreach ($block['content']['actions'] as $action)
             <a href="{{ Constructor::link($action) }}" class="btn btn-additional btn-rounded">
                 <i class="material-icons">{{ $action['icon'] }}</i>
                 @isset ($action['text'])
-                <span>@lang ('admin.' . $action['text'])</span>
+                <span>@lang ('hush::admin.' . $action['text'])</span>
                 @endisset
             </a>
             @endforeach
 
-            @isset ($block['edit'])
+            @isset ($block['content']['edit'])
             <a href="#" class="btn btn-primary btn-round">
                 <i class="material-icons">edit</i>
             </a>
             @endisset
 
-            @isset ($block['delete'])
+            @isset ($block['content']['delete'])
             <a href="#" class="btn btn-danger btn-round delete-item">
                 <i class="material-icons">delete</i>
             </a>
@@ -49,3 +49,7 @@
     </div>
     @endforeach
 </div>
+
+@isset ($block['content']['pagination'])
+{!! $rows->appends(request()->except('page'))->render() !!}
+@endisset

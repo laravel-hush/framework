@@ -1,14 +1,17 @@
 @extends ('hush::components.layouts.app')
 
 @section ('content')
-<div class="row">
+<div class="row {{ $settings['class'] ?? '' }}">
 
     @foreach ($settings['blocks'] as $block)
-    <div class="col {{ isset($block['width']) ? 'col-' . $block['width'] : '' }}">
+    <div class="col {{ $block['class'] ?? 'col-12' }}">
         <div class="block">
 
             @include ('hush::constructor.block-title')
-            @include ('hush::constructor.' . $block['type'])
+
+            @isset ($block['content'])
+            @include ('hush::constructor.' . $block['content']['type'])
+            @endisset
 
         </div>
     </div>
