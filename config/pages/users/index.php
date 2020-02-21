@@ -1,28 +1,17 @@
 <?php
 
+use App\User;
+
 return [
     'get' => [
         'class' => null,
         'blocks' => [
             [
                 'class' => 'col-lg-12',
+
                 'title' => [
                     'text' => 'users',
-                    'buttons' => [
-                        [
-                            'text' => 'add',
-                            'icon' => 'add'
-                        ],
-                        [
-                            'text' => 'filter',
-                            'icon' => 'filter_list'
-                        ],
-                        [
-                            'text' => 'save',
-                            'icon' => 'save',
-                            'class' => 'btn-success'
-                        ],
-                    ],
+                    'add' => true,
                 ],
 
                 'content' => [
@@ -32,7 +21,7 @@ return [
                     'delete' => true,
                     'rows' => function () {
                         $userClass = config('hush.app.user.model');
-                        return (new $userClass)->orderBy('name')->paginate();
+                        return (new $userClass)->paginate();
                     },
                     'columns' => [
                         'id' => ['sortable', 'searchable'],
@@ -45,7 +34,29 @@ return [
                         ]
                     ],
                 ]
+
             ]
         ]
+    ],
+
+    'delete' => [
+
+        'delete' => [
+            'rules' => [],
+            'closure' => function () {
+                User::where('id', request()->id)->delete();
+
+                return [
+                    'status' => 'success',
+                    'reload' => true,
+                    'swal' => [
+                        'title' => 'Deleted',
+                        'text' => 'User was deleted successfully',
+                        'type' => 'success'
+                    ]
+                ];
+            }
+        ],
+
     ]
 ];

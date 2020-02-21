@@ -19,13 +19,18 @@ class GlobalController extends Controller
     public function construct()
     {
         $settings = isset(config(self::CONFIG . '.' . $this->route)['get'])
-                ? config(self::CONFIG . '.' . $this->route . '.get')
-                : config(self::CONFIG . '.' . $this->route . '.index.get');
+                ? $this->route
+                : $this->route . '.index';
 
-        $response = isset($settings['closure']) ? $settings['closure']() : [];
+        $settings = config(self::CONFIG . '.' . $this->route . '.get');
+        $response = isset($settings['closure']) ? call_user_func($settings['closure']) : [];
+
+        $baseUrl = explode('.', $this->route);
+        $baseUrl = explode('.' . end($baseUrl), $this->route)[0];
 
         return view('hush::constructor.index', collect($response)->merge([
-            'settings' => $settings
+            'settings' => $settings,
+            'baseUrl' => str_replace('.', '/', $baseUrl)
         ])->all());
     }
 
@@ -38,7 +43,12 @@ class GlobalController extends Controller
         abort_if(!$config, 404);
 
         if (isset($config['rules'])) {
-            $this->validate(request(), $config['rules'], $config['messages'] ?? [], $config['attributes'] ?? []);
+            $this->validate(
+                request(),
+                is_array($config['rules']) ? $config['rules'] : call_user_func($config['rules']),
+                $config['messages'] ?? [],
+                $config['attributes'] ?? []
+            );
         } elseif (isset($config['request'])) {
             $this->validateWith($config['request']);
         }

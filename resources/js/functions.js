@@ -45,6 +45,30 @@ window.functions = class functions
         });
     }
 
+    static initializeDeleter()
+    {
+        $('.delete-item').click(function (event) {
+            event.preventDefault();
+
+            var url = $(this).attr('href');
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.value) {
+                    functions.request('delete', url);
+                }
+            })
+        });
+
+    }
+
     static initializeSubmitter()
     {
         $('.submitable').submit(function (event) {
@@ -53,23 +77,41 @@ window.functions = class functions
             var form = $(this);
             form.validate();
 
+            form.find('.form-group').each(function () {
+                $(this).removeClass('error')
+                    .find('.validation-error')
+                    .remove();
+            });
+
             if (form.valid()) {
-                functions.request(form.prop('method'), form.prop('action'), form.serialize(), function (response) {
-                    console.log(response);
-                });
+                functions.request(
+                    form.prop('method'),
+                    form.prop('action'),
+                    form.serializeArray(),
+                    function (response) {
+
+                    },
+                    function (xhr, status, error) {
+                        if (xhr.status == 422) {
+                            $.each(xhr.responseJSON.errors, function (index, value) {
+                                form.find('[name="' + index + '"]')
+                                    .closest('.form-group')
+                                    .addClass('error')
+                                    .append('<small class="validation-error">' + value + '</small>');
+                            });
+                        }
+                    }
+                );
             }
         });
     }
 
-    static request(type, url, data, success)
+    static request(type, url, data = null, success = function () { }, error = function () { })
     {
         $.ajax({
             type: type,
             url: url,
             data: data,
-            cache: false,
-            contentType: false,
-            processData: false,
             success: function (response) {
                 if (response.status != "success") {
                     functions.notify('An error occurred while executing the request', 'error');
@@ -78,14 +120,41 @@ window.functions = class functions
 
                     if (response.notification) {
                         functions.notify(response.notification.text, response.notification.type);
-                    } else if (response.redirect) {
-                        window.location.href = response.redirect;
-                    } else if (response.reload) {
-                        location.reload();
+                    } else if (response.swal) {
+                        Swal.fire(
+                            response.swal.title,
+                            response.swal.text,
+                            response.swal.type
+                        ).then((result) => {
+                            functions.processResponseRedirects(response);
+                        })
+
+                        return false;
                     }
+
+                    functions.processResponseRedirects(response);
                 }
             },
+            error: function (xhr, status, error_obj) {
+                error(xhr, status, error_obj);
+
+                functions.notify(
+                    xhr.responseJSON.message
+                        ? xhr.responseJSON.message
+                        : 'An error occurred while executing the request',
+                    'error'
+                );
+            }
         });
+    }
+
+    static processResponseRedirects(response)
+    {
+        if (response.redirect) {
+            window.location.href = response.redirect;
+        } else if (response.reload) {
+            location.reload();
+        }
     }
 
     static notify(text, type = 'info', position = 'bottomRight')

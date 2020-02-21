@@ -32,13 +32,19 @@
             @endforeach
 
             @isset ($block['content']['edit'])
-            <a href="#" class="btn btn-primary btn-round">
+            <a href="{{ Constructor::link(['constructor' => [
+                'url' => $baseUrl . '/edit',
+                'id' => $row->id
+            ]]) }}" class="btn btn-primary btn-round">
                 <i class="material-icons">edit</i>
             </a>
             @endisset
 
             @isset ($block['content']['delete'])
-            <a href="#" class="btn btn-danger btn-round delete-item">
+            <a href="{{ Constructor::link(['constructor' => [
+                'id' => $row->id,
+                'action' => 'delete'
+            ]]) }}" class="btn btn-danger btn-round delete-item">
                 <i class="material-icons">delete</i>
             </a>
             @endisset

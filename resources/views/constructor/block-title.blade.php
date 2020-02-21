@@ -5,9 +5,16 @@
     <span class="h1">@lang ('hush::admin.' . $block['title']['text'])</span>
     @endisset
 
-    @isset ($block['title']['buttons'])
     <div class="buttons">
 
+        @isset ($block['title']['add'])
+        <a href="{{ Constructor::link(['constructor' => $baseUrl . '/edit']) }}" class="btn btn-light">
+            <i class="material-icons">add</i>
+            <span>@lang ('hush::admin.add')</span>
+        </a>
+        @endisset
+
+        @isset ($block['title']['buttons'])
         @foreach ($block['title']['buttons'] as $button)
 
         @isset ($button['form'])
@@ -23,9 +30,9 @@
         @endisset
 
         @endforeach
+        @endisset
 
     </div>
-    @endisset
 
 </div>
 @endisset
