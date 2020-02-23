@@ -13,6 +13,30 @@ body {
   color: $text_color;
   font-size: 14px;
   font-family: Raleway, helvetica;
+
+  .animated {
+    background: linear-gradient(
+      -45deg,
+      #0043ac,
+      $additional_color,
+      $primary_color,
+      $link_hover_color
+    );
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 }
 
 img {
@@ -85,11 +109,36 @@ label {
     border-radius: 50px;
   }
 }
+.pagination-block {
+  nav {
+    width: fit-content;
+    margin: auto;
 
-.col {
-  padding: 0;
-}
+    .pagination {
+      .page-link {
+        border: 0;
+        border-radius: 5px;
+        color: $primary_color;
 
-.row {
-  margin: 0;
+        &:focus {
+            box-shadow: none;
+        }
+      }
+
+      .page-item {
+        margin: 0 3px;
+
+        &.active {
+          .page-link {
+            background-color: $primary_color;
+            color: #fff;
+          }
+        }
+
+        &.disabled {
+            display: none;
+        }
+      }
+    }
+  }
 }

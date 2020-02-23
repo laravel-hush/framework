@@ -1,7 +1,7 @@
 @extends ('hush::components.layouts.app')
 
 @section ('content')
-<div class="row {{ $settings['class'] ?? '' }}">
+<div class="row no-gutters {{ $settings['class'] ?? '' }}">
 
     @foreach ($settings['blocks'] as $block)
     <div class="col {{ $block['class'] ?? 'col-12' }}">

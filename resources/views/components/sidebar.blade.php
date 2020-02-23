@@ -1,9 +1,9 @@
 <div id="sidebar">
-    <div class="user row align-items-center">
-        <div class="image col-3 pl-0">
+    <div class="user row no-gutters align-items-center">
+        <div class="image col-2">
             <img src="/vendor/hush/images/user-placeholder.jpg">
         </div>
-        <div class="col-9 pl-0 name">
+        <div class="col-10 pl-3 name">
             <a href="#">David Lastnamovich</a>
         </div>
     </div>

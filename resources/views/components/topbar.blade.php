@@ -1,4 +1,4 @@
-<nav class="horizontal-nav row align-items-center" id="topbar">
+<nav class="horizontal-nav row no-gutters align-items-center" id="topbar">
     <i class="material-icons mx-3" id="sidebar-toggle">menu</i>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb mb-0">

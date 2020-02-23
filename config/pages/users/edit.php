@@ -22,7 +22,7 @@ return [
                             'form' => 'users',
                             'text' => 'save',
                             'icon' => 'save',
-                            'class' => 'btn-success'
+                            'class' => 'btn-primary'
                         ],
                     ],
                 ],
@@ -93,6 +93,7 @@ return [
 
                 return [
                     'status' => 'success',
+                    'reload' => true,
                     'swal' => [
                         'title' => 'Saved',
                         'text' => 'You work was successfully saved.',

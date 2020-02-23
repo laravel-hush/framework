@@ -8,6 +8,12 @@
 <div class="row">
 
     @foreach ($block['content']['inputs'] as $input)
+
+    @if ($input['type'] == 'hidden')
+        {!! Form::{$input['type']}($input['name'], Constructor::value(get_defined_vars(), $input, $input['default'] ?? null)) !!}
+        @continue
+    @endif
+
     <div class="col {{ $input['width'] ?? 'col-12' }}">
         <div class="form-group">
 

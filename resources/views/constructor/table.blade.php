@@ -56,6 +56,8 @@
     @endforeach
 </div>
 
-@isset ($block['content']['pagination'])
-{!! $rows->appends(request()->except('page'))->render() !!}
-@endisset
+<div class="pagination-block">
+    @isset ($block['content']['pagination'])
+    {!! $rows->appends(request()->except('page'))->render() !!}
+    @endisset
+</div>
