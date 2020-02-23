@@ -19,6 +19,7 @@ class RolesTableSeeder extends Seeder
                     'ru' => 'Разработчик',
                     'en' => 'Developer'
                 ],
+                'permissions' => ['god']
             ],
             [
                 'key' => 'admin',
@@ -26,6 +27,7 @@ class RolesTableSeeder extends Seeder
                     'ru' => 'Администратор',
                     'en' => 'Administrator'
                 ],
+                'permissions' => ['admin']
             ],
             [
                 'key' => 'user',
@@ -39,6 +41,12 @@ class RolesTableSeeder extends Seeder
         foreach ($data as $item) {
             $role = Role::create(['key' => $item['key']]);
             $role->saveTranslation('name', $item['name']);
+
+            if (isset($item['permissions'])) {
+                foreach ($item['permissions'] as $permission) {
+                    $role->givePermission($permission);
+                }
+            }
         }
     }
 }

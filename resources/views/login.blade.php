@@ -8,9 +8,9 @@
                 <div class="headline">
                     <span class="h1">@lang ('hush::admin.login')</span>
                 </div>
-                {!! Form::open(['url' => '']) !!}
+                {!! Form::open(['url' => route('admin.login.post')]) !!}
                     <div class="form-group">
-                        {!! Form::text('email', '', [
+                        {!! Form::email('email', '', [
                             'class' => 'form-control',
                             'placeholder' => __('hush::admin.email')
                         ]) !!}
@@ -20,6 +20,11 @@
                             'class' => 'form-control',
                             'placeholder' => __('hush::admin.password')
                         ]) !!}
+                    </div>
+                    <div class="form-group text-center {{ (isset($errors) && $errors->has('email')) ? 'error' : '' }}">
+                        @if (isset($errors) && $errors->has('email'))
+                        <small>{{ $errors->first('email') }}</small>
+                        @endif
                     </div>
                     <div class="d-flex justify-content-end">
                         <a href="/" class="btn btn-light mr-2">

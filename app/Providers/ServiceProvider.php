@@ -6,6 +6,7 @@ use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider as Provider;
 use ScaryLayer\Hush\Helpers\Code;
 use ScaryLayer\Hush\Helpers\Constructor;
+use ScaryLayer\Hush\Middleware\Permission;
 
 class ServiceProvider extends Provider
 {
@@ -31,5 +32,7 @@ class ServiceProvider extends Provider
         $loader = AliasLoader::getInstance();
         $loader->alias('Code', Code::class);
         $loader->alias('Constructor', Constructor::class);
+
+        app('router')->aliasMiddleware('permission', Permission::class);
     }
 }

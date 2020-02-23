@@ -13,27 +13,28 @@ class UsersTableSeeder extends Seeder
     {
         $data = [
             [
-                'role' => 'dev',
                 'name' => 'dev',
                 'email' => 'dev@hush.com',
-                'password' => 'password'
+                'password' => 'password',
+                'role' => 'dev',
             ],
             [
-                'role' => 'admin',
                 'name' => 'admin',
                 'email' => 'admin@hush.com',
-                'password' => 'password'
+                'password' => 'password',
+                'role' => 'admin',
             ],
             [
-                'role' => 'user',
                 'name' => 'user',
                 'email' => 'user@hush.com',
-                'password' => 'password'
+                'password' => 'password',
+                'role' => 'user',
             ],
         ];
 
         $userModel = config('hush.app.user.model');
         foreach ($data as $item) {
+            $item['password'] = bcrypt($item['password']);
             $userModel::create($item);
         }
     }

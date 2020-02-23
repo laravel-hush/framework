@@ -15,4 +15,14 @@ class Role extends Model
     protected $translatable_table = 'role_translations';
     protected $translatable_related = 'role_id';
     protected $translatable = ['name'];
+
+    public function permissions()
+    {
+        return $this->hasMany(RolePermission::class, 'role', 'key');
+    }
+
+    public function givePermission($permissionKey)
+    {
+        $this->permissions()->firstOrCreate(['permission' => $permissionKey]);
+    }
 }

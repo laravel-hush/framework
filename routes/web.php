@@ -1,32 +1,43 @@
 <?php
 
-Route::prefix('admin')->as('admin.')->namespace('ScaryLayer\\Hush\\Controllers')->group(function () {
+Route::prefix('admin')
+    ->as('admin.')
+    ->middleware('web')
+    ->namespace('ScaryLayer\\Hush\\Controllers')
+    ->group(function () {
 
-    Route::prefix('docs')->as('docs.')->group(function () {
-        Route::view('/', 'hush::docs.inputs');
+        Route::prefix('docs')->as('docs.')->group(function () {
+            Route::view('/', 'hush::docs.inputs');
+        });
+
+        Route::view('login', 'hush::login')->name('login');
+        Route::post('login', function () {
+            if (Auth::attempt(request()->only('email', 'password'))) {
+                return redirect()->route('admin.index');
+            }
+
+            return back()->withErrors(['email' => 'Admin with these credentials does not exist']);
+        })->name('login.post');
+
+        Route::middleware('permission:admin')->group(function () {
+
+            Route::view('/', 'hush::index')->name('index');
+
+            Route::get('{url}', 'GlobalController@construct')
+                ->where('url', '([A-Za-z0-9\-\/]+)')
+                ->name('constructor');
+
+            Route::delete('{url}', 'GlobalController@process')
+                ->where('url', '([A-Za-z0-9\-\/]+)')
+                ->name('constructor.process');
+            Route::patch('{url}', 'GlobalController@process')
+                ->where('url', '([A-Za-z0-9\-\/]+)')
+                ->name('constructor.process');
+            Route::post('{url}', 'GlobalController@process')
+                ->where('url', '([A-Za-z0-9\-\/]+)')
+                ->name('constructor.process');
+            Route::put('{url}', 'GlobalController@process')
+                ->where('url', '([A-Za-z0-9\-\/]+)')
+                ->name('constructor.process');
+        });
     });
-
-    Route::get('/', function () {
-        return view('hush::index');
-    })->name('index');
-
-    Route::view('login', 'hush::login');
-
-    Route::get('{url}', 'GlobalController@construct')
-        ->where('url', '([A-Za-z0-9\-\/]+)')
-        ->name('constructor');
-
-    Route::delete('{url}', 'GlobalController@process')
-        ->where('url', '([A-Za-z0-9\-\/]+)')
-        ->name('constructor.process');
-    Route::patch('{url}', 'GlobalController@process')
-        ->where('url', '([A-Za-z0-9\-\/]+)')
-        ->name('constructor.process');
-    Route::post('{url}', 'GlobalController@process')
-        ->where('url', '([A-Za-z0-9\-\/]+)')
-        ->name('constructor.process');
-    Route::put('{url}', 'GlobalController@process')
-        ->where('url', '([A-Za-z0-9\-\/]+)')
-        ->name('constructor.process');
-
-});
