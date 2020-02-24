@@ -6,6 +6,11 @@ use ScaryLayer\Hush\Models\Role;
 return [
     'get' => [
         'class' => null,
+        'title' => 'user',
+        'breadcrumbs' => [
+            'users' => '/admin/users',
+            'edit' => null,
+        ],
 
         'closure' => function () {
             return ['model' => User::findOrNew(request()->id)];
@@ -41,7 +46,7 @@ return [
                             'field' => 'id'
                         ],
                         [
-                            'width' => 'col-6',
+                            'width' => 'col-12',
                             'label' => 'role',
                             'placeholder' => 'role',
                             'type' => 'select',
@@ -52,7 +57,7 @@ return [
                             }
                         ],
                         [
-                            'width' => 'col-6',
+                            'width' => 'col-12',
                             'label' => 'name',
                             'placeholder' => 'name',
                             'type' => 'text',
@@ -60,7 +65,7 @@ return [
                             'field' => 'name',
                         ],
                         [
-                            'width' => 'col-6',
+                            'width' => 'col-12',
                             'label' => 'email',
                             'placeholder' => 'email',
                             'type' => 'email',

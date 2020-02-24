@@ -10,6 +10,7 @@
         <div class="page-content" id="content">
             @yield ('content')
         </div>
+        <div id="modals"></div>
     </div>
 
     <script src="{{ asset('vendor/hush/js/app.js') }}"></script>

@@ -47,7 +47,7 @@ window.functions = class functions
 
     static initializeDeleter()
     {
-        $('.delete-item').click(function (event) {
+        $('.delete-item').off('click').click(function (event) {
             event.preventDefault();
 
             var url = $(this).attr('href');
@@ -71,7 +71,7 @@ window.functions = class functions
 
     static initializeSubmitter()
     {
-        $('.submitable').submit(function (event) {
+        $('.submitable').off('submit').submit(function (event) {
             event.preventDefault();
 
             var form = $(this);
@@ -103,6 +103,20 @@ window.functions = class functions
                     }
                 );
             }
+        });
+    }
+
+    static initializeInModal() {
+        $('.in-modal').off('click').click(function (event) {
+            event.preventDefault();
+
+            var link = $(this).attr('href');
+            $.get(link, function (response) {
+                $('#modals').html(response);
+                $('#dynamic-modal').modal();
+                functions.initialize();
+                functions.initializeSubmitter();
+            });
         });
     }
 

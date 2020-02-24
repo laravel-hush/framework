@@ -28,8 +28,19 @@ class GlobalController extends Controller
         $baseUrl = explode('.', $this->route);
         $baseUrl = explode('.' . end($baseUrl), $this->route)[0];
 
-        return view('hush::constructor.index', collect($response)->merge([
+        $breadcrumbs = null;
+        if (isset($settings['breadcrumbs'])) {
+            foreach ($settings['breadcrumbs'] as $text => $link) {
+                $breadcrumbs[__("hush::admin.{$text}")] = $link;
+            }
+        }
+
+        return view('hush::constructor.' . (request()->ajax() ? 'modal' : 'index'), collect($response)->merge([
             'settings' => $settings,
+            'title' => isset($settings['title'])
+                ? __('hush::admin.' . $settings['title'])
+                : null,
+            'breadcrumbs' => $breadcrumbs,
             'baseUrl' => str_replace('.', '/', $baseUrl)
         ])->all());
     }
@@ -53,7 +64,7 @@ class GlobalController extends Controller
             $this->validateWith($config['request']);
         }
 
-        $response = $config['closure']();
+        $response = call_user_func($config['closure']);
 
         return $response ?? [
             'status' => 'success',

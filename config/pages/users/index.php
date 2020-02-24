@@ -5,6 +5,9 @@ use App\User;
 return [
     'get' => [
         'class' => null,
+        'title' => 'users',
+        'breadcrumbs' => ['users' => null],
+
         'blocks' => [
             [
                 'class' => 'col-lg-12',
@@ -17,6 +20,7 @@ return [
                 'content' => [
                     'type' => 'table',
                     'pagination' => true,
+                    'modal' => true,
                     'edit' => true,
                     'delete' => true,
                     'rows' => function () {

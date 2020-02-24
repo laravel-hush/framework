@@ -4,7 +4,7 @@
             <img src="/vendor/hush/images/user-placeholder.jpg">
         </div>
         <div class="col-10 pl-3 name">
-            <a href="#">David Lastnamovich</a>
+            <a href="#">{{ auth()->user()->name }}</a>
         </div>
     </div>
     <div class="nav flex-column mb-0">

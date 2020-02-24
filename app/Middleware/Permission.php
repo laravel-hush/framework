@@ -13,9 +13,13 @@ class Permission
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next, $permission)
+    public function handle($request, Closure $next, $permission, $redirectTo = null)
     {
         if (!auth()->check() || !auth()->user()->permitted($permission)) {
+            if ($redirectTo) {
+                return redirect()->route($redirectTo);
+            }
+
             abort(403, 'You have no permission for doing this');
         }
 

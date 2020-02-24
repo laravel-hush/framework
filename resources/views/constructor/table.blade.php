@@ -35,7 +35,7 @@
             <a href="{{ Constructor::link(['constructor' => [
                 'url' => $baseUrl . '/edit',
                 'id' => $row->id
-            ]]) }}" class="btn btn-primary btn-round">
+            ]]) }}" class="btn btn-primary btn-round {{ isset($block['content']['modal']) ? 'in-modal' : '' }}">
                 <i class="material-icons">edit</i>
             </a>
             @endisset

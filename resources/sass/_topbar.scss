@@ -65,36 +65,4 @@
       font-size: 13px;
     }
   }
-
-  .user-menu {
-    background: #fff;
-    border-radius: 0 0 10px 10px;
-    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
-    color: #414549;
-    display: none;
-    padding: 20px;
-    position: absolute;
-    right: -10px;
-    top: 35px;
-    width: 250px;
-
-    .btn {
-      &-danger {
-        i:hover {
-          color: #fff;
-        }
-      }
-
-      &-light {
-        i:hover {
-          color: #414549;
-        }
-      }
-    }
-
-    img {
-      border-radius: 5px;
-      max-width: 100%;
-    }
-  }
 }

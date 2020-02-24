@@ -19,7 +19,7 @@ Route::prefix('admin')
             return back()->withErrors(['email' => 'Admin with these credentials does not exist']);
         })->name('login.post');
 
-        Route::middleware('permission:admin')->group(function () {
+        Route::middleware('permission:admin,admin.login')->group(function () {
 
             Route::view('/', 'hush::index')->name('index');
 
