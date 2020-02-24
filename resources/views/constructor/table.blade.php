@@ -3,7 +3,18 @@
     <div class="row head">
 
         @foreach ($block['content']['columns'] as $column => $settings)
-        <div class="col {{ $column }}">@lang ('hush::admin.' . $column)</div>
+        <div class="col {{ $column }}">
+            @if (in_array('sortable', $settings))
+            <a href="{{ Constructor::link(['constructor' => collect(request()->except('sort', 'direction'))->merge([
+                'sort' => $column,
+                'direction' => $column == request()->sort && request()->direction == 'asc' ? 'desc' : 'asc'
+            ])->all()]) }}">
+                @lang ('hush::admin.' . $column)
+            </a>
+            @else
+            @lang ('hush::admin.' . $column)
+            @endif
+        </div>
         @endforeach
 
         <div class="col actions">@lang ('hush::admin.actions')</div>

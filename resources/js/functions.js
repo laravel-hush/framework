@@ -69,6 +69,21 @@ window.functions = class functions
 
     }
 
+    static initializeInModal() {
+        $('.in-modal').off('click').click(function (event) {
+            event.preventDefault();
+            functions.openDynamicModal($(this).attr('href'));
+        });
+    }
+
+    static initializeSearch()
+    {
+        $('.search-button').off('click').click(function (event) {
+            event.preventDefault();
+            functions.openDynamicModal('/admin/search');
+        });
+    }
+
     static initializeSubmitter()
     {
         $('.submitable').off('submit').submit(function (event) {
@@ -106,17 +121,13 @@ window.functions = class functions
         });
     }
 
-    static initializeInModal() {
-        $('.in-modal').off('click').click(function (event) {
-            event.preventDefault();
-
-            var link = $(this).attr('href');
-            $.get(link, function (response) {
-                $('#modals').html(response);
-                $('#dynamic-modal').modal();
-                functions.initialize();
-                functions.initializeSubmitter();
-            });
+    static openDynamicModal(link)
+    {
+        $.get(link, function (response) {
+            $('#modals').html(response);
+            $('#dynamic-modal').modal();
+            functions.initialize();
+            functions.initializeSubmitter();
         });
     }
 

@@ -6,6 +6,13 @@
 </a>
 @endisset
 
+@isset ($block['title']['search'])
+<a href="#" class="btn btn-light search-button">
+    <i class="material-icons">search</i>
+    <span>@lang ('hush::admin.search')</span>
+</a>
+@endisset
+
 @isset ($block['title']['buttons'])
 @foreach ($block['title']['buttons'] as $button)
 

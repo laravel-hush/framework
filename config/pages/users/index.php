@@ -15,6 +15,7 @@ return [
                 'title' => [
                     'text' => 'users',
                     'add' => true,
+                    'search' => true
                 ],
 
                 'content' => [

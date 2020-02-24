@@ -15,7 +15,7 @@ return [
                             'form' => 'settings',
                             'text' => 'save',
                             'icon' => 'save',
-                            'class' => 'btn-success'
+                            'class' => 'btn-primary'
                         ],
                     ],
                 ],

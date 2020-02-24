@@ -14,8 +14,11 @@ return [
     'password' => 'Password',
     'role' => 'Role',
     'save' => 'Save',
+    'search' => 'Search',
+    'search-query' => 'Search query',
     'settings' => 'Settings',
     'show' => 'Show',
+    'submit' => 'Submit',
     'user' => 'User',
     'users' => 'Users'
 ];
