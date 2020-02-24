@@ -13,9 +13,13 @@ trait Permissiable
 
     public function permitted($permissionKey)
     {
+        $permissions = is_string($permissionKey)
+            ? ['god', $permissionKey]
+            : collect($permissionKey)->push('god')->all();
+
         return (bool) $this->roleObject
             ->permissions()
-            ->whereIn('permission', ['god', $permissionKey])
+            ->whereIn('permission', $permissions)
             ->first();
     }
 }

@@ -9,16 +9,22 @@
     </div>
     <div class="nav flex-column mb-0">
         @foreach (config('hush.menu') as $item)
+        @if (!isset($item['permission']) || auth()->user()->permitted($item['permission']))
         <div class="nav-item">
             <a href="{{ Constructor::link($item) }}" class="nav-link d-flex align-items-center">
                 <span class="d-flex align-items-center mr-3">{!! $item['icon'] !!}</span>
                 <span>{{ $item['text'] }}</span>
+
+                @isset ($item['counter'])
                 <span class="counter"
                     style="@isset ($item['counter']['color']) background-color: {{ $item['counter']['color'] }} @endisset">
-                    {!! Code::execute($item['counter']['value'] ?? '') !!}
+                    {!! call_user_func($item['counter']['value'] ?? '') !!}
                 </span>
+                @endisset
+
             </a>
         </div>
+        @endif
         @endforeach
     </div>
 </div>

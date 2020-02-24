@@ -11,6 +11,7 @@ return [
             'users' => '/admin/users',
             'edit' => null,
         ],
+        'permission' => ['admin:users_add', 'admin:users_edit'],
 
         'closure' => function () {
             return ['model' => User::findOrNew(request()->id)];
@@ -83,6 +84,7 @@ return [
     'post' => [
 
         'save' => [
+            'permission' => ['admin:users_add', 'admin:users_edit'],
             'rules' => function () {
                 return [
                     'id' => 'nullable|integer|exists:users,id',

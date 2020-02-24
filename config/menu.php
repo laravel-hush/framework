@@ -10,14 +10,19 @@ return [
         'constructor' => 'users.index',
         'icon' => '<i class="material-icons">account_box</i>',
         'text' => 'Users',
+        'permission' => 'admin:users',
         'counter' => [
-            'value' => 'rand(0, 20)',
+            'value' => function () {
+                $model = config('hush.app.user.model');
+                return $model::count();
+            },
             'color' => 'hsl(269, 100%, 37%)'
         ]
     ],
     [
         'constructor' => 'settings.index',
         'icon' => '<i class="material-icons">settings</i>',
-        'text' => 'Settings'
+        'text' => 'Settings',
+        'permission' => 'admin:users'
     ],
 ];

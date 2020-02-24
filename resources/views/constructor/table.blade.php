@@ -34,30 +34,38 @@
         <div class="col actions">
 
             @foreach ($block['content']['actions'] as $action)
+
+            @if (!isset($action['permission']) || auth()->user()->permitted($action['permission']))
             <a href="{{ Constructor::link($action) }}" class="btn btn-additional btn-rounded">
                 <i class="material-icons">{{ $action['icon'] }}</i>
                 @isset ($action['text'])
                 <span>@lang ('hush::admin.' . $action['text'])</span>
                 @endisset
             </a>
+            @endif
+
             @endforeach
 
             @isset ($block['content']['edit'])
+            @if (!is_string($block['content']['edit']) || auth()->user()->permitted($block['content']['edit']))
             <a href="{{ Constructor::link(['constructor' => [
                 'url' => $baseUrl . '/edit',
                 'id' => $row->id
             ]]) }}" class="btn btn-primary btn-round {{ isset($block['content']['modal']) ? 'in-modal' : '' }}">
                 <i class="material-icons">edit</i>
             </a>
+            @endif
             @endisset
 
             @isset ($block['content']['delete'])
+            @if (!is_string($block['content']['delete']) || auth()->user()->permitted($block['content']['delete']))
             <a href="{{ Constructor::link(['constructor' => [
                 'id' => $row->id,
                 'action' => 'delete'
             ]]) }}" class="btn btn-danger btn-round delete-item">
                 <i class="material-icons">delete</i>
             </a>
+            @endif
             @endisset
 
         </div>

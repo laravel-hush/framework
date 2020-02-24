@@ -7,6 +7,7 @@ return [
         'class' => null,
         'title' => 'users',
         'breadcrumbs' => ['users' => null],
+        'permission' => 'admin:users',
 
         'blocks' => [
             [
@@ -14,7 +15,7 @@ return [
 
                 'title' => [
                     'text' => 'users',
-                    'add' => true,
+                    'add' => 'admin:users_add',
                     'search' => true
                 ],
 
@@ -22,8 +23,8 @@ return [
                     'type' => 'table',
                     'pagination' => true,
                     'modal' => true,
-                    'edit' => true,
-                    'delete' => true,
+                    'edit' => 'admin:users_edit',
+                    'delete' => 'admin:users_delete',
                     'rows' => function () {
                         $userClass = config('hush.app.user.model');
                         return (new $userClass)->paginate();
@@ -47,6 +48,7 @@ return [
     'delete' => [
 
         'delete' => [
+            'permission' => 'admin:users_delete',
             'rules' => [],
             'closure' => function () {
                 User::where('id', request()->id)->delete();

@@ -25,5 +25,8 @@
     </nav>
     <div class="col d-flex align-items-center justify-content-end">
         <i class="material-icons mr-3" id="notifications-toggle">notifications</i>
+        <a href="{{ route('admin.logout') }}" class="material-icons mr-3 text-white">
+            power_settings_new
+        </a>
     </div>
 </nav>

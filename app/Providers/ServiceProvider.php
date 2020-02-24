@@ -4,17 +4,11 @@ namespace ScaryLayer\Hush\Providers;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider as Provider;
-use ScaryLayer\Hush\Helpers\Code;
 use ScaryLayer\Hush\Helpers\Constructor;
 use ScaryLayer\Hush\Middleware\Permission;
 
 class ServiceProvider extends Provider
 {
-    public function register()
-    {
-        //
-    }
-
     public function boot()
     {
         $this->loadRoutesFrom(__DIR__ . '/../../routes/web.php');
@@ -30,7 +24,6 @@ class ServiceProvider extends Provider
         ], 'hush');
 
         $loader = AliasLoader::getInstance();
-        $loader->alias('Code', Code::class);
         $loader->alias('Constructor', Constructor::class);
 
         app('router')->aliasMiddleware('permission', Permission::class);

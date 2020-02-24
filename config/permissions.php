@@ -4,6 +4,10 @@ return [
     'god',
 
     'admin',
-    'admin_settings',
-    'admin_settings_save'
+    'admin:settings',
+    'admin:settings_save',
+    'admin:users',
+    'admin:users_add',
+    'admin:users_edit',
+    'admin:users_delete',
 ];

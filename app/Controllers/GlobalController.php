@@ -23,6 +23,8 @@ class GlobalController extends Controller
                 : $this->route . '.index';
 
         $settings = config(self::CONFIG . '.' . $this->route . '.get');
+        abort_if(isset($settings['permission']) && !auth()->user()->permitted($settings['permission']), 403);
+
         $response = isset($settings['closure']) ? call_user_func($settings['closure']) : [];
 
         $baseUrl = explode('.', $this->route);
@@ -52,6 +54,7 @@ class GlobalController extends Controller
 
         $config = $config[request()->action] ?? null;
         abort_if(!$config, 404);
+        abort_if(isset($config['permission']) && !auth()->user()->permitted($config['permission']), 403);
 
         if (isset($config['rules'])) {
             $this->validate(
