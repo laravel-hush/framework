@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $title ?? config('hush.app.title', 'Admin dashboard') }}</title>
+    <link rel="icon" type="image/png" href="{{ asset('vendor/hush/images/favicon.ico') }}">
 
     <link href="{{ asset('vendor/hush/css/app.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
