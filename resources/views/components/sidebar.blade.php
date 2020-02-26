@@ -6,7 +6,9 @@
         <div class="col-10 pl-3 name">
             <a href="#">
                 <span class="d-block">{{ auth()->user()->name }}</span>
-                <small class="d-block text-secondary" style="font-size: 12px;">My profile</small>
+                <small class="d-block text-secondary">
+                    @lang ('hush::admin.my-profile')
+                </small>
             </a>
         </div>
     </div>
