@@ -1,9 +1,12 @@
 @extends ('hush::components.layouts.main')
 
 @section ('body')
-<div class="page-content animated" id="content">
+<div class="page-content animated login-page" id="content">
     <div class="row no-gutters align-items-center justify-content-center" style="height: 100vh">
-        <div class="col col-3">
+        <div class="col col-sm-10 col-md-8 col-lg-5 col-xl-3 text-center">
+            <div class="logo">
+                <img src="{{ asset('vendor/hush/images/long-logo.png') }}" alt="">
+            </div>
             <div class="block">
                 <div class="headline">
                     <span class="h1">@lang ('hush::admin.login')</span>

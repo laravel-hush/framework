@@ -41,34 +41,3 @@
     }
   }
 }
-
-
-@media (max-width: 1300px) {
-  .left-side {
-    min-width: 220px;
-    left: -25%;
-
-    &.toggled {
-      left: 0;
-    }
-  }
-
-  .right-side {
-    margin-left: 0;
-  }
-}
-
-@media (max-width: 800px) {
-  .left-side {
-    min-width: 220px;
-    left: -50%;
-
-    &.toggled {
-      left: 0;
-    }
-  }
-
-  .right-side {
-    margin-left: 0;
-  }
-}
