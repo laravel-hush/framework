@@ -4,7 +4,8 @@
 
         @foreach ($block['content']['columns'] as $column => $settings)
         <div class="col {{ $column }}">
-            @if (in_array('sortable', $settings))
+
+            @isset ($settings['sortable'])
             <a href="{{ Constructor::link(['constructor' => collect(request()->except('sort', 'direction'))->merge([
                 'sort' => $column,
                 'direction' => $column == request()->sort && request()->direction == 'asc' ? 'desc' : 'asc'
@@ -13,7 +14,8 @@
             </a>
             @else
             @lang ('hush::admin.' . $column)
-            @endif
+            @endisset
+
         </div>
         @endforeach
 

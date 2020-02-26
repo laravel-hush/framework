@@ -4,7 +4,10 @@
             <img src="/vendor/hush/images/user-placeholder.jpg">
         </div>
         <div class="col-10 pl-3 name">
-            <a href="#">{{ auth()->user()->name }}</a>
+            <a href="#">
+                <span class="d-block">{{ auth()->user()->name }}</span>
+                <small class="d-block text-secondary" style="font-size: 12px;">My profile</small>
+            </a>
         </div>
     </div>
     <div class="nav flex-column mb-0">

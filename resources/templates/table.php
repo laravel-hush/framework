@@ -1,7 +1,5 @@
 <?php
 
-use App\User;
-
 return [
 
     /*
@@ -23,14 +21,14 @@ return [
     */
 
     'get' => [
-        'class' => null,
-        'title' => 'users',
-        'breadcrumbs' => ['users' => null],
-        'permission' => 'admin:users',
+        'class' => '',
+        'title' => 'items',
+        'breadcrumbs' => ['items' => null],
+        'permission' => '',
 
         'blocks' => [
             [
-                'class' => 'col-lg-12',
+                'class' => '',
 
                 /*
                 |--------------------------------------------------------------
@@ -50,9 +48,12 @@ return [
                 */
 
                 'title' => [
-                    'text' => 'users',
-                    'add' => 'admin:users_add',
-                    'search' => true
+                    'text' => 'items',
+                    'add' => 'admin:items_add',
+                    'search' => true,
+                    'buttons' => [
+                        //
+                    ]
                 ],
 
                 /*
@@ -72,21 +73,17 @@ return [
                     'type' => 'table',
                     'pagination' => true,
                     'modal' => true,
-                    'edit' => 'admin:users_edit',
-                    'delete' => 'admin:users_delete',
+                    'edit' => 'admin:items_edit',
+                    'delete' => 'admin:items_delete',
                     'rows' => function () {
-                        return User::paginate();
+                        // must return array of objects
                     },
                     'columns' => [
                         'id' => ['sortable' => true],
-                        'name' => ['sortable' => true],
-                        'email' => ['sortable' => true]
+                        'field' => ['sortable' => true]
                     ],
                     'actions' => [
-                        [
-                            'icon' => 'remove_red_eye',
-                            'text' => 'show'
-                        ]
+                        //
                     ],
                 ]
 
@@ -113,20 +110,13 @@ return [
     'delete' => [
 
         'delete' => [
-            'permission' => 'admin:users_delete',
-            'rules' => [],
+            'permission' => 'admin:items_delete',
+            'rules' => [
+                // validation rules
+            ],
             'closure' => function () {
-                User::where('id', request()->id)->delete();
-
-                return [
-                    'status' => 'success',
-                    'reload' => true,
-                    'swal' => [
-                        'title' => 'Deleted',
-                        'text' => 'User was deleted successfully',
-                        'type' => 'success'
-                    ]
-                ];
+                // some actions
+                // if nothing returned here than will be returned default response
             }
         ],
 

@@ -1,4 +1,4 @@
-if ($(document).width > 1300) {
+if ($(document).width() > 1300) {
 
     $('#sidebar-toggle').click(function () {
         if ($('.left-side').hasClass('toggled')) {

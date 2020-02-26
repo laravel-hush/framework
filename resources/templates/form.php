@@ -25,15 +25,14 @@ return [
 
     'get' => [
         'class' => null,
-        'title' => 'user',
+        'title' => 'item',
         'breadcrumbs' => [
-            'users' => '/admin/users',
             'edit' => null,
         ],
-        'permission' => ['admin:users_add', 'admin:users_edit'],
+        'permission' => ['admin:items_add', 'admin:items_edit'],
 
         'closure' => function () {
-            return ['model' => User::findOrNew(request()->id)];
+            // should be returned ['model']
         },
 
 
@@ -59,14 +58,9 @@ return [
                 */
 
                 'title' => [
-                    'text' => 'users',
+                    'text' => 'items',
                     'buttons' => [
-                        [
-                            'form' => 'users',
-                            'text' => 'save',
-                            'icon' => 'save',
-                            'class' => 'btn-primary'
-                        ],
+                        //
                     ],
                 ],
 
@@ -84,8 +78,8 @@ return [
                 */
 
                 'content' => [
+                    'id' => 'items',
                     'type' => 'form',
-                    'id' => 'users',
                     'constructor' => [
                         'route' => 'admin.constructor.process',
                         'action' => 'save'
@@ -96,33 +90,8 @@ return [
                             'name' => 'id',
                             'field' => 'id'
                         ],
-                        [
-                            'width' => 'col-12',
-                            'label' => 'role',
-                            'placeholder' => 'role',
-                            'type' => 'select',
-                            'name' => 'role',
-                            'field' => 'role',
-                            'data' => function () {
-                                return Role::orderBy('key')->get()->pluck('key', 'key');
-                            }
-                        ],
-                        [
-                            'width' => 'col-12',
-                            'label' => 'name',
-                            'placeholder' => 'name',
-                            'type' => 'text',
-                            'name' => 'name',
-                            'field' => 'name',
-                        ],
-                        [
-                            'width' => 'col-12',
-                            'label' => 'email',
-                            'placeholder' => 'email',
-                            'type' => 'email',
-                            'name' => 'email',
-                            'field' => 'email',
-                        ],
+
+                        // another inputs
                     ]
                 ]
 
@@ -149,29 +118,13 @@ return [
     'post' => [
 
         'save' => [
-            'permission' => ['admin:users_add', 'admin:users_edit'],
+            'permission' => ['admin:items_add', 'admin:items_edit'],
             'rules' => function () {
-                return [
-                    'id' => 'nullable|integer|exists:users,id',
-                    'role' => 'required|string|exists:roles,key',
-                    'email' => 'required|email|unique:users,email,' . request()->id,
-                    'name' => 'required|string'
-                ];
+                // validation rules
             },
             'closure' => function () {
-                $user = User::findOrNew(request()->id);
-                $user->fill(request()->only('email', 'name'));
-                $user->save();
-
-                return [
-                    'status' => 'success',
-                    'reload' => true,
-                    'swal' => [
-                        'title' => 'Saved',
-                        'text' => 'You work was successfully saved.',
-                        'type' => 'success'
-                    ]
-                ];
+                // some actions
+                // if nothing returned here than will be returned default response
             }
         ]
 

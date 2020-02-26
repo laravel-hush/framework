@@ -3,6 +3,7 @@
 namespace ScaryLayer\Hush\Controllers;
 
 use App\Http\Controllers\Controller;
+use ScaryLayer\Hush\Helpers\Constructor;
 
 class GlobalController extends Controller
 {
@@ -56,16 +57,7 @@ class GlobalController extends Controller
         abort_if(!$config, 404);
         abort_if(isset($config['permission']) && !auth()->user()->permitted($config['permission']), 403);
 
-        if (isset($config['rules'])) {
-            $this->validate(
-                request(),
-                is_array($config['rules']) ? $config['rules'] : call_user_func($config['rules']),
-                $config['messages'] ?? [],
-                $config['attributes'] ?? []
-            );
-        } elseif (isset($config['request'])) {
-            $this->validateWith($config['request']);
-        }
+        $this->runValidation($config);
 
         $response = call_user_func($config['closure']);
 
@@ -76,5 +68,23 @@ class GlobalController extends Controller
                 'text' => __('hush::admin.operation-success')
             ]
         ];
+    }
+
+    public function runValidation($config)
+    {
+        if (isset($config['rules'])) {
+            $this->validate(
+                request(),
+                Constructor::closureDetector($config['rules']),
+                isset($config['messages'])
+                    ? Constructor::closureDetector($config['messages'])
+                    : [],
+                isset($config['attributes'])
+                    ? Constructor::closureDetector($config['attributes'])
+                    : []
+            );
+        } elseif (isset($config['request'])) {
+            $this->validateWith($config['request']);
+        }
     }
 }

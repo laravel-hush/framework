@@ -2,7 +2,7 @@
 
 namespace ScaryLayer\Hush\Helpers;
 
-use Exception;
+use Closure;
 
 class Constructor
 {
@@ -43,5 +43,12 @@ class Constructor
         }
 
         return $default;
+    }
+
+    public static function closureDetector($value)
+    {
+        return $value instanceof Closure
+            ? call_user_func($value)
+            : $value;
     }
 }
