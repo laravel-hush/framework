@@ -79,11 +79,7 @@
     <div class="col">
         <div class="form-group">
             <label>Label:</label>
-            <img src="" alt="" class="custom-file-image" id="image">
-            <div class="custom-file">
-                <input type="file" class="custom-file-input" data-image-id="#image">
-                <label class="custom-file-label">Choose file</label>
-            </div>
+            @include ('hush::components.inputs.file', ['name' => 'name'])
         </div>
     </div>
 

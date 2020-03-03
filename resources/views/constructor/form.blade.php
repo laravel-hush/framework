@@ -23,6 +23,14 @@
 
             @switch ($input['type'])
 
+                @case ('file')
+                    @include ('hush::components.inputs.file', [
+                        'name' => $input['name'],
+                        'value' => Constructor::value(get_defined_vars(), $input, $input['default'] ?? []),
+                        'id' => $input['id'] ?? 'some-image'
+                    ])
+                    @break
+
                 @case ('select')
                     {!! Form::{$input['type']}(
                         $input['name'],
