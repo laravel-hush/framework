@@ -9,7 +9,7 @@
             </div>
             <div class="block">
                 <div class="headline">
-                    <span class="h1">@lang ('hush::admin.login')</span>
+                    <span class="h1">@lang ('hush::admin.log-in')</span>
                 </div>
                 {!! Form::open(['url' => route('admin.login.post')]) !!}
                     <div class="form-group">

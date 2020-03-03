@@ -4,12 +4,12 @@ return [
     [
         'route' => 'admin.index',
         'icon' => '<i class="material-icons">home</i>',
-        'text' => 'Home'
+        'text' => 'home'
     ],
     [
         'constructor' => 'users.index',
         'icon' => '<i class="material-icons">account_box</i>',
-        'text' => 'Users',
+        'text' => 'users',
         'permission' => 'admin:users',
         'counter' => [
             'value' => function () {
@@ -22,7 +22,7 @@ return [
     [
         'constructor' => 'settings.index',
         'icon' => '<i class="material-icons">settings</i>',
-        'text' => 'Settings',
+        'text' => 'settings',
         'permission' => 'admin:users'
     ],
 ];

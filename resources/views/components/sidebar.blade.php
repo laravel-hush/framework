@@ -18,7 +18,7 @@
         <div class="nav-item">
             <a href="{{ Constructor::link($item) }}" class="nav-link d-flex align-items-center">
                 <span class="d-flex align-items-center mr-3">{!! $item['icon'] !!}</span>
-                <span>{{ $item['text'] }}</span>
+                <span>@lang ('hush::menus.' . $item['text'])</span>
 
                 @isset ($item['counter'])
                 <span class="counter"

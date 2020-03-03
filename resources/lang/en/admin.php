@@ -11,6 +11,7 @@ return [
     'email' => 'Email',
     'home' => 'Home',
     'id' => 'ID',
+    'log-in' => 'Log in',
     'login' => 'Login',
     'my-profile' => 'My profile',
     'name' => 'Name',
