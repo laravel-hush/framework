@@ -1,6 +1,6 @@
 .form-control,
-.chosen-container-single .chosen-single {
-  border: 0;
+.chosen-container-single .chosen-single,
+.custom-file-label {
   border-radius: 5px;
   border: 2px solid transparent;
   background-color: $grey_color;
@@ -17,6 +17,20 @@
 .chosen-container-single .chosen-single {
   padding: 7px 15px;
   margin: 2px 0;
+}
+
+.custom-file-image {
+  padding: 0 3px 5px;
+}
+
+.custom-file-label {
+  border: 0;
+  margin: 2px;
+
+  &:after {
+    height: auto;
+    line-height: 2;
+  }
 }
 
 .form-group {

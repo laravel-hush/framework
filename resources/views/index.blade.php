@@ -28,8 +28,7 @@
             <div class="col">Last</div>
             <div class="col actions">Actions</div>
         </div>
-        @for ($i = 0; $i < 10; $i++)
-        <div class="row">
+        @for ($i = 0; $i < 10; $i++) <div class="row">
             <div class="col id">1</div>
             <div class="col">Mark</div>
             <div class="col">Otto</div>
@@ -46,129 +45,143 @@
                     <i class="material-icons">delete</i>
                 </a>
             </div>
+    </div>
+    @endfor
+</div>
+
+<label class="checkbox">
+    <input type="checkbox" name="name" class="form-control d-none" value="1">
+
+    <div class="replacer">
+        <i class="material-icons">done</i>
+    </div>
+    <span class="text">Some checkbox</span>
+</label>
+
+<label class="radio">
+    <input type="radio" name="name" class="form-control d-none" value="1">
+
+    <div class="replacer">
+        <i class="material-icons">done</i>
+    </div>
+    <span class="text">Some radiobutton</span>
+</label>
+<label class="radio">
+    <input type="radio" name="name" class="form-control d-none" value="1">
+
+    <div class="replacer">
+        <i class="material-icons">done</i>
+    </div>
+    <span class="text">Some radiobutton</span>
+</label>
+
+<div class="row">
+    <div class="col">
+        <div class="form-group">
+            <label>Label:</label>
+            <img src="" alt="" class="custom-file-image" id="image">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" data-image-id="#image">
+                <label class="custom-file-label">Choose file</label>
+            </div>
         </div>
-        @endfor
     </div>
 
-    <label class="checkbox">
-        <input type="checkbox" name="name" class="form-control d-none" value="1">
-    
-        <div class="replacer">
-            <i class="material-icons">done</i>
+    <div class="col">
+        <div class="form-group">
+            <label>Label:</label>
+            <input type="text" class="form-control" placeholder="Enter some text...">
         </div>
-        <span class="text">Some checkbox</span>
-    </label>
-
-    <label class="radio">
-        <input type="radio" name="name" class="form-control d-none" value="1">
-    
-        <div class="replacer">
-            <i class="material-icons">done</i>
-        </div>
-        <span class="text">Some radiobutton</span>
-    </label>
-    <label class="radio">
-        <input type="radio" name="name" class="form-control d-none" value="1">
-    
-        <div class="replacer">
-            <i class="material-icons">done</i>
-        </div>
-        <span class="text">Some radiobutton</span>
-    </label>
-
-    <div class="form-group">
-        <label>Label:</label>
-        <input type="text" class="form-control" placeholder="Enter some text...">
     </div>
-    <div class="form-group">
-        <label>Label:</label>
-        <input type="text" class="form-control" placeholder="Enter some text..." disabled>
-    </div>
-    <div class="form-group error">
-        <label>Label:</label>
-        <input type="number" class="form-control" placeholder="Enter some text...">
-        <small>Some kind of error here</small>
-    </div>
-    <div class="form-group">
-        <label>Label:</label>
-        <select class="form-control">
-            @for ($i = 0; $i < 20; $i++)
-            <option value="0">Option</option>
+</div>
+<div class="form-group">
+    <label>Label:</label>
+    <input type="text" class="form-control" placeholder="Enter some text..." disabled>
+</div>
+<div class="form-group error">
+    <label>Label:</label>
+    <input type="number" class="form-control" placeholder="Enter some text...">
+    <small>Some kind of error here</small>
+</div>
+<div class="form-group">
+    <label>Label:</label>
+    <select class="form-control">
+        @for ($i = 0; $i < 20; $i++) <option value="0">Option</option>
             @endfor
-        </select>
-    </div>
-    <div class="form-group">
-        <label>Label:</label>
-        <select class="form-control" multiple>
-            @for ($i = 0; $i < 80; $i++)
-            <option value="0" {{ $i % 3 == 0 ? 'selected' : '' }}>Option</option>
+    </select>
+</div>
+<div class="form-group">
+    <label>Label:</label>
+    <select class="form-control" multiple>
+        @for ($i = 0; $i < 80; $i++) <option value="0" {{ $i % 3 == 0 ? 'selected' : '' }}>Option</option>
             @endfor
-        </select>
-    </div>
-    <div class="form-group">
-        <label>WYSIWYG:</label>
-        <textarea name="wysiwyg" class="wysiwyg"></textarea>
-    </div>
-    <div class="form-group">
-        <label>CodeMirror:</label>
-        <textarea name="codemirror" class="codemirror">Some random <textarea name="" id="" cols="30" rows="10"></textarea></textarea>
-    </div>
-    <div class="form-group">
-        <label>Label:</label>
-        <textarea class="form-control" placeholder="Placeholder"></textarea>
-    </div>
-    <div class="form-group">
-        <label>Label:</label>
-        <textarea class="form-control" placeholder="Placeholder"></textarea>
-    </div>
-    <div class="form-group">
-        <label>Label:</label>
-        <textarea class="form-control" placeholder="Placeholder"></textarea>
-    </div>
-    <div class="form-group">
-        <label>Label:</label>
-        <textarea class="form-control" placeholder="Placeholder"></textarea>
-    </div>
-    <div class="form-group">
-        <label>Label:</label>
-        <textarea class="form-control" placeholder="Placeholder"></textarea>
-    </div>
-    <div class="form-group">
-        <label>Label:</label>
-        <textarea class="form-control" placeholder="Placeholder"></textarea>
-    </div>
-    <div class="form-group">
-        <label>Label:</label>
-        <textarea class="form-control" placeholder="Placeholder"></textarea>
-    </div>
-    <div class="form-group">
-        <label>Label:</label>
-        <textarea class="form-control" placeholder="Placeholder"></textarea>
-    </div>
-    <div class="form-group">
-        <label>Label:</label>
-        <textarea class="form-control" placeholder="Placeholder"></textarea>
-    </div>
-    <div class="form-group">
-        <label>Label:</label>
-        <textarea class="form-control" placeholder="Placeholder"></textarea>
-    </div>
-    <div class="form-group">
-        <label>Label:</label>
-        <textarea class="form-control" placeholder="Placeholder"></textarea>
-    </div>
-    <div class="form-group">
-        <label>Label:</label>
-        <textarea class="form-control" placeholder="Placeholder"></textarea>
-    </div>
-    <div class="form-group">
-        <label>Label:</label>
-        <textarea class="form-control" placeholder="Placeholder"></textarea>
-    </div>
-    <div class="form-group">
-        <label>Label:</label>
-        <textarea class="form-control" placeholder="Placeholder"></textarea>
-    </div>
+    </select>
+</div>
+<div class="form-group">
+    <label>WYSIWYG:</label>
+    <textarea name="wysiwyg" class="wysiwyg"></textarea>
+</div>
+<div class="form-group">
+    <label>CodeMirror:</label>
+    <textarea name="codemirror"
+        class="codemirror">Some random <textarea name="" id="" cols="30" rows="10"></textarea></textarea>
+</div>
+<div class="form-group">
+    <label>Label:</label>
+    <textarea class="form-control" placeholder="Placeholder"></textarea>
+</div>
+<div class="form-group">
+    <label>Label:</label>
+    <textarea class="form-control" placeholder="Placeholder"></textarea>
+</div>
+<div class="form-group">
+    <label>Label:</label>
+    <textarea class="form-control" placeholder="Placeholder"></textarea>
+</div>
+<div class="form-group">
+    <label>Label:</label>
+    <textarea class="form-control" placeholder="Placeholder"></textarea>
+</div>
+<div class="form-group">
+    <label>Label:</label>
+    <textarea class="form-control" placeholder="Placeholder"></textarea>
+</div>
+<div class="form-group">
+    <label>Label:</label>
+    <textarea class="form-control" placeholder="Placeholder"></textarea>
+</div>
+<div class="form-group">
+    <label>Label:</label>
+    <textarea class="form-control" placeholder="Placeholder"></textarea>
+</div>
+<div class="form-group">
+    <label>Label:</label>
+    <textarea class="form-control" placeholder="Placeholder"></textarea>
+</div>
+<div class="form-group">
+    <label>Label:</label>
+    <textarea class="form-control" placeholder="Placeholder"></textarea>
+</div>
+<div class="form-group">
+    <label>Label:</label>
+    <textarea class="form-control" placeholder="Placeholder"></textarea>
+</div>
+<div class="form-group">
+    <label>Label:</label>
+    <textarea class="form-control" placeholder="Placeholder"></textarea>
+</div>
+<div class="form-group">
+    <label>Label:</label>
+    <textarea class="form-control" placeholder="Placeholder"></textarea>
+</div>
+<div class="form-group">
+    <label>Label:</label>
+    <textarea class="form-control" placeholder="Placeholder"></textarea>
+</div>
+<div class="form-group">
+    <label>Label:</label>
+    <textarea class="form-control" placeholder="Placeholder"></textarea>
+</div>
 </div>
 
 <div class="modal" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

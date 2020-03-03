@@ -1,9 +1,20 @@
-window.functions = class functions
-{
-    static initialize()
-    {
+window.functions = class functions {
+    static initialize() {
         $('select').chosen({
             disable_search_threshold: 10
+        });
+
+        $('.custom-file-input').change(function () {
+            if (this.files && this.files[0]) {
+                var image = $(this).data('image-id');
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $(image).attr('src', e.target.result);
+                }
+
+                reader.readAsDataURL(this.files[0]);
+            }
         });
 
         $('.codemirror').each(function () {
@@ -45,8 +56,7 @@ window.functions = class functions
         });
     }
 
-    static initializeDeleter()
-    {
+    static initializeDeleter() {
         $('.delete-item').off('click').click(function (event) {
             event.preventDefault();
 
@@ -76,16 +86,14 @@ window.functions = class functions
         });
     }
 
-    static initializeSearch()
-    {
+    static initializeSearch() {
         $('.search-button').off('click').click(function (event) {
             event.preventDefault();
             functions.openDynamicModal('/admin/search');
         });
     }
 
-    static initializeSubmitter()
-    {
+    static initializeSubmitter() {
         $('.submitable').off('submit').submit(function (event) {
             event.preventDefault();
 
@@ -121,8 +129,7 @@ window.functions = class functions
         });
     }
 
-    static openDynamicModal(link)
-    {
+    static openDynamicModal(link) {
         $.get(link, function (response) {
             $('#modals').html(response);
             $('#dynamic-modal').modal();
@@ -131,8 +138,7 @@ window.functions = class functions
         });
     }
 
-    static request(type, url, data = null, success = function () { }, error = function () { })
-    {
+    static request(type, url, data = null, success = function () { }, error = function () { }) {
         $.ajax({
             type: type,
             url: url,
@@ -173,8 +179,7 @@ window.functions = class functions
         });
     }
 
-    static processResponseRedirects(response)
-    {
+    static processResponseRedirects(response) {
         if (response.redirect) {
             window.location.href = response.redirect;
         } else if (response.reload) {
@@ -182,8 +187,7 @@ window.functions = class functions
         }
     }
 
-    static notify(text, type = 'info', position = 'bottomRight')
-    {
+    static notify(text, type = 'info', position = 'bottomRight') {
         new Noty({
             theme: 'metroui',
             type: type,
