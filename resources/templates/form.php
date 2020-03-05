@@ -1,8 +1,5 @@
 <?php
 
-use App\User;
-use ScaryLayer\Hush\Models\Role;
-
 return [
 
     /*
