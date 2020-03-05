@@ -90,40 +90,47 @@ return [
                         'route' => 'admin.constructor.process',
                         'action' => 'save'
                     ],
-                    'inputs' => [
+                    'grid' => [
                         [
-                            'type' => 'hidden',
-                            'name' => 'id',
-                            'field' => 'id'
+                            'size' => 'col-6',
+                            'inputs' => [
+                                [
+                                    'type' => 'hidden',
+                                    'name' => 'id',
+                                    'field' => 'id'
+                                ],
+                                [
+                                    'label' => 'role',
+                                    'placeholder' => 'role',
+                                    'type' => 'select',
+                                    'name' => 'role',
+                                    'field' => 'role',
+                                    'data' => function () {
+                                        return Role::orderBy('key')->get()->pluck('key', 'key');
+                                    }
+                                ],
+                                [
+                                    'label' => 'name',
+                                    'placeholder' => 'name',
+                                    'type' => 'text',
+                                    'name' => 'name',
+                                    'field' => 'name',
+                                ],
+                            ]
                         ],
                         [
-                            'width' => 'col-12',
-                            'label' => 'role',
-                            'placeholder' => 'role',
-                            'type' => 'select',
-                            'name' => 'role',
-                            'field' => 'role',
-                            'data' => function () {
-                                return Role::orderBy('key')->get()->pluck('key', 'key');
-                            }
+                            'size' => 'col-6',
+                            'inputs' => [
+                                [
+                                    'label' => 'email',
+                                    'placeholder' => 'email',
+                                    'type' => 'email',
+                                    'name' => 'email',
+                                    'field' => 'email',
+                                ],
+                            ]
                         ],
-                        [
-                            'width' => 'col-12',
-                            'label' => 'name',
-                            'placeholder' => 'name',
-                            'type' => 'text',
-                            'name' => 'name',
-                            'field' => 'name',
-                        ],
-                        [
-                            'width' => 'col-12',
-                            'label' => 'email',
-                            'placeholder' => 'email',
-                            'type' => 'email',
-                            'name' => 'email',
-                            'field' => 'email',
-                        ],
-                    ]
+                    ],
                 ]
 
             ]
