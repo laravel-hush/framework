@@ -29,7 +29,7 @@
     <div class="row">
 
         @foreach ($block['content']['columns'] as $column => $settings)
-        <div class="col {{ $column }}">
+        <div class="col {{ $column }} {{ $settings['class'] ?? '' }}">
             @switch ($settings['type'] ?? '')
                 @case ('image')
                     <img src="{{ $row->{$column} }}" alt="">
