@@ -96,25 +96,22 @@ return [
                             'inputs' => [
                                 [
                                     'type' => 'hidden',
-                                    'name' => 'id',
-                                    'field' => 'id'
+                                    'name' => 'id'
                                 ],
                                 [
-                                    'label' => 'role',
-                                    'placeholder' => 'role',
                                     'type' => 'select',
                                     'name' => 'role',
-                                    'field' => 'role',
                                     'data' => function () {
                                         return Role::orderBy('key')->get()->pluck('key', 'key');
-                                    }
+                                    },
+                                    'label' => 'role',
+                                    'placeholder' => 'role',
                                 ],
                                 [
-                                    'label' => 'name',
-                                    'placeholder' => 'name',
                                     'type' => 'text',
                                     'name' => 'name',
-                                    'field' => 'name',
+                                    'label' => 'name',
+                                    'placeholder' => 'name',
                                 ],
                             ]
                         ],

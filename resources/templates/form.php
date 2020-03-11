@@ -89,8 +89,7 @@ return [
                     'inputs' => [
                         [
                             'type' => 'hidden',
-                            'name' => 'id',
-                            'field' => 'id'
+                            'name' => 'id'
                         ],
 
                         // another inputs

@@ -40,6 +40,10 @@ class Constructor
             return $item['value'];
         } elseif (isset($item['closure'])) {
             return $item['closure']($variables);
+        } elseif (isset($item['name'])) {
+            return isset($variables['model']) && isset($variables['model'][$item['name']])
+                ? $variables['model'][$item['name']]
+                : null;
         }
 
         return $default;
