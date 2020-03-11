@@ -57,7 +57,12 @@ return [
                 'title' => [
                     'text' => 'items',
                     'buttons' => [
-                        //
+                        [
+                            'form' => 'users',
+                            'text' => 'save',
+                            'icon' => 'save',
+                            'class' => 'btn-primary'
+                        ],
                     ],
                 ],
 
