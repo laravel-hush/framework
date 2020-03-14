@@ -2,7 +2,8 @@
     'method' => 'post',
     'url' => Constructor::link($block['content']),
     'id' => $block['content']['id'] ?? '',
-    'class' => 'submitable'
+    'class' => 'submitable',
+    'files' => true
 ]) !!}
 
 @isset ($block['content']['grid'])

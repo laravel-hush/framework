@@ -98,6 +98,7 @@ window.functions = class functions {
             event.preventDefault();
 
             var form = $(this);
+            var formData = new FormData(this);
             form.validate();
 
             form.find('.form-group').each(function () {
@@ -110,7 +111,7 @@ window.functions = class functions {
                 functions.request(
                     form.prop('method'),
                     form.prop('action'),
-                    form.serializeArray(),
+                    formData,
                     function (response) {
 
                     },
@@ -143,6 +144,9 @@ window.functions = class functions {
             type: type,
             url: url,
             data: data,
+            cache: false,
+            contentType: false,
+            processData: false,
             success: function (response) {
                 if (response.status != "success") {
                     functions.notify('An error occurred while executing the request', 'error');

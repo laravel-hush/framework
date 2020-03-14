@@ -19,7 +19,7 @@
                         @include ('hush::components.inputs.file', [
                             'name' => $input['name'],
                             'value' => Constructor::value(get_defined_vars(), $input, $input['default'] ?? []),
-                            'id' => $input['id'] ?? 'some-image'
+                            'id' => $input['id'] ?? $input['name']
                         ])
                         @break
 
@@ -43,6 +43,11 @@
                         @break
 
                 @endswitch
+
+                @isset ($input['description'])
+                <small class="d-block">@lang ('hush::admin.' . $input['description'])</small>
+                @endisset
+
             </div>
         </div>
 
