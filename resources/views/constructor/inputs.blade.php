@@ -13,11 +13,19 @@
         <div class="col {{ $input['width'] ?? 'col-12' }}">
             <div class="form-group">
 
-                @isset ($input['label'])
+                @if (isset($input['label']) && !in_array($input['type'], ['checkbox', 'radion']))
                 {!! Form::label($input['name'], __('hush::admin.' . $input['label'])) !!}
-                @endisset
+                @endif
 
                 @switch ($input['type'])
+
+                    @case ('checkbox')
+                        @include ('hush::components.inputs.checkbox', [
+                            'name' => $input['name'],
+                            'is_checked' => Constructor::value(get_defined_vars(), $input, $input['default'] ?? []),
+                            'label' => $input['label'] ?? ''
+                        ])
+                        @break
 
                     @case ('file')
                         @include ('hush::components.inputs.file', [
