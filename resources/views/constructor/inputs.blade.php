@@ -10,7 +10,15 @@
             @continue
         @endif
 
+        @if ($input['type'] == 'view')
+            <div class="col {{ $input['width'] ?? 'col-12' }}">
+                @include ($input['view'])
+            </div>
+            @continue
+        @endif
+
         <div class="col {{ $input['width'] ?? 'col-12' }}">
+
             <div class="form-group">
 
                 @if (isset($input['label']) && !in_array($input['type'], ['checkbox', 'radion']))

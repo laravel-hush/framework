@@ -14,5 +14,5 @@
     </div>
 
     <script src="{{ asset('vendor/hush/js/app.js') }}"></script>
-    @yield ('js')
+    @stack ('js')
 @endsection
