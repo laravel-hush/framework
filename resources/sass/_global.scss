@@ -121,7 +121,7 @@ label {
         color: $primary_color;
 
         &:focus {
-            box-shadow: none;
+          box-shadow: none;
         }
       }
 
@@ -136,7 +136,10 @@ label {
         }
 
         &.disabled {
+          &:first-child,
+          &:last-child {
             display: none;
+          }
         }
       }
     }
