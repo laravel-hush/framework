@@ -37,9 +37,7 @@ class Constructor
                 ? $variables['model'][$item['field']]
                 : null;
         } elseif (isset($item['value'])) {
-            return $item['value'];
-        } elseif (isset($item['closure'])) {
-            return $item['closure']($variables);
+            return self::closureDetector($item['value'], $variables);
         } elseif (isset($item['name'])) {
             return isset($variables['model']) && isset($variables['model'][$item['name']])
                 ? $variables['model'][$item['name']]
@@ -49,10 +47,10 @@ class Constructor
         return $default;
     }
 
-    public static function closureDetector($value)
+    public static function closureDetector($value, $params = null)
     {
         return $value instanceof Closure
-            ? call_user_func($value)
+            ? call_user_func($value, $params)
             : $value;
     }
 }

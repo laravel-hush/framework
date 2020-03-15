@@ -1,6 +1,10 @@
 <div class="row">
     @foreach ($inputs as $input)
 
+        @if (isset($input['condition']) && !call_user_func($input['condition'], get_defined_vars()))
+            @continue
+        @endif
+
         @if ($input['type'] == 'hidden')
             {!! Form::hidden($input['name'], Constructor::value(get_defined_vars(), $input, $input['default'] ?? null)) !!}
             @continue
@@ -29,7 +33,7 @@
                             isset($input['data']) ? call_user_func($input['data']) : [],
                             Constructor::value(get_defined_vars(), $input, $input['default'] ?? []),
                             [
-                                'class' => 'form-control',
+                                'class' => 'form-control ' . ($input['class'] ?? ''),
                                 'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? ''))
                             ]
                         ) !!}
@@ -37,7 +41,7 @@
 
                     @default
                         {!! Form::{$input['type']}($input['name'], Constructor::value(get_defined_vars(), $input, $input['default'] ?? null), [
-                            'class' => 'form-control',
+                            'class' => 'form-control ' . ($input['class'] ?? ''),
                             'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? ''))
                         ]) !!}
                         @break
