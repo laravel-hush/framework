@@ -37,7 +37,7 @@
                     <img src="{{ $row->{$column} }}" alt="">
                     @break
                 @case ('closure')
-                    {{ call_user_func($settings['content'], $row) }}
+                    {!! call_user_func($settings['content'], $row) !!}
                     @break
                 @default
                     {{ $row->{$column} }}
