@@ -9,7 +9,7 @@ trait Imagable
 {
     public function setAttribute($property, $value)
     {
-        if (in_array($property, $this->imagable)) {
+        if (in_array($property, $this->imagable) && !is_string($value)) {
             $parts = explode('\\', __CLASS__);
             $this->attributes[$property] = Image::store($value, Str::snake(end($parts)));
             return $this->attributes[$property];
