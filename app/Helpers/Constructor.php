@@ -6,11 +6,13 @@ use Closure;
 
 class Constructor
 {
-    public static function link($item)
+    public static function link($item, $variables = [])
     {
         $link = '#';
         if (isset($item['route'])) {
-            $link = route($item['route']);
+            $link = is_array($item['route'])
+                ? route($item['route']['name'], call_user_func($item['route']['params'], $variables))
+                : route($item['route']);
         } elseif (isset($item['constructor'])) {
             $link = is_string($item['constructor'])
                 ? route('admin.constructor', ['url' => str_replace('.', '/', $item['constructor'])])
