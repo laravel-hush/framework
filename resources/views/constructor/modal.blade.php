@@ -12,8 +12,14 @@
                 </button>
             </div>
             <div class="modal-body row">
-                @foreach ($settings['blocks'] as $block)
+                @foreach ($settings['blocks'] as $i => $block)
+
                 <div class="col {{ $block['class'] ?? 'col-12' }}">
+
+                    @if ($i != 0 && isset($block['title'], $block['title']['text']))
+                    <span class="h5 w-100 d-block pt-4 pb-2">@lang ('hush::admin.' . $block['title']['text'])</span>
+                    @endif
+
                     <div class="block">
 
                         @isset ($block['content'])
@@ -29,7 +35,7 @@
                     <i class="material-icons">close</i>
                     <span>@lang ('hush::admin.cancel')</span>
                 </button>
-                @include ('hush::constructor.buttons')
+                @include ('hush::constructor.buttons', ['block' => $settings['blocks'][0]])
             </div>
         </div>
     </div>
