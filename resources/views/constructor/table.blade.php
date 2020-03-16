@@ -3,7 +3,7 @@
     <div class="row head">
 
         @foreach ($block['content']['columns'] as $column => $settings)
-        <div class="col {{ $column }}">
+        <div class="col {{ $column }} {{ $settings['class'] ?? '' }}">
 
             @isset ($settings['sortable'])
             <a href="{{ Constructor::link(['constructor' => collect(request()->except('sort', 'direction'))->merge([
@@ -19,7 +19,9 @@
         </div>
         @endforeach
 
+        @isset ($block['content']['actions'])
         <div class="col actions">@lang ('hush::admin.actions')</div>
+        @endisset
 
     </div>
 
@@ -48,6 +50,10 @@
         <div class="col actions">
 
             @foreach ($block['content']['actions'] as $action)
+
+            @if (isset($action['condition']) && !call_user_func($action['condition'], get_defined_vars()))
+                @continue
+            @endif
 
             @if (!isset($action['permission']) || auth()->user()->permitted($action['permission']))
             <a href="{{ Constructor::link($action, get_defined_vars()) }}" class="btn btn-additional btn-rounded"
