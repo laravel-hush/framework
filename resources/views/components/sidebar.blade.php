@@ -16,7 +16,8 @@
         @foreach (config('hush.menu') as $item)
         @if (!isset($item['permission']) || auth()->user()->permitted($item['permission']))
         <div class="nav-item">
-            <a href="{{ Constructor::link($item) }}" class="nav-link d-flex align-items-center">
+            <a href="{{ Constructor::link($item) }}" class="nav-link d-flex align-items-center"
+                @isset ($item['in_new_tab']) target="_blank" @endisset>
                 <span class="d-flex align-items-center mr-3">{!! $item['icon'] !!}</span>
                 <span>@lang ('hush::menus.' . $item['text'])</span>
 

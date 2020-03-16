@@ -25,7 +25,8 @@
     <span>@lang ('hush::admin.' . $button['text'])</span>
 </button>
 @else
-<a href="{{ Constructor::link($button) }}" class="btn {{ $button['class'] ?? 'btn-light' }}">
+<a href="{{ Constructor::link($button) }}" class="btn {{ $button['class'] ?? 'btn-light' }}"
+    @isset ($button['in_new_tab']) target="_blank" @endisset>
     <i class="material-icons">{{ $button['icon'] }}</i>
     <span>@lang ('hush::admin.' . $button['text'])</span>
 </a>
