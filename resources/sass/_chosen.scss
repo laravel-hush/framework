@@ -82,7 +82,8 @@
 
 .chosen-with-drop .chosen-single {
   background: $disabled_color !important;
-  border: 0 !important;
+  border: 2px solid $disabled_color !important;
+  box-shadow: none !important;
 }
 
 .chosen-container-multi {
