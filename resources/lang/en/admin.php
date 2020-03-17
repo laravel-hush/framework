@@ -15,6 +15,7 @@ return [
     'login' => 'Login',
     'my-profile' => 'My profile',
     'name' => 'Name',
+    'no-data' => 'No data',
     'operation-success' => 'Operation success',
     'password' => 'Password',
     'role' => 'Role',

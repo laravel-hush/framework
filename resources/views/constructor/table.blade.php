@@ -27,7 +27,7 @@
 
     @php ($rows = $block['content']['rows']())
 
-    @foreach ($rows as $row)
+    @forelse ($rows as $row)
     <div class="row">
 
         @foreach ($block['content']['columns'] as $column => $settings)
@@ -93,7 +93,11 @@
         @endisset
 
     </div>
-    @endforeach
+    @empty
+    <div class="row justify-content-center">
+        <div>@lang ('hush::admin.no-data')</div>
+    </div>
+    @endforelse
 </div>
 
 <div class="pagination-block">

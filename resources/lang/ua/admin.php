@@ -15,6 +15,7 @@ return [
     'login' => 'Увійти',
     'my-profile' => 'Мій профіль',
     'name' => 'Ім\'я',
+    'no-data' => 'Немає даних',
     'operation-success' => 'Операція успішна',
     'password' => 'Пароль',
     'role' => 'Роль',

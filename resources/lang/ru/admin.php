@@ -14,6 +14,7 @@ return [
     'log-in' => 'Вход',
     'login' => 'Войти',
     'my-profile' => 'Мой профиль',
+    'no-data' => 'Нет данных',
     'name' => 'Имя',
     'operation-success' => 'Операция успешна',
     'password' => 'Пароль',
