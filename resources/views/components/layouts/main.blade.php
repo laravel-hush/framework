@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" href="{{ asset('vendor/hush/images/favicon.ico') }}">
 
     <link href="{{ asset('vendor/hush/css/app.css') }}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
 </head>
 
 <body>
