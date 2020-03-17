@@ -9,8 +9,11 @@
             <a href="{{ Constructor::link(['constructor' => collect(request()->except('sort', 'direction'))->merge([
                 'sort' => $column,
                 'direction' => $column == request()->sort && request()->direction == 'asc' ? 'desc' : 'asc'
-            ])->all()]) }}">
+            ])->all()]) }}" class="sortable-column d-flex align-items-center">
                 @lang ('hush::admin.' . $column)
+                @if (request()->sort == $column)
+                <i class="material-icons">swap_vert</i>
+                @endif
             </a>
             @else
             @lang ('hush::admin.' . $column)
