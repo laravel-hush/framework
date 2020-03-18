@@ -59,7 +59,7 @@
             @endif
 
             @if (!isset($action['permission']) || auth()->user()->permitted($action['permission']))
-            <a href="{{ Constructor::link($action, get_defined_vars()) }}" class="btn btn-additional btn-rounded"
+            <a href="{{ Constructor::link($action, get_defined_vars()) }}" class="btn btn-additional {{ isset($action['text']) ? 'btn-rounded' : 'btn-round' }}"
                 @isset ($action['in_new_tab']) target="_blank" @endisset>
                 <i class="material-icons">{{ $action['icon'] }}</i>
                 @isset ($action['text'])
