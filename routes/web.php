@@ -27,7 +27,6 @@ Route::prefix('admin')
 
         Route::middleware('permission:admin,admin.login')->group(function () {
 
-            Route::view('/', 'hush::index')->name('index');
             Route::view('search', 'hush::components.modals.search');
 
             Route::get('logout', function () {
@@ -35,6 +34,7 @@ Route::prefix('admin')
                 return redirect()->route('admin.index');
             })->name('logout');
 
+            Route::get('/', 'GlobalController@construct')->name('index');
             Route::get('{url}', 'GlobalController@construct')
                 ->where('url', '([A-Za-z0-9\-\/]+)')
                 ->name('constructor');

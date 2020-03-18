@@ -14,7 +14,7 @@ class GlobalController extends Controller
     public function __construct()
     {
         $this->route = str_replace('admin.', '', str_replace('/', '.', request()->path()));
-        abort_if(!config(self::CONFIG . '.' . $this->route), 404);
+        abort_if(!config(self::CONFIG . '.' . $this->route ?? 'index'), 404);
     }
 
     public function construct()
