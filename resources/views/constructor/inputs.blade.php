@@ -43,6 +43,13 @@
                         ])
                         @break
 
+                    @case ('password')
+                        {!! Form::{$input['type']}($input['name'], [
+                            'class' => 'form-control ' . ($input['class'] ?? ''),
+                            'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? ''))
+                        ]) !!}
+                        @break
+
                     @case ('select')
                         {!! Form::{$input['type']}(
                             $input['name'],
