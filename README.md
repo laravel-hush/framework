@@ -5,7 +5,7 @@
 *  `composer require scary-layer/hush`
 *  `php artisan vendor:publish --tag=hush`
 *  `php artisan migrate --seed` - it will also create dev, admin and simple user.
-3.  Edit App\User model.
+3.  Edit User model.
 *  Inherit ```ScaryLayer\Hush\Traits\Permissiable``` trait by your User model.
 *  Also you may add field `role` to fillable array.
 
