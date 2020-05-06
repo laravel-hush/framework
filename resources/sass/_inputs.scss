@@ -76,6 +76,7 @@
   cursor: pointer;
   display: flex;
   align-items: center;
+  width: fit-content;
 
   input:checked + .replacer i {
     display: block;
@@ -86,14 +87,19 @@
   }
 
   .replacer {
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     align-items: center;
     background: $grey_color;
     border-radius: 5px;
     display: flex;
     justify-content: center;
     padding: 7px;
+
+    i {
+      color: #99a6bf;
+      font-size: 16px;
+    }
   }
 
   .text {

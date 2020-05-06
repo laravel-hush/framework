@@ -1,21 +1,23 @@
-{!! Form::open([
-    'method' => 'post',
-    'url' => Constructor::link($block['content']),
-    'id' => $block['content']['id'] ?? '',
-    'class' => 'submitable',
-    'files' => true
-]) !!}
+<div class="content">
+    {!! Form::open([
+        'method' => 'post',
+        'url' => Constructor::link($block['content']),
+        'id' => $block['content']['id'] ?? '',
+        'class' => 'submitable',
+        'files' => true
+    ]) !!}
 
-@isset ($block['content']['grid'])
-<div class="row">
-    @foreach ($block['content']['grid'] as $column)
-    <div class="col {{ $column['size'] }}">
-        @include ('hush::constructor.inputs', ['inputs' => $column['inputs']])
+    @isset ($block['content']['grid'])
+    <div class="row">
+        @foreach ($block['content']['grid'] as $column)
+        <div class="col {{ $column['size'] }}">
+            @include ('hush::constructor.inputs', ['inputs' => $column['inputs']])
+        </div>
+        @endforeach
     </div>
-    @endforeach
-</div>
-@else
-    @include ('hush::constructor.inputs', ['inputs' => $block['content']['inputs']])
-@endisset
+    @else
+        @include ('hush::constructor.inputs', ['inputs' => $block['content']['inputs']])
+    @endisset
 
-{!! Form::close() !!}
+    {!! Form::close() !!}
+</div>
