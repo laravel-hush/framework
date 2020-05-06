@@ -9,36 +9,3 @@
     display: none;
   }
 }
-
-@media (max-width: 1300px) {
-  .left-side {
-    min-width: 220px;
-    left: -220px;
-
-    &.toggled {
-      left: 0;
-    }
-  }
-
-  #topbar {
-    width: 100vw;
-    left: 0;
-  }
-
-  .right-side {
-    margin-left: 0;
-  }
-}
-
-@media (max-width: 800px) {
-  .left-side {
-    min-width: 220px;
-    left: -220px;
-  }
-}
-
-@media (max-width: 500px) {
-    .breadcrumb {
-        display: none;
-    }
-}

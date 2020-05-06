@@ -2,16 +2,16 @@
 
 @section ('body')
     @include ('hush::components.topbar')
-    <nav class="left-side dark shadow-sm">
-        @include ('hush::components.sidebar')
-    </nav>
+    @include ('hush::components.menu')
 
-    <div class="right-side">
-        <div class="page-content" id="content">
-            @yield ('content')
-        </div>
-        <div id="modals"></div>
+    <div class="page-content with-margin" id="content">
+        @include ('hush::components.breadcrumbs')
+        @yield ('content')
     </div>
+
+    @include ('hush::components.footer')
+
+    <div id="modals"></div>
 
     <script src="{{ asset('vendor/hush/js/app.js') }}"></script>
     @stack ('js')

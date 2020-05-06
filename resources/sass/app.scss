@@ -14,18 +14,19 @@
 
 @import 'global';
 
-@import 'chosen';
-@import 'codemirror';
 @import 'fonts';
 @import 'inputs';
-@import 'layout';
 @import 'modal';
-@import 'sidebar';
-@import 'swal';
 @import 'table';
-@import 'topbar';
-@import 'trumbowyg';
+
+@import 'layout/footer';
+@import 'layout/main';
+@import 'layout/menu';
+@import 'layout/topbar';
+
+@import 'plugins/chosen';
+@import 'plugins/codemirror';
+@import 'plugins/swal';
+@import 'plugins/trumbowyg';
 
 @import 'media';
-
-@import 'dark/sidebar';

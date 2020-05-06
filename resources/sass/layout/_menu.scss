@@ -1,0 +1,32 @@
+#menu {
+  .nav {
+    align-items: stretch;
+    display: flex;
+
+    &-item {
+      padding-right: 1px;
+
+      .nav-link {
+        background-color: #203030;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        color: #abb;
+        opacity: .4;
+        padding: 14px 25px;
+        text-transform: uppercase;
+
+        &:hover {
+          opacity: .5;
+        }
+
+        &.active {
+          background-color: #f9f9fc;
+          color: #717171;
+          font-weight: 500;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+

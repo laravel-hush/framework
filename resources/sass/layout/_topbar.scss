@@ -1,0 +1,33 @@
+#topbar {
+  color: #fff;
+  height: 90px;
+  max-height: 90px;
+
+  .logo {
+    color: #fff;
+    font-size: 32px;
+  }
+
+  .navigation {
+    .user {
+      cursor: pointer;
+      padding: 5px 15px;
+
+      &:hover {
+        background: #ffffff;
+        color: #716aca;
+      }
+
+      .name {
+        font-weight: 600;
+        padding-right: 7px;
+      }
+
+      .image {
+        img {
+          height: 40px;
+        }
+      }
+    }
+  }
+}
