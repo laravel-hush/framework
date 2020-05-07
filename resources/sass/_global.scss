@@ -50,13 +50,16 @@ label {
 }
 
 .btn {
-  display: flex;
   align-items: center;
+  border: 2px solid;
+  display: flex;
+  font-weight: bold;
+  font-size: 13px;
 
   i + span {
-    margin-left: 3px;
-    font-weight: bold;
     font-size: 13px;
+    font-weight: bold;
+    margin-left: 3px;
   }
 
   &-additional {
@@ -86,7 +89,14 @@ label {
   &-light {
     background-color: $light_color;
     border-color: $light_color;
-    color: #414549;
+    color: #8950fc;
+
+    &:hover,
+    &:focus {
+      background-color: #ebebef;
+      border-color: #ebebef;
+      color: $primary_color;
+    }
   }
 
   &-primary {
@@ -98,6 +108,7 @@ label {
       background-color: $primary_color;
       border-color: $primary_color;
       box-shadow: 0 0 0 0.2rem mix($primary_color, #fff, 40%);
+      color: #fff;
     }
   }
 
