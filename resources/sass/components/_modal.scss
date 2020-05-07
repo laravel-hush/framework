@@ -1,0 +1,27 @@
+.modal {
+  &-header {
+    border-bottom: 1px solid #f0f3ff;
+
+    h5 {
+      font-size: 18px;
+      margin: 0;
+    }
+  }
+
+  &-content {
+    border: 0;
+  }
+
+  &-footer {
+    border-top: 1px solid #f0f3ff;
+    justify-content: center;
+  }
+
+  .close {
+    font-weight: normal;
+
+    &:focus {
+      outline: 0;
+    }
+  }
+}
