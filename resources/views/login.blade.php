@@ -4,7 +4,7 @@
 <div class="page-content animated login-page" id="content">
     <div class="row no-gutters align-items-center justify-content-center" style="height: 100vh">
         <div class="col col-sm-10 col-md-8 col-lg-5 col-xl-3 text-center">
-            <div class="logo">
+            <div class="logo w-25 mx-auto mb-4">
                 <img src="{{ asset('vendor/hush/images/long-logo.png') }}" alt="">
             </div>
             <div class="block">
