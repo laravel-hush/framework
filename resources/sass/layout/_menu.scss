@@ -7,23 +7,23 @@
       padding-right: 1px;
 
       .nav-link {
-        background-color: #203030;
+        background-color: #00000044;
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
-        color: #abb;
-        opacity: .4;
+        color: #ffffff55;
+        font-weight: 300;
         padding: 14px 25px;
         text-transform: uppercase;
 
         &:hover {
-          opacity: .5;
+          background-color: #00000055;
+          color: #ffffff77;
         }
 
         &.active {
           background: linear-gradient(180deg, #f9f9fc, #eceef7);
           color: #717171;
           font-weight: 500;
-          opacity: 1;
         }
       }
     }

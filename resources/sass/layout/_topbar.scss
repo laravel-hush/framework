@@ -6,16 +6,39 @@
   .logo {
     color: #fff;
     font-size: 32px;
+
+    img {
+      width: 100px;
+      max-height: 90px;
+    }
   }
 
   .navigation {
-    .user {
+    &-item {
+      align-items: center;
+      background: #00000033;
       cursor: pointer;
-      padding: 5px 15px;
+      display: flex;
+      justify-content: center;
+      padding: 0 20px;
+
+      &:first-child {
+        border-radius: 4px 0 0 4px;
+      }
 
       &:hover {
-        background: #ffffff;
-        color: #716aca;
+        background: #00000044;
+      }
+    }
+
+    .user {
+      background: #00000033;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+      padding: 10px 15px;
+
+      &:hover {
+        background: #00000044;
       }
 
       .name {
