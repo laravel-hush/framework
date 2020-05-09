@@ -13,6 +13,7 @@
 
     <div id="modals"></div>
 
+    <script>var __ = @json(__('hush::frontend'))</script>
     <script src="{{ asset('vendor/hush/js/app.js') }}"></script>
     @stack ('js')
 @endsection
