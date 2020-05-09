@@ -1,0 +1,55 @@
+.notifications-dropdown {
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 0 13px 0 rgba(82, 63, 105, .15);
+  min-width: 350px;
+
+  .heading {
+    color: #464e5f;
+    font-size: 18px;
+    font-weight: 600;
+    padding: 20px 0;
+    text-align: center;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+
+  .notification {
+    align-items: center;
+    display: flex;
+    padding: 10px 30px;
+
+    &:active {
+      background-color: transparent;
+      color: #212529;
+    }
+
+    &:hover {
+      background-color: #f3f6f9;
+    }
+
+    .icon-col {
+      flex: 0 0 12%;
+      max-width: 12%;
+    }
+
+    .material-icons {
+      color: #8950fc;
+      font-size: 25px;
+      vertical-align: middle;
+    }
+
+    .message {
+      font-size: 14px;
+      font-weight: 500;
+      margin: 0;
+    }
+
+    .time {
+      font-size: 12px;
+      margin: 0;
+    }
+  }
+}
