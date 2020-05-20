@@ -1,7 +1,39 @@
-.notifications-dropdown {
+.dropdown-menu {
   border: 0;
   border-radius: 4px;
   box-shadow: 0 0 13px 0 rgba(82, 63, 105, .15);
+
+  .dropdown-item {
+    padding: 10px 30px;
+
+    &:active {
+      background-color: transparent;
+      color: #212529;
+    }
+
+    &:hover {
+      background-color: #f3f6f9;
+    }
+  }
+}
+
+.submenu {
+  margin-top: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+
+  .dropdown-item {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+
+    .expand-left {
+      margin-left: 5px;
+    }
+  }
+}
+
+.notifications-dropdown {
   min-width: 350px;
 
   .heading {
@@ -20,15 +52,6 @@
     align-items: center;
     display: flex;
     padding: 10px 30px;
-
-    &:active {
-      background-color: transparent;
-      color: #212529;
-    }
-
-    &:hover {
-      background-color: #f3f6f9;
-    }
 
     .icon-col {
       flex: 0 0 12%;
