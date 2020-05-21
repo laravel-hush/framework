@@ -1,0 +1,49 @@
+.daterangepicker {
+  select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 0 !important;
+    background: $light_color !important;
+    padding: 2px 5px !important;
+    text-align: center;
+
+    &:after {
+      position: absolute;
+      content: "";
+      top: 14px;
+      right: 10px;
+      width: 0;
+      height: 0;
+      border: 6px solid transparent;
+      border-color: #fff transparent transparent transparent;
+    }
+  }
+
+  .calendar-table {
+    td.active {
+      background-color: $primary_color;
+    }
+  }
+
+  .drp-buttons {
+    display: flex !important;
+    justify-content: space-between !important;
+
+    .cancelBtn {
+      background-color: $light_color;
+      border-color: $light_color;
+      color: #8950fc;
+
+      &:hover,
+      &:focus {
+        background-color: #ebebef;
+        border-color: #ebebef;
+        color: $primary_color;
+      }
+    }
+  }
+
+  .drp-selected {
+    display: none;
+  }
+}

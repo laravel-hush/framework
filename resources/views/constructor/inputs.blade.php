@@ -34,6 +34,16 @@
                             'label' => $input['label'] ?? ''
                         ])
                         @break
+                    
+                    @case ('date')
+                    @case ('datetime')
+                    @case ('daterange')
+                    @case ('datetimerange')
+                        {!! Form::text($input['name'], Constructor::value(get_defined_vars(), $input, $input['default'] ?? null), [
+                            'class' => "form-control {$input['type']}" . ($input['class'] ?? ''),
+                            'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? ''))
+                        ]) !!}
+                        @break
 
                     @case ('file')
                         @include ('hush::components.inputs.file', [

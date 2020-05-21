@@ -29,6 +29,34 @@ window.functions = class functions {
       });
     });
 
+    moment.locale(document.querySelector('html').lang);
+    $('input.date').daterangepicker({
+      locale: {
+        format: 'YYYY-MM-DD'
+      },
+      singleDatePicker: true,
+    });
+    $('input.datetime').daterangepicker({
+      locale: {
+        format: 'YYYY-MM-DD HH:mm'
+      },
+      singleDatePicker: true,
+      timePicker: true,
+      timePicker24Hour: true,
+    });
+    $('input.daterange').daterangepicker({
+      locale: {
+        format: 'YYYY-MM-DD'
+      },
+    });
+    $('input.datetimerange').daterangepicker({
+      locale: {
+        format: 'YYYY-MM-DD HH:mm'
+      },
+      timePicker: true,
+      timePicker24Hour: true,
+    });
+
     $.trumbowyg.svgPath = '/vendor/hush/svg/icons.svg';
     $('.wysiwyg').trumbowyg({
       lang: document.querySelector('html').lang,

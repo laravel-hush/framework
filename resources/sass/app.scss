@@ -1,6 +1,7 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import '~chosen-js/chosen.min.css';
 @import "~codemirror/lib/codemirror.css";
+@import "~daterangepicker/daterangepicker.css";
 
 @import "~noty/src/noty.scss";
 @import "~noty/src/themes/metroui.scss";
@@ -26,6 +27,7 @@
 
 @import 'plugins/chosen';
 @import 'plugins/codemirror';
+@import 'plugins/daterangepicker';
 @import 'plugins/swal';
 @import 'plugins/trumbowyg';
 
