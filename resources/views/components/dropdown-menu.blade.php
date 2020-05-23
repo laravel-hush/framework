@@ -1,17 +1,16 @@
 @php ($subsize = $subsize ?? '')
+@php ($dropdownId = "$id-{$subsize}submenu-$i")
 
-<div class="dropdown-menu {{ $subsize }}submenu dropright" id="{{ $id }}">
+<div class="dropdown-menu dropdown-align-left no-margin {{ $subsize }}submenu" id="{{ $id }}">
 
     @foreach ($menu as $i => $subitem)
 
-    <a href="{{ Constructor::link($subitem) }}" class="dropdown-item">
-
+    <a href="{{ Constructor::link($subitem) }}" class="dropdown-item dropdown-hover dropdown-right">
         @isset ($subitem['icon'])
         {!! $subitem['icon'] !!}
         @endisset
 
         <span class="col">@lang ('hush::admin.' . $subitem['text'])</span>
-
     </a>
 
     @endforeach

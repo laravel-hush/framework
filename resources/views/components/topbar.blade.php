@@ -3,36 +3,16 @@
         <img src="{{ asset('vendor/hush/images/long-logo.png') }}" alt="">
     </a>
     <div class="navigation row no-gutters">
-        <div class="navigation-item col notifications" id="dropdownNotifications" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
+        <div class="navigation-item col notifications" data-dropdown="#dropdown-notifications">
             <i class="material-icons">notifications</i>
         </div>
-        <div class="dropdown-menu notifications-dropdown" aria-labelledby="dropdownNotifications">
-            <div class="dropdown-item heading">Notifications</div>
-            <a href="#" class="dropdown-item notification">
-                <div class="icon-col">
-                    <i class="material-icons">report</i>
-                </div>
-                <div class="col">
-                    <p class="message">New report has been received</p>
-                    <p class="time">23 hrs ago</p>
-                </div>
-            </a>
-            <a href="#" class="dropdown-item notification">
-                <div class="icon-col">
-                    <i class="material-icons">notifications</i>
-                </div>
-                <div class="col">
-                    <p class="message">New report has been received</p>
-                    <p class="time">23 hrs ago</p>
-                </div>
-            </a>
-        </div>
-        <div class="user row no-gutters align-items-center">
+        @include('hush::components.topbar-dropdowns.notifications')
+        <div class="user row no-gutters align-items-center" data-dropdown="#dropdown-user-menu">
             <div class="name">{{ auth()->user()->name }}</div>
             <div class="image">
                 <img src="/vendor/hush/images/user-placeholder.jpg" class="rounded-circle">
             </div>
         </div>
+        @include('hush::components.topbar-dropdowns.user-menu')
     </div>
 </nav>
