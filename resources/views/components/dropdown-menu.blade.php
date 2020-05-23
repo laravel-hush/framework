@@ -5,7 +5,7 @@
 
     @foreach ($menu as $i => $subitem)
 
-    <a href="{{ Constructor::link($subitem) }}" class="dropdown-item dropdown-hover dropdown-right">
+    <a href="{{ Constructor::link($subitem) }}" class="dropdown-item">
         @isset ($subitem['icon'])
         {!! $subitem['icon'] !!}
         @endisset

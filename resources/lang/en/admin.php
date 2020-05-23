@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'account-settings-and-more' => 'Account settings and more',
     'actions' => 'Actions',
     'add' => 'Add',
     'admin-dashboard' => 'Admin dashboard',
@@ -13,11 +14,13 @@ return [
     'id' => 'ID',
     'log-in' => 'Log in',
     'login' => 'Login',
+    'logout' => 'Logout',
     'my-profile' => 'My profile',
     'name' => 'Name',
     'no-data' => 'No data',
     'operation-success' => 'Operation success',
     'password' => 'Password',
+    'profile' => 'Profile',
     'role' => 'Role',
     'save' => 'Save',
     'search' => 'Search',

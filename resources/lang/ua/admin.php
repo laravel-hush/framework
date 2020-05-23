@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'account-settings-and-more' => 'Налаштування акаунта та iнше',
     'actions' => 'Дії',
     'add' => 'Додати',
     'admin-dashboard' => 'Панель адміністратора',
@@ -13,11 +14,13 @@ return [
     'id' => '№',
     'log-in' => 'Вхід',
     'login' => 'Увійти',
+    'logout' => 'Вийти',
     'my-profile' => 'Мій профіль',
     'name' => 'Ім\'я',
     'no-data' => 'Немає даних',
     'operation-success' => 'Операція успішна',
     'password' => 'Пароль',
+    'profile' => 'Профiль',
     'role' => 'Роль',
     'save' => 'Зберегти',
     'search' => 'Шукати',

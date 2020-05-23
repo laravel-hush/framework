@@ -126,6 +126,8 @@ window.functions = class functions {
       let offsetLeft = 0;
       if (dropdown.hasClass('dropdown-align-left')) {
         offsetLeft = $(this).offset().left;
+      } else if (dropdown.hasClass('dropdown-align-right')) {
+        offsetLeft = $(this).offset().left + $(this).outerWidth() - dropdown.outerWidth();
       } else {
         offsetLeft = $(this).offset().left + $(this).outerWidth() / 2 - dropdown.outerWidth() / 2;
       }
