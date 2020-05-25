@@ -5,6 +5,7 @@ return [
     'actions' => 'Дії',
     'add' => 'Додати',
     'admin-dashboard' => 'Панель адміністратора',
+    'admin-does-not-exists' => 'Адмiнiстратора з такими даними не існує',
     'browse' => 'Переглянути',
     'cancel' => 'Скасувати',
     'choose-file' => 'Оберіть файл',

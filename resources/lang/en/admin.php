@@ -5,6 +5,7 @@ return [
     'actions' => 'Actions',
     'add' => 'Add',
     'admin-dashboard' => 'Admin dashboard',
+    'admin-does-not-exists' => 'Admin with these credentials does not exist',
     'browse' => 'Browse',
     'cancel' => 'Cancel',
     'choose-file' => 'Choose file',

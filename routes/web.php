@@ -21,7 +21,7 @@ Route::prefix('admin')
                     return redirect()->route('admin.index');
                 }
 
-                return back()->withErrors(['email' => 'Admin with these credentials does not exist']);
+                return back()->withErrors(['email' => __('hush::admin.admin-does-not-exists')]);
             })->name('login.post');
         });
 
