@@ -75,6 +75,29 @@
   }
 }
 
+.multilingual-input {
+  border: 2px solid transparent;
+  border-radius: 5px;
+
+  &:focus-within {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 .2rem rgba(0,123,255,.25);
+  }
+
+  .multilingual-field {
+    border: 0;
+    border-right: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: none;
+
+    &:focus {
+      border: 0;
+      box-shadow: none;
+    }
+  }
+}
+
 .checkbox,
 .radio {
   cursor: pointer;

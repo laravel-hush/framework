@@ -4,6 +4,7 @@ namespace ScaryLayer\Hush\Controllers;
 
 use App\Http\Controllers\Controller;
 use ScaryLayer\Hush\Helpers\Constructor;
+use ScaryLayer\Hush\Models\Language;
 
 class GlobalController extends Controller
 {
@@ -43,6 +44,7 @@ class GlobalController extends Controller
             'title' => isset($settings['title'])
                 ? __('hush::admin.' . $settings['title'])
                 : null,
+            'langs' => Language::all(),
             'breadcrumbs' => $breadcrumbs,
             'baseUrl' => str_replace('.', '/', $baseUrl)
         ])->all());

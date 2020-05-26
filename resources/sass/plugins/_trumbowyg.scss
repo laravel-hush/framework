@@ -34,3 +34,9 @@
     }
   }
 }
+
+.multilingual-textarea {
+  .trumbowyg-box:not(:first-child) {
+    display: none;
+  }
+}

@@ -4,6 +4,23 @@ window.functions = class functions {
       disable_search_threshold: 10
     });
 
+    $('.multilingual-selector').change(async function () {
+      let block = $(this).closest('.multilingual-input, .multilingual-textarea');
+      block.find('input, textarea, .trumbowyg-box').each(function () {
+        $(this).removeClass('d-block');
+        $(this).addClass('d-none');
+      });
+
+      let input = block.find('[name="' + $(this).val() + '"]');
+      input.removeClass('d-none');
+      input.addClass('d-block');
+      let wysiwyg = input.closest('.trumbowyg-box');
+      if (wysiwyg) {
+        wysiwyg.removeClass('d-none');
+        wysiwyg.addClass('d-block');
+      }
+    });
+
     $('.custom-file-input').change(function () {
       if (this.files && this.files[0]) {
         var image = $(this).data('image-id');

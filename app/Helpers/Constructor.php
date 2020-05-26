@@ -34,7 +34,11 @@ class Constructor
 
     public static function value($variables, $item, $default = null)
     {
-        if (isset($item['field'])) {
+        if (in_array($item['type'], ['text-multilingual', 'textarea-multilingual'])) {
+            return isset($item['value'])
+                ? self::closureDetector($item['value'], $variables)
+                : $variables['model']->translationArray($item['field'] ?? $item['name']);
+        } elseif (isset($item['field'])) {
             return isset($variables['model']) && isset($variables['model'][$item['field']])
                 ? $variables['model'][$item['field']]
                 : null;

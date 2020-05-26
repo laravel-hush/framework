@@ -21,7 +21,7 @@
 
             <div class="form-group">
 
-                @if (isset($input['label']) && !in_array($input['type'], ['checkbox', 'radion']))
+                @if (isset($input['label']) && !in_array($input['type'], ['checkbox', 'radion', 'textarea-multilingual']))
                 {!! Form::label($input['name'], __('hush::admin.' . $input['label'])) !!}
                 @endif
 
@@ -70,6 +70,15 @@
                                 'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? ''))
                             ]
                         ) !!}
+                        @break
+
+                    @case ('text-multilingual')
+                    @case ('textarea-multilingual')
+                        @include ("hush::components.inputs.{$input['type']}", [
+                            'name' => $input['name'],
+                            'values' => Constructor::value(get_defined_vars(), $input, $input['default'] ?? []),
+                            'label' => $input['label'] ?? ''
+                        ])
                         @break
 
                     @default

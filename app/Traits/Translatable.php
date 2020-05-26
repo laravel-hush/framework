@@ -12,9 +12,9 @@ trait Translatable
         return $this->hasMany($this->getTranslationModel(), $this->translatable_related, 'id');
     }
 
-    public function __get($property)
+    public function getAttribute($property)
     {
-        $parent = parent::__get($property);
+        $parent = parent::getAttribute($property);
         return !$parent && in_array($property, $this->translatable)
             ? $this->translate($property)
             : $parent;
