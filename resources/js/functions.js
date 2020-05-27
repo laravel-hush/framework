@@ -4,6 +4,11 @@ window.functions = class functions {
             disable_search_threshold: 10
         });
 
+        $('.sluggable').change(function () {
+            var target = $($(this).data('slugify-target'));
+            target.val(slugify($(this).val()));
+        });
+
         $('.custom-file-input').change(function () {
             if (this.files && this.files[0]) {
                 var image = $(this).data('image-id');

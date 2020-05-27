@@ -27,6 +27,7 @@
         "resolve-url-loader": "^3.1.1",
         "sass": "^1.23.6",
         "sass-loader": "^8.0.0",
+        "slugify": "^1.4.0",
         "sweetalert2": "^9.5.3",
         "trumbowyg": "^2.21.0"
     },
