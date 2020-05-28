@@ -4,7 +4,9 @@ namespace ScaryLayer\Hush\Providers;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider as Provider;
+
 use ScaryLayer\Hush\Commands\MakePage;
+use ScaryLayer\Hush\Commands\RolesSync;
 use ScaryLayer\Hush\Helpers\Constructor;
 use ScaryLayer\Hush\Middleware\Permission;
 
@@ -30,7 +32,7 @@ class ServiceProvider extends Provider
         app('router')->aliasMiddleware('permission', Permission::class);
 
         if ($this->app->runningInConsole()) {
-            $this->commands([MakePage::class]);
+            $this->commands([MakePage::class, RolesSync::class]);
         }
     }
 }

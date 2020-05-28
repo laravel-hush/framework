@@ -12,42 +12,9 @@ class RolesTableSeeder extends Seeder
      */
     public function run()
     {
-        $data = [
-            [
-                'key' => 'dev',
-                'name' => [
-                    'ru' => 'Разработчик',
-                    'en' => 'Developer'
-                ],
-                'permissions' => ['god']
-            ],
-            [
-                'key' => 'admin',
-                'name' => [
-                    'ru' => 'Администратор',
-                    'en' => 'Administrator'
-                ],
-                'permissions' => [
-                    'admin',
-                    'admin:settings',
-                    'admin:settings_save',
-                    'admin:users',
-                    'admin:users_add',
-                    'admin:users_edit',
-                    'admin:users_delete'
-                ]
-            ],
-            [
-                'key' => 'user',
-                'name' => [
-                    'ru' => 'Пользователь',
-                    'en' => 'User'
-                ],
-            ],
-        ];
-
-        foreach ($data as $item) {
-            $role = Role::create(['key' => $item['key']]);
+        $data = config('hush.roles');
+        foreach ($data as $key => $item) {
+            $role = Role::create(['key' => $key]);
             $role->saveTranslation('name', $item['name']);
 
             if (isset($item['permissions'])) {
