@@ -22,6 +22,7 @@ return [
 
     'get' => [
         'class' => null,
+        'breadcrumbs' => ['settings' => null],
         'blocks' => [
             [
                 'class' => 'col-12',

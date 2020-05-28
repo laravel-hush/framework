@@ -34,7 +34,7 @@ Route::prefix('admin')
                 return redirect()->route('admin.index');
             })->name('logout');
 
-            Route::get('/', 'GlobalController@construct')->name('index');
+            Route::redirect('/', config('hush.app.index_page'))->name('index');
             Route::get('{url}', 'GlobalController@construct')
                 ->where('url', '([A-Za-z0-9\-\/]+)')
                 ->name('constructor');

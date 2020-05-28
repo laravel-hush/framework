@@ -15,15 +15,17 @@ class GlobalController extends Controller
     public function __construct()
     {
         $this->route = str_replace('admin.', '', str_replace('/', '.', request()->path()));
-        abort_if(!config(self::CONFIG . '.' . $this->route ?? 'index'), 404);
-
-        $this->route = isset(config(self::CONFIG . '.' . $this->route)['get'])
-            ? $this->route
-            : $this->route . '.index';
+        abort_if(!config(self::CONFIG . '.' . $this->route), 404);
     }
 
     public function construct()
     {
+        if (!config(self::CONFIG . '.' . $this->route . '.get')) {
+            return config(self::CONFIG . '.' . $this->route . '.index.get')
+                ? redirect(request()->path() . '/index')
+                : abort(404);
+        }
+
         $settings = config(self::CONFIG . '.' . $this->route . '.get');
         abort_if(isset($settings['permission']) && !auth()->user()->permitted($settings['permission']), 403);
 
