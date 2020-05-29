@@ -59,4 +59,22 @@ class Constructor
             ? call_user_func($value, $params)
             : $value;
     }
+
+    public static function isMenuItemActive($item)
+    {
+        $link = Constructor::link($item);
+        $isActive = mb_strpos(request()->url(), $link) !== false;
+        if ($isActive || !isset($item['submenu'])) {
+            return $isActive;
+        }
+
+        foreach ($item['submenu'] as $subitem) {
+            $link = Constructor::link($subitem);
+            if (mb_strpos(request()->url(), $link) !== false) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

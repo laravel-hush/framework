@@ -3,13 +3,11 @@
 
         @foreach (config('hush.menu') as $i => $item)
 
-        @php($link = Constructor::link($item))
-
         @if (!isset($item['permission']) || auth()->user()->permitted($item['permission']))
 
         <div class="nav-item">
-            <a href="{{ $link }}"
-                class="nav-link d-flex align-items-center {{ mb_strpos(request()->url(), $link) !== false ? 'active' : '' }}"
+            <a href="{{ Constructor::link($item) }}"
+                class="nav-link d-flex align-items-center {{ Constructor::isMenuItemActive($item) ? 'active' : '' }}"
                 @isset ($item['submenu'])
                     data-dropdown="#submenu-{{ $i }}"
                 @endisset
