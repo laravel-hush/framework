@@ -49,6 +49,8 @@ if (token) {
 }
 
 require('codemirror/mode/htmlmixed/htmlmixed');
+require('@fortawesome/fontawesome-free/js/all.js');
+
 window.CodeMirror = require('codemirror/lib/codemirror');
 window.moment = require('moment');
 window.Noty = require('noty');
