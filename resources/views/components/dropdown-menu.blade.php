@@ -5,6 +5,7 @@
 
     @foreach ($menu as $i => $subitem)
 
+    @if (!isset($subitem['permission']) || auth()->user()->permitted($subitem['permission']))
     <a href="{{ Constructor::link($subitem) }}" class="dropdown-item">
         @isset ($subitem['icon'])
         {!! $subitem['icon'] !!}
@@ -12,6 +13,7 @@
 
         <span class="col">@lang ('hush::admin.' . $subitem['text'])</span>
     </a>
+    @endif
 
     @endforeach
 
