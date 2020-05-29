@@ -30,8 +30,14 @@ trait Translatable
             $table->text('value');
             $table->timestamps();
 
-            $table->foreign($this->translatable_related)->references('id')->on($this->table);
-            $table->foreign('lang')->references('code')->on('languages');
+            $table->foreign($this->translatable_related)
+                ->references('id')
+                ->on($this->table)
+                ->onDelete('cascade');
+            $table->foreign('lang')
+                ->references('code')
+                ->on('languages')
+                ->onDelete('cascade');
         });
     }
 
