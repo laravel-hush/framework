@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use ScaryLayer\Hush\Models\Language;
 
-class LanguagesTableSeeder extends Seeder
+class LanguagesSeeder extends Seeder
 {
     /**
      * Run the database seeds.

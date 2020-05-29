@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 use ScaryLayer\Hush\Models\Role;
 
-class RolesTableSeeder extends Seeder
+class RolesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
