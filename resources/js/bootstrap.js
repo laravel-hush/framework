@@ -55,6 +55,7 @@ window.CodeMirror = require('codemirror/lib/codemirror');
 window.moment = require('moment');
 window.Noty = require('noty');
 window.Mojs = require('@mojs/core');
+window.slugify = require('slugify');
 window.Swal = require('sweetalert2');
 
 require('daterangepicker');

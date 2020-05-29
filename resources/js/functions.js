@@ -4,6 +4,11 @@ window.functions = class functions {
       disable_search_threshold: 10
     });
 
+    $('.sluggable').change(function () {
+      var target = $($(this).data('slugify-target'));
+      target.val(slugify($(this).val()));
+    });
+
     $('.multilingual-selector').change(async function () {
       let block = $(this).closest('.multilingual-input, .multilingual-textarea');
       block.find('input, textarea, .trumbowyg-box').each(function () {
