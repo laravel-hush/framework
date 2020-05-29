@@ -9,6 +9,7 @@ return [
     'browse' => 'Browse',
     'cancel' => 'Cancel',
     'choose-file' => 'Choose file',
+    'delete-selected' => 'Delete selected',
     'edit' => 'Edit',
     'email' => 'Email',
     'home' => 'Home',

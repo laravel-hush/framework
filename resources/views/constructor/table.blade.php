@@ -1,117 +1,130 @@
-<table class="table">
+<form>
+    <table class="table">
 
-    <thead class="head">
+        <thead class="head">
 
-        <tr>
-            <th class="check-td">@include ('hush::components.inputs.checkbox', ['name' => 'all'])</th>
+            <tr>
+                <th class="check-td">@include ('hush::components.inputs.checkbox', ['name' => 'all-checker'])</th>
 
-            @foreach ($block['content']['columns'] as $column => $settings)
-            <th class="align-middle {{ $column }} {{ $settings['class'] ?? '' }}">
+                @foreach ($block['content']['columns'] as $column => $settings)
+                <th class="align-middle {{ $column }} {{ $settings['class'] ?? '' }}">
 
-                @isset ($settings['sortable'])
-                <a href="{{ Constructor::link(['constructor' => collect(request()->except('sort', 'direction'))->merge([
-                    'sort' => $column,
-                    'direction' => $column == request()->sort && request()->direction == 'asc' ? 'desc' : 'asc'
-                ])->all()]) }}" class="sortable-column d-flex align-items-center">
+                    @isset ($settings['sortable'])
+                    <a href="{{ Constructor::link(['constructor' => collect(request()->except('sort', 'direction'))->merge([
+                        'sort' => $column,
+                        'direction' => $column == request()->sort && request()->direction == 'asc' ? 'desc' : 'asc'
+                    ])->all()]) }}" class="sortable-column d-flex align-items-center">
+                        @lang ('hush::admin.' . $column)
+                        @if (request()->sort == $column)
+                        <i class="material-icons">swap_vert</i>
+                        @endif
+                    </a>
+                    @else
                     @lang ('hush::admin.' . $column)
-                    @if (request()->sort == $column)
-                    <i class="material-icons">swap_vert</i>
-                    @endif
-                </a>
-                @else
-                @lang ('hush::admin.' . $column)
-                @endisset
-
-            </th>
-            @endforeach
-
-            @isset ($block['content']['actions'])
-            <th class="align-middle actions">@lang ('hush::admin.actions')</th>
-            @endisset
-        </tr>
-
-    </thead>
-
-    @php ($rows = $block['content']['rows']())
-
-    <tbody>
-        @forelse ($rows as $row)
-        <tr class="table-row">
-
-            <td class="check-td">
-                @include ('hush::components.inputs.checkbox', ['name' => "item[{$row->id}]"])
-            </td>
-
-            @foreach ($block['content']['columns'] as $column => $settings)
-            <td class="align-middle {{ $column }} {{ $settings['class'] ?? '' }}">
-                @switch ($settings['type'] ?? '')
-                    @case ('image')
-                        <img src="{{ $row->{$column} }}" alt="">
-                        @break
-                    @case ('closure')
-                        {!! call_user_func($settings['content'], $row) !!}
-                        @break
-                    @default
-                        {{ $row->{$column} }}
-                        @break
-                @endswitch
-            </td>
-            @endforeach
-
-            @isset ($block['content']['actions'])
-            <td class="align-middle actions">
-
-                @foreach ($block['content']['actions'] as $action)
-
-                @if (isset($action['condition']) && !call_user_func($action['condition'], get_defined_vars()))
-                    @continue
-                @endif
-
-                @if (!isset($action['permission']) || auth()->user()->permitted($action['permission']))
-                <a href="{{ Constructor::link($action, get_defined_vars()) }}" class="btn btn-additional {{ isset($action['text']) ? 'btn-rounded' : 'btn-round' }}"
-                    @isset ($action['in_new_tab']) target="_blank" @endisset>
-                    <i class="material-icons">{{ $action['icon'] }}</i>
-                    @isset ($action['text'])
-                    <span>@lang ('hush::admin.' . $action['text'])</span>
                     @endisset
-                </a>
-                @endif
 
+                </th>
                 @endforeach
 
-                @isset ($block['content']['edit'])
-                @if (!is_string($block['content']['edit']) || auth()->user()->permitted($block['content']['edit']))
-                <a href="{{ Constructor::link(['constructor' => [
-                    'url' => $baseUrl . '/edit',
-                    'id' => $row->id
-                ]]) }}" class="btn btn-primary btn-round {{ isset($block['content']['modal']) ? 'in-modal' : '' }}">
-                    <i class="material-icons">edit</i>
-                </a>
-                @endif
+                @isset ($block['content']['actions'])
+                <th class="align-middle actions">@lang ('hush::admin.actions')</th>
+                @endisset
+            </tr>
+
+        </thead>
+
+        @php ($rows = $block['content']['rows']())
+
+        <tbody>
+            @forelse ($rows as $row)
+            <tr class="table-row">
+
+                <td class="check-td">
+                    @include ('hush::components.inputs.checkbox', ['name' => 'items[]', 'value' => $row->id])
+                </td>
+
+                @foreach ($block['content']['columns'] as $column => $settings)
+                <td class="align-middle {{ $column }} {{ $settings['class'] ?? '' }}">
+                    @switch ($settings['type'] ?? '')
+                        @case ('image')
+                            <img src="{{ $row->{$column} }}" alt="">
+                            @break
+                        @case ('closure')
+                            {!! call_user_func($settings['content'], $row) !!}
+                            @break
+                        @default
+                            {{ $row->{$column} }}
+                            @break
+                    @endswitch
+                </td>
+                @endforeach
+
+                @isset ($block['content']['actions'])
+                <td class="align-middle actions">
+
+                    @foreach ($block['content']['actions'] as $action)
+
+                    @if (isset($action['condition']) && !call_user_func($action['condition'], get_defined_vars()))
+                        @continue
+                    @endif
+
+                    @if (!isset($action['permission']) || auth()->user()->permitted($action['permission']))
+                    <a href="{{ Constructor::link($action, get_defined_vars()) }}" class="btn btn-additional {{ isset($action['text']) ? 'btn-rounded' : 'btn-round' }}"
+                        @isset ($action['in_new_tab']) target="_blank" @endisset>
+                        <i class="material-icons">{{ $action['icon'] }}</i>
+                        @isset ($action['text'])
+                        <span>@lang ('hush::admin.' . $action['text'])</span>
+                        @endisset
+                    </a>
+                    @endif
+
+                    @endforeach
+
+                    @isset ($block['content']['edit'])
+                    @if (!is_string($block['content']['edit']) || auth()->user()->permitted($block['content']['edit']))
+                    <a href="{{ Constructor::link(['constructor' => [
+                        'url' => $baseUrl . '/edit',
+                        'id' => $row->id
+                    ]]) }}" class="btn btn-primary btn-round {{ isset($block['content']['modal']) ? 'in-modal' : '' }}">
+                        <i class="material-icons">edit</i>
+                    </a>
+                    @endif
+                    @endisset
+
+                    @isset ($block['content']['delete'])
+                    @if (!is_string($block['content']['delete']) || auth()->user()->permitted($block['content']['delete']))
+                    <a href="{{ Constructor::link(['constructor' => [
+                        'id' => $row->id,
+                        'action' => 'delete'
+                    ]]) }}" class="btn btn-danger btn-round delete-item">
+                        <i class="material-icons">delete</i>
+                    </a>
+                    @endif
+                    @endisset
+
+                </td>
                 @endisset
 
-                @isset ($block['content']['delete'])
-                @if (!is_string($block['content']['delete']) || auth()->user()->permitted($block['content']['delete']))
-                <a href="{{ Constructor::link(['constructor' => [
-                    'id' => $row->id,
-                    'action' => 'delete'
-                ]]) }}" class="btn btn-danger btn-round delete-item">
-                    <i class="material-icons">delete</i>
-                </a>
-                @endif
-                @endisset
+            </tr>
+            @empty
+            <tr class="table-row justify-content-center">
+                <td colspan="100" class="text-center">@lang ('hush::admin.no-data')</td>
+            </tr>
+            @endforelse
+        </tbody>
+    </table>
+</form>
 
-            </td>
-            @endisset
-
-        </tr>
-        @empty
-        <tr class="table-row justify-content-center">
-            <td colspan="100" class="text-center">@lang ('hush::admin.no-data')</td>
-        </tr>
-        @endforelse
-    </tbody>
-</table>
+<div class="multiple-actions-block" style="display: none">
+    <a href="{{ Constructor::link([
+        'constructor' => [
+            'route' => 'admin.constructor.process',
+            'action' => 'delete-multiple'
+        ]
+    ]) }}" class="btn btn-danger with-confirmation">
+        @lang('hush::admin.delete-selected')
+    </a>
+</div>
 
 @if (isset($block['content']['pagination']) && $rows->hasPages())
 <div class="pagination-block">

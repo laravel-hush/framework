@@ -21,6 +21,51 @@ window.functions = class functions {
       }
     });
 
+    $('.check-td input[type="checkbox"]').change(function () {
+      if ($(this).attr('name') == 'all-checker') {
+        var is_checked = $(this).prop('checked');
+        $(this).closest('table')
+          .find('.check-td input[type="checkbox"]')
+          .each(function () {
+            $(this).prop('checked', is_checked);
+          });
+      }
+
+      let block = $(this).closest('.block').find('.multiple-actions-block');
+      if ($('.check-td input[type="checkbox"]:checked').length > 0) {
+        block.show();
+      } else {
+        block.hide();
+      }
+    });
+
+    $('.multiple-actions-block a').click(function (event) {
+      event.preventDefault();
+
+      var url = $(this).attr('href');
+      var data = $(this).closest('.block').find('form').serialize();
+      url = url + "&" + data;
+
+      if ($(this).hasClass('with-confirmation')) {
+        Swal.fire({
+          title: __.are_you_sure,
+          text: __.you_wont_be_able_to_revert,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          confirmButtonText: __.yes,
+          cancelButtonText: __.cancel,
+        }).then((result) => {
+          if (result.value) {
+            functions.request('delete', url);
+          }
+        })
+      } else {
+        functions.request('delete', url);
+      }
+    });
+
     $('.custom-file-input').change(function () {
       if (this.files && this.files[0]) {
         var image = $(this).data('image-id');
