@@ -22,8 +22,8 @@ return [
 
     'get' => [
         'class' => '',
-        'title' => 'items',
-        'breadcrumbs' => ['items' => null],
+        'title' => '{{ plural }}',
+        'breadcrumbs' => ['{{ plural }}' => null],
         'permission' => '',
 
         'blocks' => [
@@ -48,8 +48,8 @@ return [
                 */
 
                 'title' => [
-                    'text' => 'items',
-                    'add' => 'admin:items_add',
+                    'text' => '{{ plural }}',
+                    'add' => 'admin:{{ plural }}_add',
                     'search' => true,
                     'buttons' => [
                         //
@@ -73,8 +73,8 @@ return [
                     'type' => 'table',
                     'pagination' => true,
                     'modal' => true,
-                    'edit' => 'admin:items_edit',
-                    'delete' => 'admin:items_delete',
+                    'edit' => 'admin:{{ plural }}_edit',
+                    'delete' => 'admin:{{ plural }}_delete',
                     'rows' => function () {
                         // must return array of objects
                     },
@@ -110,7 +110,7 @@ return [
     'delete' => [
 
         'delete' => [
-            'permission' => 'admin:items_delete',
+            'permission' => 'admin:{{ plural }}_delete',
             'rules' => [
                 // validation rules
             ],

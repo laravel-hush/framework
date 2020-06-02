@@ -22,11 +22,12 @@ return [
 
     'get' => [
         'class' => null,
-        'title' => 'item',
+        'title' => '{{ singular }}',
         'breadcrumbs' => [
+            '{{ plural }}' => 'admin.{{ plural }}',
             'edit' => null,
         ],
-        'permission' => ['admin:items_add', 'admin:items_edit'],
+        'permission' => ['admin:{{ plural }}_add', 'admin:{{ plural }}_edit'],
 
         'closure' => function () {
             // should be returned ['model']
@@ -55,10 +56,10 @@ return [
                 */
 
                 'title' => [
-                    'text' => 'items',
+                    'text' => '{{ plural }}',
                     'buttons' => [
                         [
-                            'form' => 'users',
+                            'form' => '{{ plural }}',
                             'text' => 'save',
                             'icon' => 'save',
                             'class' => 'btn-primary'
@@ -80,7 +81,7 @@ return [
                 */
 
                 'content' => [
-                    'id' => 'items',
+                    'id' => '{{ plural }}',
                     'type' => 'form',
                     'constructor' => [
                         'route' => 'admin.constructor.process',
@@ -119,7 +120,7 @@ return [
     'post' => [
 
         'save' => [
-            'permission' => ['admin:items_add', 'admin:items_edit'],
+            'permission' => ['admin:{{ plural }}_add', 'admin:{{ plural }}_edit'],
             'rules' => function () {
                 // validation rules
             },

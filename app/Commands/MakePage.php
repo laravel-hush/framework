@@ -4,6 +4,7 @@ namespace ScaryLayer\Hush\Commands;
 
 use File;
 use Illuminate\Console\Command;
+use Str;
 
 class MakePage extends Command
 {
@@ -19,7 +20,21 @@ class MakePage extends Command
      *
      * @var string
      */
-    protected $description = 'Creates new admin page';
+    protected $description = 'Create a new admin page';
+
+    /**
+     * Path to templates folder.
+     *
+     * @var string
+     */
+    private $templatesPath;
+
+    /**
+     * Destination path.
+     *
+     * @var string
+     */
+    private $destinationPath;
 
     /**
      * Create a new command instance.
@@ -29,6 +44,9 @@ class MakePage extends Command
     public function __construct()
     {
         parent::__construct();
+
+        $this->templatesPath = __DIR__ . '/../../resources/templates/';
+        $this->destinationPath = config_path('hush/pages/');
     }
 
     /**
@@ -38,22 +56,52 @@ class MakePage extends Command
      */
     public function handle()
     {
-        $templates = __DIR__ . '/../../resources/templates/';
-        $destination = config_path('hush/pages/' . $this->argument('path')) . '/';
-
-        File::makeDirectory($destination);
+        $this->destinationPath .= "/{$this->argument('path')}/";
+        File::makeDirectory($this->destinationPath);
 
         switch ($this->option('type')) {
             case 'edit':
-                File::copy($templates . 'form.php', $destination . 'edit.php');
+                $this->makeForm();
                 break;
             case 'index':
-                File::copy($templates . 'table.php', $destination . 'index.php');
+                $this->makeTable();
                 break;
             default:
-                File::copy($templates . 'table.php', $destination . 'index.php');
-                File::copy($templates . 'form.php', $destination . 'edit.php');
+                $this->makeTable();
+                $this->makeForm();
                 break;
         }
+    }
+
+    private function generatePage($path)
+    {
+        $content = File::get($path);
+
+        $variables = $this->variables();
+        foreach ($variables as $variable => $value) {
+            $content = str_replace($variable, $value, $content);
+        }
+
+        return $content;
+    }
+
+    private function makeForm()
+    {
+        $content = $this->generatePage($this->templatesPath . 'form.pivot');
+        File::put($this->destinationPath . 'edit.php', $content);
+    }
+
+    private function makeTable()
+    {
+        $content = $this->generatePage($this->templatesPath . 'table.pivot');
+        File::put($this->destinationPath . 'index.php', $content);
+    }
+
+    private function variables()
+    {
+        return [
+            '{{ singular }}' => Str::singular($this->argument('path')),
+            '{{ plural }}' => $this->argument('path')
+        ];
     }
 }
