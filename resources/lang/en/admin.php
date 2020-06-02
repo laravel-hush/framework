@@ -26,11 +26,13 @@ return [
     'profile' => 'Profile',
     'role' => 'Role',
     'save' => 'Save',
+    'saved' => 'Saved',
     'search' => 'Search',
     'search-query' => 'Search query',
     'settings' => 'Settings',
     'show' => 'Show',
     'submit' => 'Submit',
     'user' => 'User',
-    'users' => 'Users'
+    'users' => 'Users',
+    'your-work-has-been-successfully-saved' => 'Your work has been successfully saved'
 ];

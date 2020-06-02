@@ -171,8 +171,8 @@ return [
                     'status' => 'success',
                     'reload' => true,
                     'swal' => [
-                        'title' => 'Saved',
-                        'text' => 'You work was successfully saved.',
+                        'title' => __('hush::admin.saved'),
+                        'text' => __('hush::admin.your-work-has-been-successfully-saved'),
                         'type' => 'success'
                     ]
                 ];
