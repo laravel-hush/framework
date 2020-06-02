@@ -10,6 +10,7 @@ return [
     'cancel' => 'Скасувати',
     'choose-file' => 'Оберіть файл',
     'delete-selected' => 'Видалити обранi',
+    'deleted' => 'Видалено',
     'edit' => 'Редагувати',
     'email' => 'Імейл',
     'home' => 'Додому',

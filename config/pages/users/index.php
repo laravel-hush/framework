@@ -122,13 +122,32 @@ return [
                     'status' => 'success',
                     'reload' => true,
                     'swal' => [
-                        'title' => 'Deleted',
-                        'text' => 'User was deleted successfully',
+                        'title' => __('hush::admin.deleted'),
+                        'text' => __('hush::admin.operation-success'),
                         'type' => 'success'
                     ]
                 ];
             }
         ],
+
+        'delete-multiple' => [
+            'permission' => 'admin:users_delete',
+            'rules' => [],
+            'closure' => function () {
+                User::whereIn('id', request()->items)->delete();
+
+                return [
+                    'status' => 'success',
+                    'items' => request()->items,
+                    'reload' => true,
+                    'swal' => [
+                        'title' => __('hush::admin.deleted'),
+                        'text' => __('hush::admin.operation-success'),
+                        'type' => 'success'
+                    ]
+                ];
+            }
+        ]
 
     ]
 ];
