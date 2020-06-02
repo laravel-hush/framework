@@ -256,7 +256,17 @@ window.functions = class functions {
           function (xhr, status, error) {
             if (xhr.status == 422) {
               $.each(xhr.responseJSON.errors, function (index, value) {
-                form.find('[name="' + index + '"]')
+
+                if (index.indexOf('.') !== -1) {
+                  let parts = index.split('.');
+                  index = parts[0];
+                  for (let i = 0; i < parts.length; i++) {
+                    let part = parts[i];
+                    index += i !== 0 ? `[${part}]` : "";
+                  }
+                }
+
+                form.find(`[name="${index}"]`)
                   .closest('.form-group')
                   .addClass('error')
                   .append('<small class="validation-error">' + value + '</small>');

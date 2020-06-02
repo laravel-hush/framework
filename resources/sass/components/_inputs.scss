@@ -62,19 +62,6 @@
   }
 }
 
-.error {
-  .form-control,
-  .chosen-container-single .chosen-single,
-  .custom-file label {
-    border: 2px solid $danger_color;
-  }
-
-  .validation-error {
-    color: $danger_color;
-    font-weight: bold;
-  }
-}
-
 .multilingual-input {
   border: 2px solid transparent;
   border-radius: 5px;
@@ -95,6 +82,20 @@
       border: 0;
       box-shadow: none;
     }
+  }
+}
+
+.error {
+  .form-control:not(.multilingual-field),
+  .chosen-container-single .chosen-single,
+  .multilingual-input,
+  .custom-file label {
+    border: 2px solid $danger_color;
+  }
+
+  .validation-error {
+    color: $danger_color;
+    font-weight: bold;
   }
 }
 
