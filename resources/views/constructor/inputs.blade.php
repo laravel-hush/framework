@@ -82,13 +82,13 @@
                         @break
 
                     @default
-                        {!! Form::{$input['type']}($input['name'], Constructor::value(get_defined_vars(), $input, $input['default'] ?? null), [
+                        {!! Form::{$input['type']}($input['name'], Constructor::value(get_defined_vars(), $input, $input['default'] ?? null), array_merge([
                             'class' => 'form-control '
                                 . ($input['class'] ?? '')
                                 . (isset($input['slugify']) && !$model->id ? 'sluggable' : ''),
                             'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? '')),
-                            'data-slugify-target' => $input['slugify'] ?? null
-                        ]) !!}
+                            'data-slugify-target' => $input['slugify'] ?? null,
+                        ], $input['attributes'] ?? [])) !!}
                         @break
 
                 @endswitch
