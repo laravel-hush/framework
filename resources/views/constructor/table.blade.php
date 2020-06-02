@@ -33,7 +33,7 @@
 
         </thead>
 
-        @php ($rows = $block['content']['rows']())
+        @php ($rows = call_user_func($block['content']['rows']))
 
         <tbody>
             @forelse ($rows as $row)
