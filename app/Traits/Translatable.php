@@ -81,7 +81,6 @@ trait Translatable
     {
         return $this->translations
             ->where('field', $field)
-            ->get()
             ->pluck('value', 'lang');
     }
 

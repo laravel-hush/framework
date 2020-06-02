@@ -1,7 +1,7 @@
 <div class="multilingual-input row no-gutters align-items-center">
     <div class="col">
         @foreach ($langs as $i => $lang)
-        {!! Form::text($input['name'] . "[$lang->code]", Constructor::value(get_defined_vars(), $input, $input['default'] ?? []), [
+        {!! Form::text($input['name'] . "[$lang->code]", $values[$lang->code] ?? '', [
             'class' => 'form-control multilingual-field ' . ($i != 0 ? 'd-none' : '') . ' ' . ($input['class'] ?? ''),
             'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? ''))
         ]) !!}
