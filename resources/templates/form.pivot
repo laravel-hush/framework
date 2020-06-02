@@ -122,7 +122,9 @@ return [
         'save' => [
             'permission' => ['admin:{{ plural }}_add', 'admin:{{ plural }}_edit'],
             'rules' => function () {
-                // validation rules
+                return [
+                    // validation rules
+                ];
             },
             'closure' => function () {
                 // some actions
