@@ -6,7 +6,10 @@ window.functions = class functions {
 
     $('.sluggable').change(function () {
       var target = $($(this).data('slugify-target'));
-      target.val(slugify($(this).val()));
+      target.val(slugify($(this).val(), {
+        lower: true,
+        strict: true
+      }));
     });
 
     $('.multilingual-selector').change(async function () {
