@@ -1,18 +1,5 @@
 .swal2 {
   &-confirm {
-    background-color: $danger_color !important;
-    border-color: $danger_color !important;
-    box-shadow: none !important;
-
-    &:hover,
-    &:focus {
-      background-color: $danger_color !important;
-      border-color: $danger_color !important;
-      box-shadow: 0 0 0 0.2rem mix($danger_color, #fff, 40%) !important;
-    }
-  }
-
-  &-cancel {
     background-color: $primary_color !important;
     border-color: $primary_color !important;
     box-shadow: none !important;
@@ -22,6 +9,19 @@
       background-color: $primary_color !important;
       border-color: $primary_color !important;
       box-shadow: 0 0 0 0.2rem mix($primary_color, #fff, 40%) !important;
+    }
+  }
+
+  &-cancel {
+    background-color: $danger_color !important;
+    border-color: $danger_color !important;
+    box-shadow: none !important;
+
+    &:hover,
+    &:focus {
+      background-color: $danger_color !important;
+      border-color: $danger_color !important;
+      box-shadow: 0 0 0 0.2rem mix($danger_color, #fff, 40%) !important;
     }
   }
 }

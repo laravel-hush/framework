@@ -165,8 +165,6 @@ window.functions = class functions {
         text: __.you_wont_be_able_to_revert,
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
         confirmButtonText: __.yes_delete_it,
         cancelButtonText: __.cancel,
       }).then((result) => {
