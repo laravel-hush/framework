@@ -74,12 +74,14 @@
     }
 
     i:first-child {
+      flex: 0 25px;
       color: rgb(181, 181, 195);
       font-size: 22px;
       transition: color .2s ease-in-out;
     }
 
     svg {
+      flex: 0 25px;
       color: rgb(181, 181, 195);
       font-size: 18px;
       transition: color .2s ease-in-out;
