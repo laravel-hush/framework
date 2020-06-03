@@ -17,7 +17,7 @@ trait Searchable
                 continue;
             }
 
-            $query = $query->orWhere($column, 'like', '%' . request()->search . '%');
+            $query = $query->orWhere("{$this->table}.$column", 'like', '%' . request()->search . '%');
         }
 
         return $query;
