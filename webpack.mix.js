@@ -17,4 +17,4 @@ mix.options({
 
 mix.sass('resources/sass/app.scss', 'public/css')
     .js('resources/js/app.js', 'public/js')
-    .copy('public', '../../../public/vendor/hush');
+    //.copy('public', '../../../public/vendor/hush');
