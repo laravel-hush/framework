@@ -38,6 +38,11 @@ class Constructor
             return isset($item['value'])
                 ? self::closureDetector($item['value'], $variables)
                 : $variables['model']->translationArray($item['field'] ?? $item['name']);
+        } elseif (isset($item['lang'])) {
+            return $variables['model']->translate(
+                $item['field'] ?? $item['name'],
+                $item['lang']
+            );
         } elseif (isset($item['field'])) {
             return isset($variables['model']) && isset($variables['model'][$item['field']])
                 ? $variables['model'][$item['field']]
