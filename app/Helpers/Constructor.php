@@ -68,18 +68,30 @@ class Constructor
     public static function isMenuItemActive($item)
     {
         $link = Constructor::link($item);
-        $isActive = mb_strpos(request()->url(), $link) !== false;
+        $isActive = self::checkLinkActivity($link);
         if ($isActive || !isset($item['submenu'])) {
             return $isActive;
         }
 
         foreach ($item['submenu'] as $subitem) {
             $link = Constructor::link($subitem);
-            if (mb_strpos(request()->url(), $link) !== false) {
+            if (self::checkLinkActivity($link)) {
                 return true;
             }
         }
 
         return false;
+    }
+
+    private static function checkLinkActivity($link)
+    {
+        $parts = explode('/', $link);
+        if (end($parts) == 'index') {
+            array_pop($parts);
+        }
+
+        $link = implode('/', $parts);
+
+        return mb_strpos(request()->url(), $link) !== false;
     }
 }
