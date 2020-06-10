@@ -68,7 +68,8 @@
                             Constructor::value(get_defined_vars(), $input, $input['default'] ?? []),
                             [
                                 'class' => 'form-control ' . ($input['class'] ?? ''),
-                                'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? ''))
+                                'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? '')),
+                                'multiple' => $input['multiple'] ?? false
                             ]
                         ) !!}
                         @break
