@@ -1,6 +1,7 @@
 {
     "name": "scary-layer/hush",
     "description": "Minimalistic framework for admin panels in Laravel",
+    "license": "MIT",
     "authors": [
         {
             "name": "artur.osipenko",
