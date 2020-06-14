@@ -1,7 +1,6 @@
 <?php
 
 return [
-    'account-settings-and-more' => 'Налаштування акаунта та iнше',
     'actions' => 'Дії',
     'add' => 'Додати',
     'admin-dashboard' => 'Панель адміністратора',

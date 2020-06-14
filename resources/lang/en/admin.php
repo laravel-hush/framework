@@ -1,7 +1,6 @@
 <?php
 
 return [
-    'account-settings-and-more' => 'Account settings and more',
     'actions' => 'Actions',
     'add' => 'Add',
     'admin-dashboard' => 'Admin dashboard',

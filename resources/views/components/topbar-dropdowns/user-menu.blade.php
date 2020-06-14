@@ -3,7 +3,6 @@
         <i class="material-icons">account_circle</i>
         <span class="col">
             <span>@lang('hush::admin.profile')</span><br>
-            <small>@lang('hush::admin.account-settings-and-more')</small>
         </span>
     </a>
     <a href="{{ route('admin.logout') }}" class="dropdown-item danger">
