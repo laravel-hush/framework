@@ -69,7 +69,10 @@
                             [
                                 'class' => 'form-control ' . ($input['class'] ?? ''),
                                 'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? '')),
-                                'multiple' => $input['multiple'] ?? false
+                                'multiple' => $input['multiple'] ?? false,
+                                'data-placeholder' => isset($input['multiple']) && $input['multiple']
+                                    ? __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? ''))
+                                    : null
                             ]
                         ) !!}
                         @break

@@ -1,7 +1,8 @@
 window.functions = class functions {
   static initialize() {
     $('select').chosen({
-      disable_search_threshold: 10
+      disable_search_threshold: 10,
+      no_results_text: __.oops_nothing_found,
     });
 
     $('.sluggable').change(function () {
