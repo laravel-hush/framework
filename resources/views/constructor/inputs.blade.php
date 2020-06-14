@@ -21,7 +21,9 @@
 
             <div class="form-group">
 
-                @if (isset($input['label']) && !in_array($input['type'], ['checkbox', 'radion', 'textarea-multilingual']))
+                @if (isset($input['label']) && !in_array($input['type'], [
+                    'checkbox', 'radion', 'text-multilingual', 'textarea-multilingual'
+                ]))
                 {!! Form::label($input['name'], __('hush::admin.' . $input['label'])
                     . (isset($input['lang']) ? " ({$langs[$input['lang']]->name})" : '')) !!}
                 @endif

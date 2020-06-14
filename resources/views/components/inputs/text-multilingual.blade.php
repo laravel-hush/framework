@@ -1,3 +1,5 @@
+@if (!isset($input['multirow']) || !$input['multirow'])
+
 <div class="multilingual-input row no-gutters align-items-center">
     <div class="col">
         @foreach ($langs as $i => $lang)
@@ -17,3 +19,22 @@
         @endforeach
     </select>
 </div>
+
+@else
+
+<div class="row">
+    @foreach ($langs as $i => $lang)
+    <div class="form-group {{ $input['field_width'] ?? "col-12" }}">
+        {!! Form::label($input['name'] . "[$lang->code]", __('hush::admin.' . $input['label']) . " ($lang->name)") !!}
+        {!! Form::text($input['name'] . "[$lang->code]", $values[$lang->code] ?? '', [
+            'class' => 'form-control multilingual-field '
+                . (isset($input['slugify']) && !$model->id ? 'sluggable' : '') . ' '
+                . ($input['class'] ?? ''),
+                'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? '')),
+                'data-slugify-target' => $i == 0 ? ($input['slugify'] ?? null) : null,
+        ]) !!}
+    </div>
+    @endforeach
+</div>
+
+@endif
