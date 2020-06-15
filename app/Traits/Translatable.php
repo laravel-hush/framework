@@ -52,7 +52,7 @@ trait Translatable
                 'field' => $field,
                 'lang' => $lang
             ]);
-            $row->value = $value;
+            $row->value = $value ?? '';
             $row->save();
         }
 
