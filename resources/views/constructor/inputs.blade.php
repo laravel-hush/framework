@@ -5,6 +5,13 @@
             @continue
         @endif
 
+        @if ($input['type'] == 'html')
+            <div class="col {{ $input['width'] ?? 'col-12' }}">
+                {!! $input['html'] !!}
+            </div>
+            @continue
+        @endif
+
         @if ($input['type'] == 'hidden')
             {!! Form::hidden($input['name'], Constructor::value(get_defined_vars(), $input, $input['default'] ?? null)) !!}
             @continue
