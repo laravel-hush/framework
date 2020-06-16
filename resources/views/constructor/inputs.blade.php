@@ -5,6 +5,13 @@
             @continue
         @endif
 
+        @if ($input['type'] == 'closure')
+            <div class="col {{ $input['width'] ?? 'col-12' }}">
+                {!! call_user_func($input['closure'], get_defined_vars()) !!}
+            </div>
+            @continue
+        @endif
+
         @if ($input['type'] == 'html')
             <div class="col {{ $input['width'] ?? 'col-12' }}">
                 {!! $input['html'] !!}
@@ -76,6 +83,7 @@
                             isset($input['data']) ? call_user_func($input['data']) : [],
                             Constructor::value(get_defined_vars(), $input, $input['default'] ?? []),
                             [
+                                'id' => $input['id'] ?? null,
                                 'class' => 'form-control ' . ($input['class'] ?? ''),
                                 'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? '')),
                                 'multiple' => $input['multiple'] ?? false,
