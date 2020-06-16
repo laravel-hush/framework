@@ -48,7 +48,9 @@
                         @include ('hush::components.inputs.checkbox', [
                             'name' => $input['name'],
                             'is_checked' => Constructor::value(get_defined_vars(), $input, $input['default'] ?? []),
-                            'label' => $input['label'] ?? ''
+                            'label' => isset($input['label'])
+                                ? __('hush::admin.' . $input['label'])
+                                : ''
                         ])
                         @break
                     

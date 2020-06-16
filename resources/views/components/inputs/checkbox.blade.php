@@ -7,6 +7,6 @@
     </div>
 
     @isset ($label)
-    <span class="text">{{ $label ? __('hush::admin.' . $label) : '' }}</span>
+    <span class="text">{{ $label ?? '' }}</span>
     @endisset
 </label>
