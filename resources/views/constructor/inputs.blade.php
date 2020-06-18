@@ -33,7 +33,9 @@
 
         <div class="col {{ $input['width'] ?? 'col-12' }}">
 
+            @if (!in_array($input['type'], ['text-multilingual', 'textarea-multilingual']))
             <div class="form-group">
+            @endif
 
                 @if (isset($input['label']) && !in_array($input['type'], [
                     'checkbox', 'radion', 'text-multilingual', 'textarea-multilingual'
@@ -121,7 +123,9 @@
                 <small class="d-block">@lang ('hush::admin.' . $input['description'])</small>
                 @endisset
 
+            @if (!in_array($input['type'], ['text-multilingual', 'textarea-multilingual']))
             </div>
+            @endif
         </div>
 
     @endforeach
