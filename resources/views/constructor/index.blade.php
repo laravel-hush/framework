@@ -4,6 +4,11 @@
 <div class="row {{ $settings['class'] ?? '' }}">
 
     @foreach ($settings['blocks'] as $block)
+
+    @if (isset($block['condition']) && !call_user_func($block['condition'], get_defined_vars()))
+        @continue
+    @endif
+
     <div class="col {{ $block['class'] ?? 'col-12' }}">
         <div class="block">
 
