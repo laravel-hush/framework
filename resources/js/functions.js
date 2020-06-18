@@ -75,7 +75,7 @@ window.functions = class functions {
       }
     });
 
-    $('.custom-file-input:not(.multiple)').change(function () {
+    $('.custom-file-input:not(.multiple)').off('change').change(function () {
       if (this.files && this.files[0]) {
         var image = $(this).data('image-id');
         var reader = new FileReader();
@@ -88,11 +88,13 @@ window.functions = class functions {
       }
     });
 
-    $('.custom-file-input.multiple').change(function () {
+    $('.custom-file-input.multiple').off('change').change(function () {
       if (this.files && this.files.length) {
+        var image_block = $(this).data('image-block-id');
+        $(image_block).html("");
+
         for (let i = 0; i < this.files.length; i++) {
           const file = this.files[i];
-          var image_block = $(this).data('image-block-id');
           var reader = new FileReader();
 
           reader.onload = function (event) {

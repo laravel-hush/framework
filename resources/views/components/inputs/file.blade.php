@@ -13,7 +13,13 @@
 
 @else
 
-<div class="text-center row px-2" id="{{ $id ?? 'multiple-image' }}"></div>
+<div class="text-center row px-2" id="{{ $id ?? 'multiple-image' }}">
+    @foreach ($value as $image)
+    <div class="col-1 pb-3">
+        <img src="{{ $image }}" alt="">
+    </div>
+    @endforeach
+</div>
 <div class="custom-file">
     <input type="file" name="{{ $name }}" class="custom-file-input multiple" multiple
         data-image-block-id="#{{ $id ?? 'multiple-image' }}">

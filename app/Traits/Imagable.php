@@ -9,12 +9,27 @@ trait Imagable
 {
     public function setAttribute($property, $value)
     {
-        if (in_array($property, $this->imagable) && !is_string($value)) {
-            $parts = explode('\\', __CLASS__);
-            $this->attributes[$property] = Image::store($value, Str::snake(end($parts)));
+        if (in_array($property, $this->imagable ?? []) && !is_string($value)) {
+            $this->attributes[$property] = $this->saveImage($value);
             return $this->attributes[$property];
         }
 
+        if (in_array($property, $this->imagable_multiple ?? [])) {
+            foreach ($value as $image) {
+                if (!is_string($image)) {
+                    $this->{$this->imagable_relation}()->create([
+                        'image' => $this->saveImage($image)
+                    ]);
+                }
+            }
+        }
+
         return parent::setAttribute($property, $value);
+    }
+
+    public function saveImage($image)
+    {
+        $parts = explode('\\', __CLASS__);
+        return Image::store($image, Str::snake(end($parts)));
     }
 }
