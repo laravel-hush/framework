@@ -56,7 +56,7 @@ return [
                 */
 
                 'title' => [
-                    'text' => '{{ plural }}',
+                    'text' => '{{ singular }}',
                     'buttons' => [
                         [
                             'form' => '{{ plural }}',
