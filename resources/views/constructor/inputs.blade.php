@@ -70,7 +70,8 @@
                         @include ('hush::components.inputs.file', [
                             'name' => $input['name'],
                             'value' => Constructor::value(get_defined_vars(), $input, $input['default'] ?? []),
-                            'id' => $input['id'] ?? $input['name']
+                            'id' => $input['id'] ?? (isset($input['multiple']) ? null : $input['name']),
+                            'multiple' => $input['multiple'] ?? null
                         ])
                         @break
 

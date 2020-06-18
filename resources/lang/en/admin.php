@@ -8,6 +8,7 @@ return [
     'browse' => 'Browse',
     'cancel' => 'Cancel',
     'choose-file' => 'Choose file',
+    'choose-files' => 'Choose files',
     'delete-selected' => 'Delete selected',
     'deleted' => 'Deleted',
     'edit' => 'Edit',
@@ -31,6 +32,7 @@ return [
     'settings' => 'Settings',
     'show' => 'Show',
     'submit' => 'Submit',
+    'unlimited' => 'Unlimited',
     'user' => 'User',
     'users' => 'Users',
     'your-work-has-been-successfully-saved' => 'Your work has been successfully saved'
