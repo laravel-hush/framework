@@ -82,6 +82,11 @@
                         @break
 
                     @case ('select')
+                        @php(
+                            $placeholder = !isset($input['multiple']) || !$input['multiple']
+                                ? __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? ''))
+                                : null
+                        )
                         {!! Form::{$input['type']}(
                             $input['name'],
                             isset($input['data']) ? call_user_func($input['data']) : [],
@@ -89,11 +94,9 @@
                             [
                                 'id' => $input['id'] ?? null,
                                 'class' => 'form-control ' . ($input['class'] ?? ''),
-                                'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? '')),
+                                'placeholder' => $placeholder,
                                 'multiple' => $input['multiple'] ?? false,
-                                'data-placeholder' => isset($input['multiple']) && $input['multiple']
-                                    ? __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? ''))
-                                    : null
+                                'data-placeholder' => $placeholder
                             ]
                         ) !!}
                         @break
