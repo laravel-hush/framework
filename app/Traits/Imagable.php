@@ -14,7 +14,7 @@ trait Imagable
             return $this->attributes[$property];
         }
 
-        if (in_array($property, $this->imagable_multiple ?? [])) {
+        if ($value && in_array($property, $this->imagable_multiple ?? [])) {
             foreach ($value as $image) {
                 if (!is_string($image)) {
                     $this->{$this->imagable_relation}()->create([
