@@ -298,8 +298,8 @@ window.functions = class functions {
     });
   }
 
-  static openDynamicModal(link) {
-    $.get(link, function (response) {
+  static async openDynamicModal(link) {
+    await $.get(link, function (response) {
       $('#modals').html(response);
       $('#dynamic-modal').modal();
       functions.initialize();
