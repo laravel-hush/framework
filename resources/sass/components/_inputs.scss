@@ -88,6 +88,7 @@
 .error {
   .form-control:not(.multilingual-field),
   .chosen-container-single .chosen-single,
+  .chosen-container .chosen-choices,
   .multilingual-input,
   .custom-file label {
     border: 2px solid $danger_color;

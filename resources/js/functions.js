@@ -286,7 +286,12 @@ window.functions = class functions {
                   }
                 }
 
-                form.find(`[name="${index}"]`)
+                let element = form.find(`[name="${index}"]`);
+                if (!element || !element.length) {
+                  element = form.find(`[name="${index}[]"]`);
+                }
+                
+                element
                   .closest('.form-group')
                   .addClass('error')
                   .append('<small class="validation-error">' + value + '</small>');
