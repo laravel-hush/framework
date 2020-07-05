@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider as Provider;
 use ScaryLayer\Hush\Commands\MakePage;
 use ScaryLayer\Hush\Commands\RolesSync;
 use ScaryLayer\Hush\Helpers\Constructor;
+use ScaryLayer\Hush\Helpers\Input;
 use ScaryLayer\Hush\Middleware\Permission;
 
 class ServiceProvider extends Provider
@@ -28,6 +29,7 @@ class ServiceProvider extends Provider
 
         $loader = AliasLoader::getInstance();
         $loader->alias('Constructor', Constructor::class);
+        $loader->alias('Input', Input::class);
 
         app('router')->aliasMiddleware('permission', Permission::class);
 

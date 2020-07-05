@@ -46,7 +46,7 @@ class GlobalController extends Controller
             'title' => isset($settings['title'])
                 ? __('hush::admin.' . $settings['title'])
                 : null,
-            'langs' => Language::all()->keyBy('code'),
+            'langs' => Language::getList(),
             'breadcrumbs' => $breadcrumbs,
             'baseUrl' => str_replace('.', '/', $baseUrl)
         ])->all());

@@ -8,4 +8,15 @@ class Language extends Model
 {
     protected $table = 'languages';
     protected $fillable = ['code', 'name'];
+
+    public static function getList()
+    {
+        return cache()->remember(
+            'languages',
+            24 * 60 * 60,
+            function () {
+                return Language::all();
+            }
+        )->keyBy('code');
+    }
 }
