@@ -90,7 +90,7 @@
                         )
                         {!! Form::{$input['type']}(
                             $input['name'],
-                            isset($input['data']) ? call_user_func($input['data']) : [],
+                            isset($input['data']) ? call_user_func($input['data'], get_defined_vars()) : [],
                             Constructor::value(get_defined_vars(), $input, $input['default'] ?? []),
                             [
                                 'id' => $input['id'] ?? null,
