@@ -78,7 +78,7 @@ class Input
                     array_merge([
                         'class' => 'form-control '
                             . ($input['class'] ?? '')
-                            . (isset($input['slugify']) && !$model->id ? 'sluggable' : ''),
+                            . (isset($input['slugify']) && !$variables['model']->id ? 'sluggable' : ''),
                         'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? '')),
                         'data-slugify-target' => $input['slugify'] ?? null,
                     ], $input['attributes'] ?? []));
