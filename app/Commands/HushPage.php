@@ -6,21 +6,21 @@ use File;
 use Illuminate\Console\Command;
 use Str;
 
-class MakePage extends Command
+class HushPage extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'make:page {path} {--type=default}';
+    protected $signature = 'hush:page {path} {--type=default}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new admin page';
+    protected $description = 'Create a new hush page';
 
     /**
      * Path to templates folder.

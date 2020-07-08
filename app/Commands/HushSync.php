@@ -2,18 +2,17 @@
 
 namespace ScaryLayer\Hush\Commands;
 
-use File;
 use Illuminate\Console\Command;
 use ScaryLayer\Hush\Models\Role;
 
-class RolesSync extends Command
+class HushSync extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'roles:sync';
+    protected $signature = 'hush:sync';
 
     /**
      * The console command description.
@@ -42,7 +41,7 @@ class RolesSync extends Command
         $roles = collect(config('hush.roles'));
         Role::whereNotIn('key', $roles->keys()->all())->delete();
         foreach ($roles as $key => $role) {
-            $roleObject = Role::firstOrNew(['key' => $key]);
+            $roleObject = Role::firstOrCreate(['key' => $key]);
             $roleObject->saveTranslation('name', $role['name']);
 
             if (isset($role['permissions'])) {
