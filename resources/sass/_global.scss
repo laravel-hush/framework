@@ -138,40 +138,46 @@ label {
   border-top: 1px solid;
   border-color: #f0f3ff;
   padding: 10px;
+  margin: auto;
+  width: fit-content;
 
-  nav {
-    width: fit-content;
-    margin: auto;
+  .pagination {
+    margin: 0;
 
-    .pagination {
-      margin: 0;
-
-      .page-link {
-        border: 0;
-        border-radius: 5px;
-        color: $primary_color;
-
-        &:focus {
-          box-shadow: none;
-        }
+    &__arrow {
+      &.is-disabled {
+        display: none;
       }
 
-      .page-item {
-        margin: 0 3px;
-
-        &.active {
-          .page-link {
-            background-color: $primary_color;
-            color: #fff;
-          }
+      .arrow-long {
+        &--left:after {
+          content: '<';
         }
 
-        &.disabled {
-          &:first-child,
-          &:last-child {
-            display: none;
-          }
+        &--right:after {
+          content: '>'
         }
+      }
+    }
+
+    &__link, &__arrow {
+      border: 0;
+      border-radius: 5px;
+      color: $primary_color;
+      margin: 0 3px;
+      padding: 5px 12px;
+
+      &:focus {
+        box-shadow: none;
+      }
+
+      &:hover {
+        background-color: $disabled_color;
+      }
+
+      &.is-current {
+        background-color: $primary_color;
+        color: #fff;
       }
     }
   }
