@@ -3,10 +3,22 @@
         <img src="{{ asset('vendor/hush/images/long-logo.png') }}" alt="">
     </a>
     <div class="navigation row no-gutters">
-        <div class="navigation-item col notifications" data-dropdown="#dropdown-notifications">
-            <i class="material-icons">notifications</i>
+
+        @foreach (config('hush.topbar-menu') as $item)
+
+        <div class="navigation-item col notifications"
+            @if ($item['has_dropdown']) data-dropdown="#dropdown-{{ $item['name'] }}" @endif>
+            {!! $item['icon'] ?? '' !!}
         </div>
-        @include('hush::components.topbar-dropdowns.notifications')
+
+        @if ($item['has_dropdown'])
+        <div class="dropdown-menu notifications-dropdown" id="dropdown-{{ $item['name'] }}">
+            @include($item['view'])
+        </div>
+        @endif
+
+        @endforeach
+
         <div class="user row no-gutters align-items-center" data-dropdown="#dropdown-user-menu">
             <div class="name">{{ auth()->user()->name }}</div>
             <div class="image">
