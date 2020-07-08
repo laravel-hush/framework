@@ -54,9 +54,12 @@ class HushSync extends Command
                     });
                 foreach ($newPermissions as $permission) {
                     $roleObject->permissions()->create(['permission' => $permission]);
+                    $this->comment("Permission $permission was attached to role $roleObject->key.");
                 }
             }
 
         }
+
+        $this->info('Roles and permissions was synced successfully.');
     }
 }

@@ -71,6 +71,8 @@ class HushPage extends Command
                 $this->makeForm();
                 break;
         }
+
+        $this->info('Hush page created successfully.');
     }
 
     private function generatePage($path)
