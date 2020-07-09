@@ -1,0 +1,10 @@
+<?php
+
+namespace App\Models\Translations;
+
+use Illuminate\Database\Eloquent\Model;
+
+class {{ path }}Translation extends Model
+{
+    protected $guarded = [];
+}

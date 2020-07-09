@@ -6,6 +6,7 @@ use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider as Provider;
 use ScaryLayer\Hush\Commands\HushPage;
 use ScaryLayer\Hush\Commands\HushSync;
+use ScaryLayer\Hush\Commands\HushTranslation;
 use ScaryLayer\Hush\Helpers\Constructor;
 use ScaryLayer\Hush\Helpers\Input;
 use ScaryLayer\Hush\Middleware\Permission;
@@ -33,7 +34,11 @@ class ServiceProvider extends Provider
         app('router')->aliasMiddleware('permission', Permission::class);
 
         if ($this->app->runningInConsole()) {
-            $this->commands([HushPage::class, HushSync::class]);
+            $this->commands([
+                HushPage::class,
+                HushSync::class,
+                HushTranslation::class
+            ]);
         }
     }
 }
