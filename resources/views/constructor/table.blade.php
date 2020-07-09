@@ -115,16 +115,16 @@
     </table>
 </form>
 
+@isset ($block['content']['multiple-actions'])
 <div class="multiple-actions-block" style="display: none">
-    <a href="{{ Constructor::link([
-        'constructor' => [
-            'route' => 'admin.constructor.process',
-            'action' => 'delete-multiple'
-        ]
-    ]) }}" class="btn btn-danger with-confirmation">
-        @lang('hush::admin.delete-selected')
+    @foreach ($block['content']['multiple-actions'] as $action)
+    <a href="{{ Constructor::link($action) }}" data-request_type="{{ $action['type'] }}"
+        class="btn btn-danger {{ $action['confirmation'] ? 'with-confirmation' : '' }}">
+        @lang('hush::admin.' . $action['text'])
     </a>
+    @endforeach
 </div>
+@endisset
 
 @if (isset($block['content']['pagination']) && $rows->hasPages())
 <div class="pagination-block">

@@ -51,6 +51,7 @@ window.functions = class functions {
     $('.multiple-actions-block a').click(function (event) {
       event.preventDefault();
 
+      var type = $(this).data('request_type');
       var url = $(this).attr('href');
       var data = $(this).closest('.block').find('form').serialize();
       url = url + "&" + data;
@@ -67,11 +68,11 @@ window.functions = class functions {
           cancelButtonText: __.cancel,
         }).then((result) => {
           if (result.value) {
-            functions.request('delete', url);
+            functions.request(type, url);
           }
         })
       } else {
-        functions.request('delete', url);
+        functions.request(type, url);
       }
     });
 

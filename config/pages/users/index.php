@@ -88,6 +88,17 @@ return [
                             'text' => 'show'
                         ]
                     ],
+                    'multiple-actions' => [
+                        [
+                            'type' => 'delete',
+                            'text' => 'delete-selected',
+                            'confirmation' => true,
+                            'constructor' => [
+                                'route' => 'admin.constructor.process',
+                                'action' => 'delete-multiple'
+                            ]
+                        ]
+                    ]
                 ]
 
             ]
