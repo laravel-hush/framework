@@ -23,6 +23,19 @@ class Constructor
                         ->merge(['url' => str_replace('.', '/', $item['constructor']['url'] ?? request()->url)])
                         ->all()
                 );
+        } elseif (isset($item['action'])) {
+            $link = is_string($item['action'])
+                ? route('admin.constructor.process', [
+                    'url' => request()->url,
+                    'action' => $item['action']
+                ])
+                : route(
+                    'admin.constructor.process',
+                    collect($item['action'])
+                        ->except('route', 'url')
+                        ->merge(['url' => str_replace('.', '/', $item['action']['url'] ?? request()->url)])
+                        ->all()
+                );
         } elseif (isset($item['link'])) {
             $link = $item['link'];
         } elseif (isset($item['closure'])) {
