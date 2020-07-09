@@ -20,12 +20,18 @@
         }
 
         &:hover {
-          background-color: #00000055;
-          color: #ffffff77;
+          background-color: #00000077;
+          color: #ffffff99;
         }
 
         &.active {
           background: linear-gradient(180deg, #f9f9fc, #eceef7);
+          color: #717171;
+          font-weight: 500;
+        }
+
+        &.dropped {
+          background: #fff;
           color: #717171;
           font-weight: 500;
         }
