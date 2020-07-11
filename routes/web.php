@@ -18,7 +18,9 @@ Route::prefix('admin')
             Route::view('login', 'hush::login')->name('login');
             Route::post('login', function () {
                 if (Auth::attempt(request()->only('email', 'password'))) {
-                    return redirect()->route('admin.index');
+                    $redirectTo = session('redirect-to', route('admin.index'));
+                    session()->flash('redirect-to');
+                    return redirect($redirectTo);
                 }
 
                 return back()->withErrors(['email' => __('hush::admin.admin-does-not-exists')]);

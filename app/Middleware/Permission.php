@@ -16,6 +16,10 @@ class Permission
     public function handle($request, Closure $next, $permission, $redirectTo = null)
     {
         if (!auth()->check() || !auth()->user()->permitted($permission)) {
+            if (!auth()->check()) {
+                session()->put('redirect-to', $request->url());
+            }
+
             if ($redirectTo) {
                 return redirect()->route($redirectTo);
             }
