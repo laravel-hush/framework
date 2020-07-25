@@ -40,8 +40,8 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('role');
-        });
+        Schema::dropIfExists('role_translations');
+        Schema::dropIfExists('role_permissions');
+        Schema::dropIfExists('roles');
     }
 }
