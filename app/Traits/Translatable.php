@@ -9,7 +9,10 @@ trait Translatable
 {
     public function translations()
     {
-        return $this->hasMany($this->getTranslationModel(), $this->translatable_related, 'id');
+        return $this->hasMany(
+            $this->getTranslationModel(),
+            $this->translatable_related
+        );
     }
 
     public function getAttribute($property)
@@ -39,6 +42,8 @@ trait Translatable
                 ->on('languages')
                 ->onDelete('cascade');
         });
+
+        return $this;
     }
 
     public function saveTranslation($field, $values)
