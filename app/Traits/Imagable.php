@@ -56,9 +56,12 @@ trait Imagable
         return $this;
     }
 
-    public function removeImage($imageId)
+    public function removeImage($field, $image)
     {
-        $this->images()->where('id', $imageId)->delete();
+        $this->images()
+            ->where('field', $field)
+            ->where('image', $image)
+            ->delete();
     }
 
     public function saveImage($image)

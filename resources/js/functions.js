@@ -107,6 +107,28 @@ window.functions = class functions {
       }
     });
 
+    $('.images-list .remove-image').click(function (event) {
+      event.preventDefault();
+
+      var url = $(this).attr('href');
+      var image = $(this).closest('.image');
+
+      Swal.fire({
+        title: __.are_you_sure,
+        text: __.you_wont_be_able_to_revert,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: __.yes_delete_it,
+        cancelButtonText: __.cancel,
+      }).then((result) => {
+        if (result.value) {
+          functions.request('delete', url, null, function () {
+            image.remove();
+          });
+        }
+      })
+    });
+
     $('.codemirror').each(function () {
       var code = CodeMirror.fromTextArea(this, {
         lineNumbers: true,
