@@ -11,9 +11,6 @@ class Role extends Model
 
     protected $table = 'roles';
     protected $fillable = ['key'];
-
-    protected $translatable_table = 'role_translations';
-    protected $translatable_related = 'role_id';
     protected $translatable = ['name'];
 
     public function permissions()

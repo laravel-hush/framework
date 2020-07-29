@@ -4,9 +4,12 @@ namespace ScaryLayer\Hush\Traits;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 trait Translatable
 {
+    use Hushable;
+
     public function translations()
     {
         return $this->hasMany(
@@ -25,15 +28,15 @@ trait Translatable
 
     public function createTranslationTable()
     {
-        Schema::create($this->translatable_table, function (Blueprint $table) {
+        Schema::create($this->getTranslatableTable(), function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger($this->translatable_related);
+            $table->unsignedBigInteger($this->getTranslatableRelated());
             $table->string('lang', 190);
             $table->string('field');
             $table->text('value');
             $table->timestamps();
 
-            $table->foreign($this->translatable_related)
+            $table->foreign($this->getTranslatableRelated())
                 ->references('id')
                 ->on($this->table)
                 ->onDelete('cascade');
@@ -89,20 +92,19 @@ trait Translatable
             ->pluck('value', 'lang');
     }
 
-    private function getCurrentClass()
-    {
-        $parts = explode('\\', get_called_class());
-        return end($parts);
-    }
-
-    private function getCurrentNamespace()
-    {
-        return explode('\\' . $this->getCurrentClass(), get_called_class())[0];
-    }
-
     private function getTranslationModel()
     {
         $path = '\\' . $this->getCurrentNamespace() . '\\Translatable\\';
         return $path . $this->getCurrentClass() . 'Translation';
+    }
+
+    private function getTranslatableRelated()
+    {
+        return $this->translatable_related ?? Str::of($this->getCurrentClass())->lower() . '_id';
+    }
+
+    private function getTranslatableTable()
+    {
+        return $this->translatable_table ?? Str::of($this->getCurrentClass())->lower() . '_translations';
     }
 }

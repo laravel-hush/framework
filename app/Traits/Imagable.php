@@ -9,11 +9,13 @@ use ScaryLayer\Hush\Helpers\Image;
 
 trait Imagable
 {
+    use Hushable;
+
     public function images()
     {
         return $this->hasMany(
-            $this->getTranslationModel(),
-            $this->imagable_related
+            $this->getImagableModel(),
+            $this->getImagableRelated()
         );
     }
 
@@ -40,20 +42,38 @@ trait Imagable
     
     public function createImagesTable()
     {
-        Schema::create($this->imagable_table, function (Blueprint $table) {
+        Schema::create($this->getImagableTable(), function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger($this->imagable_related);
+            $table->unsignedBigInteger($this->getImagableRelated());
             $table->string('field');
             $table->string('image');
             $table->timestamps();
 
-            $table->foreign($this->imagable_related)
+            $table->foreign($this->getImagableRelated())
                 ->references('id')
                 ->on($this->table)
                 ->onDelete('cascade');
         });
 
         return $this;
+    }
+
+    private function getImagableModel()
+    {
+        $path = '\\' . $this->getCurrentNamespace() . '\\Imagable\\';
+        return $path . $this->getCurrentClass() . 'Image';
+    }
+
+    private function getImagableRelated()
+    {
+        return $this->imagable_related
+            ?? Str::of($this->getCurrentClass())->lower() . '_id';
+    }
+
+    private function getImagableTable()
+    {
+        return $this->imagable_table
+            ?? Str::of($this->getCurrentClass())->lower() . '_images';
     }
 
     public function removeImage($field, $image)
