@@ -1,6 +1,6 @@
 <?php
 
-namespace ScaryLayer\Hush\Models\Translations;
+namespace ScaryLayer\Hush\Models\Translatable;
 
 use Illuminate\Database\Eloquent\Model;
 

@@ -102,7 +102,7 @@ trait Translatable
 
     private function getTranslationModel()
     {
-        $path = '\\' . $this->getCurrentNamespace() . '\\Translations\\';
+        $path = '\\' . $this->getCurrentNamespace() . '\\Translatable\\';
         return $path . $this->getCurrentClass() . 'Translation';
     }
 }

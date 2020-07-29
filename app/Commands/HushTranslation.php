@@ -45,7 +45,7 @@ class HushTranslation extends Command
         parent::__construct();
 
         $this->templatesPath = __DIR__ . '/../../resources/templates/';
-        $this->destinationPath = app_path('Models/Translations/');
+        $this->destinationPath = app_path('Models/Translatable/');
     }
 
     /**
