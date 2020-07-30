@@ -5,21 +5,21 @@ namespace ScaryLayer\Hush\Commands;
 use File;
 use Illuminate\Console\Command;
 
-class HushTranslation extends Command
+class HushImagable extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'hush:translation {path}';
+    protected $signature = 'hush:imagable {path}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Create a new translation model';
+    protected $description = 'Create a new imagable model';
 
     /**
      * Path to templates folder.
@@ -45,7 +45,7 @@ class HushTranslation extends Command
         parent::__construct();
 
         $this->templatesPath = __DIR__ . '/../../resources/templates/';
-        $this->destinationPath = app_path('Models/Translatable/');
+        $this->destinationPath = app_path('Models/Imagable/');
     }
 
     /**
@@ -59,10 +59,10 @@ class HushTranslation extends Command
             File::makeDirectory($this->destinationPath);
         }
 
-        $content = $this->generateModel($this->templatesPath . 'models/translation.pivot');
-        File::put($this->destinationPath . "{$this->argument('path')}Translation.php", $content);
+        $content = $this->generateModel($this->templatesPath . 'models/image.pivot');
+        File::put($this->destinationPath . "{$this->argument('path')}Image.php", $content);
 
-        $this->info('Translation model created successfully.');
+        $this->info('Imagable model created successfully.');
     }
 
     private function generateModel($path)

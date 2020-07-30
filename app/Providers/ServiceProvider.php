@@ -4,9 +4,10 @@ namespace ScaryLayer\Hush\Providers;
 
 use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider as Provider;
+use ScaryLayer\Hush\Commands\HushImagable;
 use ScaryLayer\Hush\Commands\HushPage;
 use ScaryLayer\Hush\Commands\HushSync;
-use ScaryLayer\Hush\Commands\HushTranslation;
+use ScaryLayer\Hush\Commands\HushTranslatable;
 use ScaryLayer\Hush\Helpers\Constructor;
 use ScaryLayer\Hush\Helpers\Input;
 use ScaryLayer\Hush\Middleware\Permission;
@@ -37,7 +38,8 @@ class ServiceProvider extends Provider
             $this->commands([
                 HushPage::class,
                 HushSync::class,
-                HushTranslation::class
+                HushImagable::class,
+                HushTranslatable::class
             ]);
         }
     }

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Models\Translatable;
+namespace App\Models\Imagable;
 
 use Illuminate\Database\Eloquent\Model;
 
-class {{ path }}Translation extends Model
+class {{ path }}Image extends Model
 {
     protected $guarded = [];
 }
