@@ -28,6 +28,10 @@ class ServiceProvider extends Provider
             __DIR__ . '/../../resources/lang'      => resource_path('lang/vendor/hush')
         ], 'hush');
 
+        $this->publishes([
+            __DIR__ . '/../../public'              => public_path('vendor/hush'),
+        ], 'hush.assets');
+
         $loader = AliasLoader::getInstance();
         $loader->alias('Constructor', Constructor::class);
         $loader->alias('Input', Input::class);
