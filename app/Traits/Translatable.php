@@ -2,6 +2,7 @@
 
 namespace ScaryLayer\Hush\Traits;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
@@ -26,6 +27,11 @@ trait Translatable
             : $parent;
     }
 
+    /**
+     * Create table for storing translation strings.
+     *
+     * @return mixed
+     */
     public function createTranslationTable()
     {
         Schema::create($this->getTranslatableTable(), function (Blueprint $table) {
@@ -49,7 +55,14 @@ trait Translatable
         return $this;
     }
 
-    public function saveTranslation($field, $values)
+    /**
+     * Save translatable field values.
+     *
+     * @param string $field
+     * @param array $values
+     * @return bool
+     */
+    public function saveTranslation(string $field, array $values): bool
     {
         if (!$values) {
             return false;
@@ -67,7 +80,14 @@ trait Translatable
         return true;
     }
 
-    public function saveTranslations($data, $fields = null)
+    /**
+     * Save translations for all available fields.
+     *
+     * @param array $data
+     * @param mixed array
+     * @return void
+     */
+    public function saveTranslations(array $data, array $fields = null): void
     {
         $data = collect($data)->only($fields ?? $this->translatable);
         foreach ($data as $field => $values) {
@@ -75,7 +95,14 @@ trait Translatable
         }
     }
 
-    public function translate($field, $lang = null)
+    /**
+     * Translate field for given language.
+     *
+     * @param string $field
+     * @param string $lang
+     * @return string
+     */
+    public function translate(string $field, string $lang = null): string
     {
         $row = $this->translations
             ->where('lang', $lang ?? app()->getLocale())
@@ -85,26 +112,49 @@ trait Translatable
         return optional($row)->value;
     }
 
-    public function translationArray($field)
+    /**
+     * Return list of all translations for given field.
+     *
+     * @param string $field
+     * @return Collection
+     */
+    public function translationArray(string $field): Collection
     {
         return $this->translations
             ->where('field', $field)
             ->pluck('value', 'lang');
     }
 
-    private function getTranslationModel()
+    /**
+     * Get translation model name.
+     *
+     * @return string
+     */
+    private function getTranslationModel(): string
     {
         $path = '\\' . $this->getCurrentNamespace() . '\\Translatable\\';
         return $path . $this->getCurrentClass() . 'Translation';
     }
 
-    private function getTranslatableRelated()
+    /**
+     * Get related field name.
+     *
+     * @return string
+     */
+    private function getTranslatableRelated(): string
     {
-        return $this->translatable_related ?? Str::of($this->getCurrentClass())->lower() . '_id';
+        return $this->translatable_related
+            ?? Str::of($this->getCurrentClass())->lower() . '_id';
     }
 
-    private function getTranslatableTable()
+    /**
+     * Get translation table name.
+     *
+     * @return string
+     */
+    private function getTranslatableTable(): string
     {
-        return $this->translatable_table ?? Str::of($this->getCurrentClass())->lower() . '_translations';
+        return $this->translatable_table
+            ?? Str::of($this->getCurrentClass())->lower() . '_translations';
     }
 }

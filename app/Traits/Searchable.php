@@ -13,7 +13,11 @@ trait Searchable
         foreach ($this->searchable as $column) {
             if (mb_strpos($column, '.') !== false) {
                 $relation = explode('.', $column)[0];
-                $query = $this->searchNested($query, $relation, explode("$relation.", $column)[1]);
+                $query = $this->searchNested(
+                    $query,
+                    $relation,
+                    explode("$relation.", $column)[1]
+                );
                 continue;
             }
 
@@ -23,12 +27,24 @@ trait Searchable
         return $query;
     }
 
-    public function searchNested($query, $relation, $column)
+    /**
+     * Search in nested columns
+     *
+     * @param mixed $query
+     * @param string $relation
+     * @param string $column
+     * @return mixed
+     */
+    public function searchNested($query, string $relation, string $column)
     {
         return $query->orWhereHas($relation, function ($queryNested) use ($column) {
             if (mb_strpos($column, '.') !== false) {
                 $relation = explode('.', $column)[0];
-                $queryNested = $this->searchNested($queryNested, explode("$relation.", $column)[1]);
+                $queryNested = $this->searchNested(
+                    $queryNested,
+                    $relation,
+                    explode("$relation.", $column)[1]
+                );
             } else {
                 $queryNested->where($column, 'like', '%' . request()->search . '%');
             }

@@ -11,7 +11,13 @@ trait Permissiable
         return $this->hasOne(Role::class, 'key', 'role');
     }
 
-    public function permitted($permissionKey)
+    /**
+     * Check if model is permitted for some action.
+     *
+     * @param string $permissionKey
+     * @return bool
+     */
+    public function permitted(string $permissionKey): bool
     {
         $permissions = is_string($permissionKey)
             ? ['god', $permissionKey]

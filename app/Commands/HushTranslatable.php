@@ -51,9 +51,9 @@ class HushTranslatable extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         if (!File::exists($this->destinationPath)) {
             File::makeDirectory($this->destinationPath);
@@ -65,7 +65,13 @@ class HushTranslatable extends Command
         $this->info('Translatable model created successfully.');
     }
 
-    private function generateModel($path)
+    /**
+     * Generate model's content
+     *
+     * @param string $path
+     * @return string
+     */
+    private function generateModel(string $path): string
     {
         $content = File::get($path);
 
@@ -77,7 +83,12 @@ class HushTranslatable extends Command
         return $content;
     }
 
-    private function variables()
+    /**
+     * Get list of pivot variables
+     *
+     * @return array
+     */
+    private function variables(): array
     {
         return [
             '{{ path }}' => $this->argument('path')

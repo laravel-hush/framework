@@ -9,7 +9,12 @@ class Language extends Model
     protected $table = 'languages';
     protected $fillable = ['code', 'name'];
 
-    public static function getList()
+    /**
+     * Get list of languages from cache
+     *
+     * @return array
+     */
+    public static function getList(): array
     {
         return cache()->remember(
             'languages',

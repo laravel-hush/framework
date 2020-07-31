@@ -40,6 +40,11 @@ trait Imagable
         return parent::setAttribute($property, $value);
     }
     
+    /**
+     * Create table for storing multiple images.
+     *
+     * @return mixed
+     */
     public function createImagesTable()
     {
         Schema::create($this->getImagableTable(), function (Blueprint $table) {
@@ -58,25 +63,47 @@ trait Imagable
         return $this;
     }
 
-    private function getImagableModel()
+    /**
+     * Construct imagable model name.
+     *
+     * @return string
+     */
+    private function getImagableModel(): string
     {
         $path = '\\' . $this->getCurrentNamespace() . '\\Imagable\\';
         return $path . $this->getCurrentClass() . 'Image';
     }
 
-    private function getImagableRelated()
+    /**
+     * Construct related column name for multiple images table.
+     *
+     * @return string
+     */
+    private function getImagableRelated(): string
     {
         return $this->imagable_related
             ?? Str::of($this->getCurrentClass())->lower() . '_id';
     }
 
-    private function getImagableTable()
+    /**
+     * Construct multiple images table name.
+     *
+     * @return string
+     */
+    private function getImagableTable(): string
     {
         return $this->imagable_table
             ?? Str::of($this->getCurrentClass())->lower() . '_images';
     }
 
-    public function removeImage($field, $image)
+    /**
+     * Remove one from multiple image by its field name and value.
+     *
+     * @param string $field
+     * @param string $image
+     * @return void
+     */
+    public function removeImage(string $field, string $image): void
     {
         $this->images()
             ->where('field', $field)
@@ -84,7 +111,13 @@ trait Imagable
             ->delete();
     }
 
-    public function saveImage($image)
+    /**
+     * Store uploaded file.
+     *
+     * @param mixed $image
+     * @return string
+     */
+    public function saveImage($image): string
     {
         $parts = explode('\\', __CLASS__);
         return Image::store($image, Str::snake(end($parts)));

@@ -2,11 +2,16 @@
 
 namespace ScaryLayer\Hush\Helpers;
 
-use Illuminate\Support\Str;
-
 class Image
 {
-    public static function store($file, $savePath)
+    /**
+     * Store uploaded file to given path
+     *
+     * @param mixed $file
+     * @param string $savePath
+     * @return string
+     */
+    public static function store($file, string $savePath): string
     {
         $filename = sha1(microtime()) . '.' . $file->getClientOriginalExtension();
         $destinationPath = config('hush.app.uploads_folder') . '/' . $savePath;

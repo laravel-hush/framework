@@ -52,7 +52,7 @@ class HushPage extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
     public function handle()
     {
@@ -75,7 +75,13 @@ class HushPage extends Command
         $this->info('Hush page created successfully.');
     }
 
-    private function generatePage($path)
+    /**
+     * Generate page's content
+     *
+     * @param string $path
+     * @return string
+     */
+    private function generatePage(string $path): string
     {
         $content = File::get($path);
 
@@ -87,19 +93,34 @@ class HushPage extends Command
         return $content;
     }
 
-    private function makeForm()
+    /**
+     * Create new form page
+     *
+     * @return void
+     */
+    private function makeForm(): void
     {
         $content = $this->generatePage($this->templatesPath . 'form.pivot');
         File::put($this->destinationPath . 'edit.php', $content);
     }
 
-    private function makeTable()
+    /**
+     * Create new table page
+     *
+     * @return void
+     */
+    private function makeTable(): void
     {
         $content = $this->generatePage($this->templatesPath . 'table.pivot');
         File::put($this->destinationPath . 'index.php', $content);
     }
 
-    private function variables()
+    /**
+     * Get list of pivot variables
+     *
+     * @return array
+     */
+    private function variables(): array
     {
         return [
             '{{ singular }}' => Str::singular($this->argument('path')),

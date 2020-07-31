@@ -7,7 +7,14 @@ use ScaryLayer\Hush\Models\Language;
 
 class Input
 {
-    public static function render($input, $variables)
+    /**
+     * Render input by config
+     *
+     * @param array $input
+     * @param array $variables
+     * @return mixed
+     */
+    public static function render(array $input, array $variables)
     {
         switch ($input['type']) {
 

@@ -7,7 +7,8 @@ use Closure;
 class Permission
 {
     /**
-     * Handle an incoming request.
+     * Handle an incoming request and check if user is permitted
+     * to enter the dashboard.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next

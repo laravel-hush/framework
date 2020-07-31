@@ -6,7 +6,14 @@ use Closure;
 
 class Constructor
 {
-    public static function link($item, $variables = [])
+    /**
+     * Generate link by config
+     *
+     * @param array $item
+     * @param array $variables
+     * @return string
+     */
+    public static function link(array $item, array $variables = []): string
     {
         $link = '#';
         if (isset($item['route'])) {
@@ -45,7 +52,15 @@ class Constructor
         return $link;
     }
 
-    public static function value($variables, $item, $default = null)
+    /**
+     * Get the value by config
+     *
+     * @param array $variables
+     * @param array $item
+     * @param mixed $default
+     * @return mixed
+     */
+    public static function value(array $variables, array $item, $default = null)
     {
         if (in_array($item['type'], ['text-multilingual', 'textarea-multilingual'])) {
             return isset($item['value'])
@@ -71,6 +86,13 @@ class Constructor
         return $default;
     }
 
+    /**
+     * Detects if value is a closure and if it is - run it
+     *
+     * @param mixed $value
+     * @param mixed $params
+     * @return mixed
+     */
     public static function closureDetector($value, $params = null)
     {
         return $value instanceof Closure
@@ -78,7 +100,13 @@ class Constructor
             : $value;
     }
 
-    public static function isMenuItemActive($item)
+    /**
+     * Check if menu item is active
+     *
+     * @param array $item
+     * @return bool
+     */
+    public static function isMenuItemActive(array $item): bool
     {
         $link = Constructor::link($item);
         $isActive = self::checkLinkActivity($link);
@@ -96,7 +124,13 @@ class Constructor
         return false;
     }
 
-    private static function checkLinkActivity($link)
+    /**
+     * Check if link is active
+     *
+     * @param string $link
+     * @return bool
+     */
+    private static function checkLinkActivity(string $link): bool
     {
         $parts = explode('/', $link);
         if (end($parts) == 'index') {

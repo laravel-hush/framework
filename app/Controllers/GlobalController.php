@@ -12,12 +12,22 @@ class GlobalController extends Controller
 
     protected $route;
 
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->route = str_replace('admin.', '', str_replace('/', '.', request()->path()));
         abort_if(!config(self::CONFIG . '.' . $this->route), 404);
     }
 
+    /**
+     * Generate GET page
+     *
+     * @return mixed
+     */
     public function construct()
     {
         if (!config(self::CONFIG . '.' . $this->route . '.get')) {
@@ -52,6 +62,11 @@ class GlobalController extends Controller
         ])->all());
     }
 
+    /**
+     * Run actions
+     *
+     * @return mixed
+     */
     public function process()
     {
         $config = config(self::CONFIG . '.' . $this->route . '.' . \strtolower(request()->method()));
@@ -74,7 +89,13 @@ class GlobalController extends Controller
         ];
     }
 
-    public function runValidation($config)
+    /**
+     * Run validation
+     *
+     * @param array $config
+     * @return void
+     */
+    public function runValidation(array $config): void
     {
         if (isset($config['rules'])) {
             $this->validate(

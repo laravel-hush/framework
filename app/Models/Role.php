@@ -18,7 +18,13 @@ class Role extends Model
         return $this->hasMany(RolePermission::class, 'role', 'key');
     }
 
-    public function givePermission($permissionKey)
+    /**
+     * Give new permission for the role
+     *
+     * @param string $permissionKey
+     * @return void
+     */
+    public function givePermission(string $permissionKey): void
     {
         $this->permissions()->firstOrCreate(['permission' => $permissionKey]);
     }

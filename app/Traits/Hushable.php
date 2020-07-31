@@ -4,13 +4,23 @@ namespace ScaryLayer\Hush\Traits;
 
 trait Hushable
 {
-    protected function getCurrentClass()
+    /**
+     * Get current class name.
+     *
+     * @return string
+     */
+    protected function getCurrentClass(): string
     {
         $parts = explode('\\', get_called_class());
         return end($parts);
     }
 
-    protected function getCurrentNamespace()
+    /**
+     * Get current namespace.
+     *
+     * @return string
+     */
+    protected function getCurrentNamespace(): string
     {
         return explode('\\' . $this->getCurrentClass(), get_called_class())[0];
     }
