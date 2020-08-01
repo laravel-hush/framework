@@ -83,11 +83,11 @@ trait Translatable
     /**
      * Save translations for all available fields.
      *
-     * @param array $data
-     * @param mixed array
+     * @param array|Collection $data
+     * @param array $fields
      * @return void
      */
-    public function saveTranslations(array $data, array $fields = null): void
+    public function saveTranslations($data, array $fields = null): void
     {
         $data = collect($data)->only($fields ?? $this->translatable);
         foreach ($data as $field => $values) {
