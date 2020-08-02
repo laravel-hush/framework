@@ -3,6 +3,7 @@
 namespace ScaryLayer\Hush\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class Language extends Model
 {
@@ -12,9 +13,9 @@ class Language extends Model
     /**
      * Get list of languages from cache
      *
-     * @return array
+     * @return Collection
      */
-    public static function getList(): array
+    public static function getList(): Collection
     {
         return cache()->remember(
             'languages',

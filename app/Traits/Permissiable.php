@@ -14,10 +14,10 @@ trait Permissiable
     /**
      * Check if model is permitted for some action.
      *
-     * @param string $permissionKey
+     * @param string|array $permissionKey
      * @return bool
      */
-    public function permitted(string $permissionKey): bool
+    public function permitted($permissionKey): bool
     {
         $permissions = is_string($permissionKey)
             ? ['god', $permissionKey]
