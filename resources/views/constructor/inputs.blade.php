@@ -33,13 +33,15 @@
 
         <div class="col {{ $input['width'] ?? 'col-12' }}">
 
-            @if (!in_array($input['type'], ['text-multilingual', 'textarea-multilingual']))
+            @if (!in_array($input['type'], ['text', 'textarea']) && (!isset($input['multilingual']) || !$input['multilingual']))
             <div class="form-group">
             @endif
 
-                @if (isset($input['label']) && !in_array($input['type'], [
-                    'checkbox', 'radion', 'text-multilingual', 'textarea-multilingual'
-                ]))
+                @if (
+                    isset($input['label'])
+                    && !in_array($input['type'], ['checkbox', 'radion'])
+                    && (!in_array($input['type'], ['text', 'textarea']) || (!isset($input['multilingual']) || !$input['multilingual']))
+                )
                 {!! Form::label($input['name'], __('hush::admin.' . $input['label'])
                     . (isset($input['lang']) ? " ({$langs[$input['lang']]->name})" : '')) !!}
                 @endif
@@ -50,7 +52,7 @@
                 <small class="d-block">@lang ('hush::admin.' . $input['description'])</small>
                 @endisset
 
-            @if (!in_array($input['type'], ['text-multilingual', 'textarea-multilingual']))
+            @if (!in_array($input['type'], ['text', 'textarea']) && (!isset($input['multilingual']) || !$input['multilingual']))
             </div>
             @endif
         </div>

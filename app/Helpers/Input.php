@@ -3,9 +3,9 @@
 namespace ScaryLayer\Hush\Helpers;
 
 use Collective\Html\FormFacade as Form;
-use ScaryLayer\Hush\Models\Language;
 use ScaryLayer\Hush\View\Components\InputCheckbox;
 use ScaryLayer\Hush\View\Components\InputFile;
+use ScaryLayer\Hush\View\Components\InputMultilingual;
 use ScaryLayer\Hush\View\Components\InputRadio;
 
 class Input
@@ -88,16 +88,30 @@ class Input
                         'data-placeholder' => $placeholder
                     ]);
 
-            case 'text-multilingual':
-            case 'textarea-multilingual':
-                return view("hush::components.inputs.{$input['type']}", [
-                    'name' => $input['name'],
-                    'values' => Constructor::value($variables, $input, $input['default'] ?? []),
-                    'label' => $input['label'] ?? '',
-                    'input' => $input,
-                    'model' => $variables['model'] ?? null,
-                    'langs' => Language::getList(),
-                ]);
+            case 'text':
+            case 'textarea':
+                if (isset($input['multilingual']) && $input['multilingual']) {
+                    $field = new InputMultilingual(
+                        $input['type'],
+                        $input['name'],
+                        Constructor::value($variables, $input, $input['default'] ?? [])
+                    );
+
+                    $field->attributes['label'] = $input['label'] ?? '';
+                    $field->attributes['multirow'] = $input['multirow'] ?? false;
+
+                    return $field
+                        ->render()
+                        ->with($field->data())
+                        ->with('field_width', $input['field_width'] ?? "col-12")
+                        ->with(
+                            'slugify',
+                            isset($input['slugify']) && $input['slugify'] && $variables['model']
+                                ? $input['slugify']
+                                : false
+                        )
+                        ->render();
+                }
 
             default:
                 return Form::{$input['type']}(
