@@ -4,7 +4,7 @@ namespace ScaryLayer\Hush\View\Components;
 
 use Illuminate\View\Component;
 
-class Checkbox extends Component
+class InputCheckbox extends Component
 {
     public $is_checked;
     public $name;
