@@ -33,7 +33,7 @@
 
         <div class="col {{ $input['width'] ?? 'col-12' }}">
 
-            @if (!in_array($input['type'], ['text', 'textarea']) && (!isset($input['multilingual']) || !$input['multilingual']))
+            @if (!in_array($input['type'], ['text', 'textarea']) || (!isset($input['multilingual']) || !$input['multilingual']))
             <div class="form-group">
             @endif
 
@@ -52,7 +52,7 @@
                 <small class="d-block">@lang ('hush::admin.' . $input['description'])</small>
                 @endisset
 
-            @if (!in_array($input['type'], ['text', 'textarea']) && (!isset($input['multilingual']) || !$input['multilingual']))
+            @if (!in_array($input['type'], ['text', 'textarea']) || (!isset($input['multilingual']) || !$input['multilingual']))
             </div>
             @endif
         </div>
