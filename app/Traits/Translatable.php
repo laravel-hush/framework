@@ -100,9 +100,9 @@ trait Translatable
      *
      * @param string $field
      * @param string $lang
-     * @return string
+     * @return string|null
      */
-    public function translate(string $field, string $lang = null): string
+    public function translate(string $field, string $lang = null)
     {
         $row = $this->translations
             ->where('lang', $lang ?? app()->getLocale())
