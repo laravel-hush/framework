@@ -4,7 +4,9 @@
         <thead class="head">
 
             <tr>
-                <th class="check-td">@include ('hush::components.inputs.checkbox', ['name' => 'all-checker'])</th>
+                <th class="check-td">
+                    <x-hush-checkbox :name="'all-checker'" :is-checked="0"></x-hush-checkbox>
+                </th>
 
                 @foreach ($block['content']['columns'] as $column => $settings)
                 <th class="align-middle {{ $column }} {{ $settings['class'] ?? '' }}">
@@ -40,7 +42,7 @@
             <tr class="table-row">
 
                 <td class="check-td">
-                    @include ('hush::components.inputs.checkbox', ['name' => 'items[]', 'value' => $row->id])
+                    <x-hush-checkbox :name="'items[]'" :is-checked="0" :value="$row->id"></x-hush-checkbox>
                 </td>
 
                 @foreach ($block['content']['columns'] as $column => $settings)

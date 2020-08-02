@@ -4,6 +4,7 @@ namespace ScaryLayer\Hush\Helpers;
 
 use Collective\Html\FormFacade as Form;
 use ScaryLayer\Hush\Models\Language;
+use ScaryLayer\Hush\View\Components\Checkbox;
 
 class Input
 {
@@ -19,14 +20,16 @@ class Input
         switch ($input['type']) {
 
             case 'checkbox':
-                return view('hush::components.inputs.checkbox', [
-                    'name' => $input['name'],
-                    'is_checked' => Constructor::value($variables, $input, $input['default'] ?? []),
-                    'label' => isset($input['label'])
-                        ? __('hush::admin.' . $input['label'])
-                        : ''
-                    ]);
-                    
+                $checkbox = new Checkbox(
+                    $input['name'],
+                    Constructor::value($variables, $input, $input['default'] ?? [])
+                );
+                return $checkbox
+                    ->render()
+                    ->with($checkbox->data())
+                    ->with('slot', isset($input['label']) ? __('hush::admin.' . $input['label']) : '')
+                    ->render();
+
             case 'date':
             case 'datetime':
             case 'daterange':
