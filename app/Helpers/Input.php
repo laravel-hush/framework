@@ -6,6 +6,7 @@ use Collective\Html\FormFacade as Form;
 use ScaryLayer\Hush\Models\Language;
 use ScaryLayer\Hush\View\Components\InputCheckbox;
 use ScaryLayer\Hush\View\Components\InputFile;
+use ScaryLayer\Hush\View\Components\InputRadio;
 
 class Input
 {
@@ -58,6 +59,17 @@ class Input
                     'class' => 'form-control ' . ($input['class'] ?? ''),
                     'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? ''))
                 ]);
+
+            case 'radio':
+                $radio = new InputRadio(
+                    $input['name'],
+                    Constructor::value($variables, $input, $input['default'] ?? [])
+                );
+                return $radio
+                    ->render()
+                    ->with($radio->data())
+                    ->with('slot', isset($input['label']) ? __('hush::admin.' . $input['label']) : '')
+                    ->render();
 
             case 'select':
                 $placeholder = !isset($input['multiple']) || !$input['multiple']
