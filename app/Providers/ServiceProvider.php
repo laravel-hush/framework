@@ -12,6 +12,7 @@ use ScaryLayer\Hush\Helpers\Constructor;
 use ScaryLayer\Hush\Helpers\Input;
 use ScaryLayer\Hush\Middleware\Permission;
 use ScaryLayer\Hush\View\Components\InputCheckbox;
+use ScaryLayer\Hush\View\Components\InputFile;
 
 class ServiceProvider extends Provider
 {
@@ -38,7 +39,8 @@ class ServiceProvider extends Provider
         $loader->alias('Input', Input::class);
 
         $this->loadViewComponentsAs('hush', [
-            InputCheckbox::class
+            InputCheckbox::class,
+            InputFile::class
         ]);
 
         app('router')->aliasMiddleware('permission', Permission::class);

@@ -79,7 +79,7 @@
     <div class="col">
         <div class="form-group">
             <label>Label:</label>
-            @include ('hush::components.inputs.file', ['name' => 'name'])
+            <x-hush-input-file name="name"></x-hush-input-file>
         </div>
     </div>
 

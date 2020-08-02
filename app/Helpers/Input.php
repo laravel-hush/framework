@@ -5,6 +5,7 @@ namespace ScaryLayer\Hush\Helpers;
 use Collective\Html\FormFacade as Form;
 use ScaryLayer\Hush\Models\Language;
 use ScaryLayer\Hush\View\Components\InputCheckbox;
+use ScaryLayer\Hush\View\Components\InputFile;
 
 class Input
 {
@@ -40,12 +41,16 @@ class Input
                 ]);
 
             case 'file':
-                return view('hush::components.inputs.file', [
-                    'name' => $input['name'],
-                    'value' => Constructor::value($variables, $input, $input['default'] ?? []),
-                    'id' => $input['id'] ?? (isset($input['multiple']) ? null : $input['name']),
-                    'multiple' => $input['multiple'] ?? null
-                ]);
+                $file = new InputFile(
+                    $input['name'],
+                    $input['multiple'] ?? false,
+                    Constructor::value($variables, $input, $input['default'] ?? [])
+                );
+                return $file
+                    ->render()
+                    ->with($file->data())
+                    ->with('id', $input['id'] ?? (isset($input['multiple']) ? null : $input['name']))
+                    ->render();
 
             case 'password':
                 return Form::{$input['type']}($input['name'], [
