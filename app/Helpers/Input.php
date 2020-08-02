@@ -44,6 +44,7 @@ class Input
                 $file = new InputFile(
                     $input['name'],
                     $input['multiple'] ?? false,
+                    $input['preview'] ?? false,
                     Constructor::value($variables, $input, $input['default'] ?? [])
                 );
                 return $file

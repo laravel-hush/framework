@@ -9,6 +9,7 @@ class InputFile extends Component
     public $id;
     public $multiple;
     public $name;
+    public $preview;
     public $value;
 
     /**
@@ -18,13 +19,14 @@ class InputFile extends Component
      * @param  string  $message
      * @return void
      */
-    public function __construct($name, $multiple = false, $value = '')
+    public function __construct($name, $multiple = false, $preview = false, $value = '')
     {
         $this->id = $multiple
             ? $this->attributes['id'] ?? 'multiple-image'
             : $this->attributes['id'] ?? $name ?? 'image';
         $this->multiple = $multiple;
         $this->name = $name;
+        $this->preview = $preview;
         $this->value = $value;
     }
 
