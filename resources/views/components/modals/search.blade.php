@@ -12,10 +12,11 @@
             <div class="modal-body">
                 <form id="search-form">
                     <div class="form-group">
-                        {!! Form::text('search', null, [
-                            'class' => 'form-control',
-                            'placeholder' => __('hush::admin.search-query')
-                        ]) !!}
+                        <x-hush-input
+                            type="text"
+                            name="search"
+                            :placeholder="__('hush::admin.search-query')">
+                        </x-hush-input>
                     </div>
                 </form>
             </div>

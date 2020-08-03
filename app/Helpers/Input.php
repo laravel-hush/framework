@@ -3,6 +3,7 @@
 namespace ScaryLayer\Hush\Helpers;
 
 use Collective\Html\FormFacade as Form;
+use ScaryLayer\Hush\View\Components\Input as InputComponent;
 use ScaryLayer\Hush\View\Components\InputCheckbox;
 use ScaryLayer\Hush\View\Components\InputFile;
 use ScaryLayer\Hush\View\Components\InputMultilingual;
@@ -36,10 +37,23 @@ class Input
             case 'datetime':
             case 'daterange':
             case 'datetimerange':
-                return Form::text($input['name'], Constructor::value($variables, $input, $input['default'] ?? null), [
-                    'class' => "form-control {$input['type']}" . ($input['class'] ?? ''),
+                $field = new InputComponent(
+                    $input['type'],
+                    $input['name'],
+                    Constructor::value($variables, $input, $input['default'] ?? null)
+                );
+
+                $field->data();
+
+                $field->attributes = $field->attributes->merge([
+                    'class' => $input['type'] . ' ' . ($input['class'] ?? ''),
                     'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? ''))
                 ]);
+
+                return $field
+                    ->render()
+                    ->with($field->data())
+                    ->render();
 
             case 'file':
                 $file = new InputFile(
@@ -53,12 +67,6 @@ class Input
                     ->with($file->data())
                     ->with('id', $input['id'] ?? (isset($input['multiple']) ? null : $input['name']))
                     ->render();
-
-            case 'password':
-                return Form::{$input['type']}($input['name'], [
-                    'class' => 'form-control ' . ($input['class'] ?? ''),
-                    'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? ''))
-                ]);
 
             case 'radio':
                 $radio = new InputRadio(
@@ -116,16 +124,25 @@ class Input
                 }
 
             default:
-                return Form::{$input['type']}(
+                $field = new InputComponent(
+                    $input['type'],
                     $input['name'],
-                    Constructor::value($variables, $input, $input['default'] ?? null),
-                    array_merge([
-                        'class' => 'form-control '
-                            . ($input['class'] ?? '')
-                            . (isset($input['slugify']) && !$variables['model']->id ? 'sluggable' : ''),
-                        'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? '')),
-                        'data-slugify-target' => $input['slugify'] ?? null,
-                    ], $input['attributes'] ?? []));
+                    Constructor::value($variables, $input, $input['default'] ?? null)
+                );
+
+                $field->data();
+
+                $field->attributes = $field->attributes->merge([
+                    'class' => ($input['class'] ?? '')
+                        . (isset($input['slugify']) && !$variables['model']->id ? 'sluggable' : ''),
+                    'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? '')),
+                    'data-slugify-target' => $input['slugify'] ?? null,
+                ])->merge($input['attributes'] ?? []);
+
+                return $field
+                    ->render()
+                    ->with($field->data())
+                    ->render();
 
         }
     }

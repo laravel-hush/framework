@@ -11,6 +11,7 @@ use ScaryLayer\Hush\Commands\HushTranslatable;
 use ScaryLayer\Hush\Helpers\Constructor;
 use ScaryLayer\Hush\Helpers\Input;
 use ScaryLayer\Hush\Middleware\Permission;
+use ScaryLayer\Hush\View\Components\Input as InputComponent;
 use ScaryLayer\Hush\View\Components\InputCheckbox;
 use ScaryLayer\Hush\View\Components\InputFile;
 use ScaryLayer\Hush\View\Components\InputMultilingual;
@@ -41,6 +42,7 @@ class ServiceProvider extends Provider
         $loader->alias('Input', Input::class);
 
         $this->loadViewComponentsAs('hush', [
+            InputComponent::class,
             InputCheckbox::class,
             InputFile::class,
             InputMultilingual::class,
