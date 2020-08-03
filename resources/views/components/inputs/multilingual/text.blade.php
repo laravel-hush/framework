@@ -4,10 +4,10 @@
         {!! Form::text($name . "[$lang->code]", $values[$lang->code] ?? '', [
             'class' => 'form-control multilingual-field '
                 . (!$loop->first ? 'd-none' : '') . ' '
-                . ($slugify && $loop->first ? 'sluggable' : '') . ' '
+                . ($isSluggable() && $loop->first ? 'sluggable' : '') . ' '
                 . ($attributes['class'] ?? ''),
-            'placeholder' => __('hush::admin.' . ($attributes['placeholder'] ?? $attributes['label'] ?? '')),
-            'data-slugify-target' => $loop->first && $slugify ? $slugify : null,
+            'placeholder' => $getPlaceholder(),
+            'data-slugify-target' => $isSluggable() && $loop->first ? $attributes['slugify'] : null,
         ]) !!}
         @endforeach
     </div>

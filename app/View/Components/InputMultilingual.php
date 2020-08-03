@@ -7,11 +7,9 @@ use ScaryLayer\Hush\Models\Language;
 
 class InputMultilingual extends Component
 {
-    public $field_width;
     public $langs;
     public $multirow;
     public $name;
-    public $slugify;
     public $type;
     public $values;
 
@@ -22,9 +20,10 @@ class InputMultilingual extends Component
      * @param  string  $message
      * @return void
      */
-    public function __construct($type, $name, $values = [])
+    public function __construct($type, $name, $multirow = false, $values = [])
     {
         $this->langs = Language::getList();
+        $this->multirow = $multirow;
         $this->name = $name;
         $this->type = $type;
         $this->values = $values;
@@ -37,12 +36,38 @@ class InputMultilingual extends Component
      */
     public function render()
     {
-        $this->field_width = $this->attributes['field-width'] ?? "col-12";
-        $this->multirow = $this->attributes['multirow'] ?? false;
-        $this->slugify = $this->attributes['slugify'] ?? false;
-
         return $this->multirow
             ? view("hush::components.inputs.multilingual.$this->type-multirow")
             : view("hush::components.inputs.multilingual.$this->type");
+    }
+
+    /**
+     * Get field width attribute
+     *
+     * @return string
+     */
+    public function getFieldWidth(): string
+    {
+        return $this->attributes['field-width'] ?? 'col-12';
+    }
+
+    /**
+     * Check if string is sluggable
+     *
+     * @return string|bool
+     */
+    public function isSluggable()
+    {
+        return $this->attributes['slugify'] ?? false;
+    }
+
+    /**
+     * Get placeholder
+     *
+     * @return string
+     */
+    public function getPlaceholder(): string
+    {
+       return __('hush::admin.' . ($this->attributes['placeholder'] ?? $this->attributes['label'] ?? ''));
     }
 }

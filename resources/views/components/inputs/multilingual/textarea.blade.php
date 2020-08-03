@@ -12,7 +12,7 @@
         @foreach ($langs as $i => $lang)
         {!! Form::textarea($name . "[$lang->code]", $values[$lang->code] ?? '', [
             'class' => 'form-control multilingual-field ' . (!$loop->first ? 'd-none' : '') . ' ' . ($attributes['class'] ?? ''),
-            'placeholder' => __('hush::admin.' . ($attributes['placeholder'] ?? $attributes['label'] ?? ''))
+            'placeholder' =>$getPlaceholder()
         ]) !!}
         @endforeach
     </div>

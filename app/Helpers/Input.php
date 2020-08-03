@@ -94,22 +94,24 @@ class Input
                     $field = new InputMultilingual(
                         $input['type'],
                         $input['name'],
+                        $input['multirow'] ?? false,
                         Constructor::value($variables, $input, $input['default'] ?? [])
                     );
 
-                    $field->attributes['label'] = $input['label'] ?? '';
-                    $field->attributes['multirow'] = $input['multirow'] ?? false;
+                    $field->data();
+
+                    $field->attributes = $field->attributes->merge([
+                        'field-width' => $input['field_width'] ?? 'col-12',
+                        'label' => $input['label'] ?? '',
+                        'slugify' => isset($input['slugify']) && $input['slugify'] && $variables['model']
+                            ? $input['slugify']
+                            : false,
+                        'placeholder' => $input['placeholder'] ?? null
+                    ]);
 
                     return $field
                         ->render()
                         ->with($field->data())
-                        ->with('field_width', $input['field_width'] ?? "col-12")
-                        ->with(
-                            'slugify',
-                            isset($input['slugify']) && $input['slugify'] && $variables['model']
-                                ? $input['slugify']
-                                : false
-                        )
                         ->render();
                 }
 
