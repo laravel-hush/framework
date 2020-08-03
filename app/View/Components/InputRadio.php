@@ -11,13 +11,14 @@ class InputRadio extends Component
     public $value;
 
     /**
-     * Create the component instance.
+     * Create new InputRadio instance
      *
-     * @param  string  $type
-     * @param  string  $message
+     * @param string $name
+     * @param bool $isChecked
+     * @param mixed $value
      * @return void
      */
-    public function __construct($name, $isChecked, $value = 1)
+    public function __construct(string $name, bool $isChecked, $value = 1)
     {
         $this->name = $name;
         $this->is_checked = $isChecked;

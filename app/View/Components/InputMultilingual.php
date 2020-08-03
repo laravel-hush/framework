@@ -14,13 +14,15 @@ class InputMultilingual extends Component
     public $values;
 
     /**
-     * Create the component instance.
+     * Create new InputMultilingual instance
      *
-     * @param  string  $type
-     * @param  string  $message
+     * @param string $type
+     * @param string $name
+     * @param bool $multirow
+     * @param mixed $values
      * @return void
      */
-    public function __construct($type, $name, $multirow = false, $values = [])
+    public function __construct(string $type, string $name, $multirow = false, $values = [])
     {
         $this->langs = Language::getList();
         $this->multirow = $multirow;

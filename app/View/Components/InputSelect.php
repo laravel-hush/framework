@@ -12,13 +12,14 @@ class InputSelect extends Component
     public $value;
 
     /**
-     * Create the component instance.
+     * Create new InputSelect instance
      *
-     * @param  string  $type
-     * @param  string  $message
+     * @param string $name
+     * @param array|Illuminate\Support\Collection $options
+     * @param mixed $value
      * @return void
      */
-    public function __construct($name, $options = [], $value = null)
+    public function __construct(string $name, $options = [], $value = null)
     {
         $this->options = $options;
         $this->name = $name;
@@ -45,6 +46,12 @@ class InputSelect extends Component
         return $this->attributes['multiple'] ?? false;
     }
 
+    /**
+     * Check if option is selected
+     *
+     * @param mixed $value
+     * @return bool
+     */
     public function isSelected($value): bool
     {
         if ($this->value instanceof Collection) {

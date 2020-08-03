@@ -13,13 +13,15 @@ class InputFile extends Component
     public $value;
 
     /**
-     * Create the component instance.
+     * Create new InputFile instance
      *
-     * @param  string  $type
-     * @param  string  $message
+     * @param string $name
+     * @param bool $multiple
+     * @param bool $preview
+     * @param mixed $value
      * @return void
      */
-    public function __construct($name, $multiple = false, $preview = false, $value = '')
+    public function __construct(string $name, $multiple = false, $preview = false, $value = '')
     {
         $this->id = $multiple
             ? $this->attributes['id'] ?? 'multiple-image'

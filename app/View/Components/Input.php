@@ -11,13 +11,14 @@ class Input extends Component
     public $value;
 
     /**
-     * Create the component instance.
+     * Create new Input instance
      *
-     * @param  string  $type
-     * @param  string  $message
+     * @param string $type
+     * @param string $name
+     * @param mixed $value
      * @return void
      */
-    public function __construct($type, $name, $value = null)
+    public function __construct(string $type, string $name, $value = null)
     {
         $this->name = $name;
         $this->type = $type;
