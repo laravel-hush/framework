@@ -16,6 +16,7 @@ use ScaryLayer\Hush\View\Components\InputCheckbox;
 use ScaryLayer\Hush\View\Components\InputFile;
 use ScaryLayer\Hush\View\Components\InputMultilingual;
 use ScaryLayer\Hush\View\Components\InputRadio;
+use ScaryLayer\Hush\View\Components\InputSelect;
 
 class ServiceProvider extends Provider
 {
@@ -46,7 +47,8 @@ class ServiceProvider extends Provider
             InputCheckbox::class,
             InputFile::class,
             InputMultilingual::class,
-            InputRadio::class
+            InputRadio::class,
+            InputSelect::class
         ]);
 
         app('router')->aliasMiddleware('permission', Permission::class);

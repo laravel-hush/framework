@@ -8,6 +8,7 @@ use ScaryLayer\Hush\View\Components\InputCheckbox;
 use ScaryLayer\Hush\View\Components\InputFile;
 use ScaryLayer\Hush\View\Components\InputMultilingual;
 use ScaryLayer\Hush\View\Components\InputRadio;
+use ScaryLayer\Hush\View\Components\InputSelect;
 
 class Input
 {
@@ -80,21 +81,26 @@ class Input
                     ->render();
 
             case 'select':
-                $placeholder = !isset($input['multiple']) || !$input['multiple']
-                    ? __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? ''))
-                    : null;
-
-                return Form::{$input['type']}(
+                $select = new InputSelect(
                     $input['name'],
                     isset($input['data']) ? call_user_func($input['data'], $variables) : [],
-                    Constructor::value($variables, $input, $input['default'] ?? []),
-                    [
-                        'id' => $input['id'] ?? null,
-                        'class' => 'form-control ' . ($input['class'] ?? ''),
-                        'placeholder' => $placeholder,
-                        'multiple' => $input['multiple'] ?? false,
-                        'data-placeholder' => $placeholder
-                    ]);
+                    Constructor::value($variables, $input, $input['default'] ?? [])
+                );
+
+                $select->data();
+
+                $select->attributes = $select->attributes->merge([
+                    'id' => $input['id'] ?? null,
+                    'class' => $input['class'] ?? null,
+                    'label' => $input['label'] ?? null,
+                    'placeholder' => $input['placeholder'] ?? null,
+                    'multiple' => $input['multiple'] ?? false
+                ]);
+
+                return $select
+                    ->render()
+                    ->with($select->data())
+                    ->render();
 
             case 'text':
             case 'textarea':
@@ -114,7 +120,7 @@ class Input
                         'slugify' => isset($input['slugify']) && $input['slugify'] && $variables['model']
                             ? $input['slugify']
                             : false,
-                        'placeholder' => $input['placeholder'] ?? null
+                        'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? null))
                     ]);
 
                     return $field
