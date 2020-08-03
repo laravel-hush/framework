@@ -20,7 +20,10 @@
         @endif
 
         @if ($input['type'] == 'hidden')
-            {!! Form::hidden($input['name'], Constructor::value(get_defined_vars(), $input, $input['default'] ?? null)) !!}
+            <x-hush-input
+                type="hidden"
+                :name="$input['name']"
+                :value="Constructor::value(get_defined_vars(), $input, $input['default'] ?? null)"/>
             @continue
         @endif
 
@@ -42,8 +45,10 @@
                     && !in_array($input['type'], ['checkbox', 'radion'])
                     && (!in_array($input['type'], ['text', 'textarea']) || (!isset($input['multilingual']) || !$input['multilingual']))
                 )
-                {!! Form::label($input['name'], __('hush::admin.' . $input['label'])
-                    . (isset($input['lang']) ? " ({$langs[$input['lang']]->name})" : '')) !!}
+                <label for="$input['name']">
+                    @lang('hush::admin.' . $input['label'])
+                    {{ isset($input['lang']) ? " ({$langs[$input['lang']]->name})" : '' }}
+                </label>
                 @endif
 
                 {!! Input::render($input, get_defined_vars()) !!}

@@ -41,6 +41,11 @@ class InputMultilingual extends Component
             : view("hush::components.inputs.multilingual.$this->type");
     }
 
+    public function getClassField()
+    {
+        return 'multilingual-field ' . ($this->attributes['class'] ?? '');
+    }
+
     /**
      * Get field width attribute
      *
@@ -68,6 +73,6 @@ class InputMultilingual extends Component
      */
     public function getPlaceholder(): string
     {
-       return __('hush::admin.' . ($this->attributes['placeholder'] ?? $this->attributes['label'] ?? ''));
+       return $this->attributes['placeholder'] ?? $this->attributes['label'] ?? '';
     }
 }

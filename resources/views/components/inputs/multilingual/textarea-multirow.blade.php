@@ -1,11 +1,16 @@
 <div class="row">
     @foreach ($langs as $i => $lang)
     <div class="form-group {{ $getFieldWidth() }}">
-        {!! Form::label($name . "[$lang->code]", __('hush::admin.' . $attributes['label']) . " ($lang->name)") !!}
-        {!! Form::textarea($name . "[$lang->code]", $values[$lang->code] ?? '', [
-            'class' => 'form-control multilingual-field ' . ' ' . ($attributes['class'] ?? ''),
-            'placeholder' => $getPlaceholder() . " ($lang->name)"
-        ]) !!}
+        <label for="{{ $name . "[$lang->code]" }}">
+            @lang('hush::admin.' . $attributes['label']) ({{ $lang->name }})
+        </label>
+        <x-hush-input
+            type="textarea"
+            :name="$name . '[' . $lang->code . ']'"
+            :value="$values[$lang->code] ?? ''"
+            :class="$getClassField()"
+            :placeholder="$getPlaceholder()"
+            :rows="$attributes['rows'] ?? 5"/>
     </div>
     @endforeach
 </div>

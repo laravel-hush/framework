@@ -1,14 +1,16 @@
 <div class="row">
     @foreach ($langs as $i => $lang)
     <div class="form-group {{ $getFieldWidth() }}">
-        {!! Form::label($name . "[$lang->code]", __('hush::admin.' . $attributes['label']) . " ($lang->name)") !!}
-        {!! Form::text($name . "[$lang->code]", $values[$lang->code] ?? '', [
-            'class' => 'form-control multilingual-field '
-                . ($isSluggable() && $loop->first ? 'sluggable' : '') . ' '
-                . ($attributes['class'] ?? ''),
-                'placeholder' => $getPlaceholder(),
-                'data-slugify-target' => $isSluggable() && $loop->first ? $attributes['slugify'] : null,
-        ]) !!}
+        <label for="{{ $name . "[$lang->code]" }}">
+            @lang('hush::admin.' . $attributes['label']) ({{ $lang->name }})
+        </label>
+        <x-hush-input
+            type="text"
+            :name="$name . '[' . $lang->code . ']'"
+            :value="$values[$lang->code] ?? ''"
+            :class="$getClassField() . ' ' . ($isSluggable() && $loop->first ? 'sluggable' : '')"
+            :placeholder="$getPlaceholder()"
+            :data-slugify-target="$isSluggable() && $loop->first ? $attributes['slugify'] : null"/>
     </div>
     @endforeach
 </div>

@@ -12,18 +12,19 @@
                     <span class="h1">@lang ('hush::admin.log-in')</span>
                 </div>
                 <div class="content">
-                    {!! Form::open(['url' => route('admin.login.post')]) !!}
+                    <form action="{{ route('admin.login.post') }}" method="post" accept-charset="UTF-8">
+                        @csrf
                         <div class="form-group">
-                            {!! Form::email('email', '', [
-                                'class' => 'form-control',
-                                'placeholder' => __('hush::admin.email')
-                            ]) !!}
+                            <x-hush-input
+                                type="email"
+                                name="email"
+                                :placeholder="__('hush::admin.email')"/>
                         </div>
                         <div class="form-group">
-                            {!! Form::input('password', 'password', '', [
-                                'class' => 'form-control',
-                                'placeholder' => __('hush::admin.password')
-                            ]) !!}
+                            <x-hush-input
+                                type="password"
+                                name="password"
+                                :placeholder="__('hush::admin.password')"/>
                         </div>
                         <div class="form-group text-center {{ (isset($errors) && $errors->has('email')) ? 'error' : '' }}">
                             @if (isset($errors) && $errors->has('email'))
@@ -38,7 +39,7 @@
                                 @lang ('hush::admin.login')
                             </button>
                         </div>
-                    {!! Form::close() !!}
+                    </form>
                 </div>
             </div>
         </div>
