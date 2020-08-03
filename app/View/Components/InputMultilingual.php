@@ -41,7 +41,12 @@ class InputMultilingual extends Component
             : view("hush::components.inputs.multilingual.$this->type");
     }
 
-    public function getClassField()
+    /**
+     * Get class attribute
+     *
+     * @return string
+     */
+    public function getClassAttribute(): string
     {
         return 'multilingual-field ' . ($this->attributes['class'] ?? '');
     }

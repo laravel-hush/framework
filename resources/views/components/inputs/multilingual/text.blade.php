@@ -5,7 +5,7 @@
             type="text"
             :name="$name . '[' . $lang->code . ']'"
             :value="$values[$lang->code] ?? ''"
-            :class="$getClassField() . ' '
+            :class="$getClassAttribute() . ' '
                 . (!$loop->first ? 'd-none' : '') . ' '
                 . ($isSluggable() && $loop->first ? 'sluggable' : '')"
             :placeholder="$getPlaceholder()"

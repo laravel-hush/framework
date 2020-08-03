@@ -8,7 +8,7 @@
             type="text"
             :name="$name . '[' . $lang->code . ']'"
             :value="$values[$lang->code] ?? ''"
-            :class="$getClassField() . ' ' . ($isSluggable() && $loop->first ? 'sluggable' : '')"
+            :class="$getClassAttribute() . ' ' . ($isSluggable() && $loop->first ? 'sluggable' : '')"
             :placeholder="$getPlaceholder()"
             :data-slugify-target="$isSluggable() && $loop->first ? $attributes['slugify'] : null"/>
     </div>

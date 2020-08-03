@@ -16,7 +16,7 @@
             type="textarea"
             :name="$name . '[' . $lang->code . ']'"
             :value="$values[$lang->code] ?? ''"
-            :class="$getClassField() . (!$loop->first ? 'd-none' : '')"
+            :class="$getClassAttribute() . (!$loop->first ? 'd-none' : '')"
             :placeholder="$getPlaceholder()"/>
         @endforeach
     </div>

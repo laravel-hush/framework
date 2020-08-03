@@ -8,7 +8,7 @@
             type="textarea"
             :name="$name . '[' . $lang->code . ']'"
             :value="$values[$lang->code] ?? ''"
-            :class="$getClassField()"
+            :class="$getClassAttribute()"
             :placeholder="$getPlaceholder()"
             :rows="$attributes['rows'] ?? 5"/>
     </div>
