@@ -140,6 +140,36 @@
     }
   }
 
+  &.checkbox-success, &.radio-success {
+    .replacer {
+      background: $green_color;
+
+      i {
+        color: #fff
+      }
+    }
+  }
+
+  &.checkbox-warning, &.radio-warning {
+    .replacer {
+      background: $danger_color;
+
+      i {
+        color: #fff
+      }
+    }
+  }
+
+  &.checkbox-danger, &.radio-danger {
+    .replacer {
+      background: $error_color;
+
+      i {
+        color: #fff
+      }
+    }
+  }
+
   .text {
     margin-left: 10px;
   }
