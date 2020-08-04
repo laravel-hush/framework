@@ -13,7 +13,6 @@ use ScaryLayer\Hush\Helpers\Input;
 use ScaryLayer\Hush\Middleware\Permission;
 use ScaryLayer\Hush\View\Components\Input as InputComponent;
 use ScaryLayer\Hush\View\Components\InputMultilingual;
-use ScaryLayer\Hush\View\Components\InputRadio;
 use ScaryLayer\Hush\View\Components\InputSelect;
 
 class ServiceProvider extends Provider
@@ -43,7 +42,6 @@ class ServiceProvider extends Provider
         $this->loadViewComponentsAs('hush', [
             InputComponent::class,
             InputMultilingual::class,
-            InputRadio::class,
             InputSelect::class
         ]);
 

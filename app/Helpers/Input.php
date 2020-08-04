@@ -4,7 +4,6 @@ namespace ScaryLayer\Hush\Helpers;
 
 use ScaryLayer\Hush\View\Components\Input as InputComponent;
 use ScaryLayer\Hush\View\Components\InputMultilingual;
-use ScaryLayer\Hush\View\Components\InputRadio;
 use ScaryLayer\Hush\View\Components\InputSelect;
 
 class Input
@@ -21,8 +20,9 @@ class Input
         switch ($input['type']) {
 
             case 'checkbox':
+            case 'radio':
                 $checkbox = new InputComponent(
-                    'checkbox',
+                    $input['type'],
                     $input['name'],
                     Constructor::value($variables, $input, $input['default'] ?? [])
                 );
@@ -80,17 +80,6 @@ class Input
                 return $file
                     ->render()
                     ->with($file->data())
-                    ->render();
-
-            case 'radio':
-                $radio = new InputRadio(
-                    $input['name'],
-                    Constructor::value($variables, $input, $input['default'] ?? [])
-                );
-                return $radio
-                    ->render()
-                    ->with($radio->data())
-                    ->with('slot', isset($input['label']) ? __('hush::admin.' . $input['label']) : '')
                     ->render();
 
             case 'select':

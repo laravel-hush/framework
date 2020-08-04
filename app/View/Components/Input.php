@@ -32,7 +32,7 @@ class Input extends Component
      */
     public function render()
     {
-        if (in_array($this->type, ['checkbox', 'textarea'])) {
+        if (in_array($this->type, ['checkbox', 'radio', 'textarea'])) {
             return view("hush::components.inputs.$this->type");
         }
 
