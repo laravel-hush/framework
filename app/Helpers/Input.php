@@ -3,7 +3,6 @@
 namespace ScaryLayer\Hush\Helpers;
 
 use ScaryLayer\Hush\View\Components\Input as InputComponent;
-use ScaryLayer\Hush\View\Components\InputFile;
 use ScaryLayer\Hush\View\Components\InputMultilingual;
 use ScaryLayer\Hush\View\Components\InputRadio;
 use ScaryLayer\Hush\View\Components\InputSelect;
@@ -64,16 +63,23 @@ class Input
                     ->render();
 
             case 'file':
-                $file = new InputFile(
+                $file = new InputComponent(
+                    'file',
                     $input['name'],
-                    $input['multiple'] ?? false,
-                    $input['preview'] ?? false,
                     Constructor::value($variables, $input, $input['default'] ?? [])
                 );
+
+                $file->data();
+
+                $file->attributes = $file->attributes->merge([
+                    'multiple' => $input['multiple'] ?? false,
+                    'preview' => $input['preview'] ?? false,
+                    'id' => $input['id'] ?? (isset($input['multiple']) ? null : $input['name'])
+                ]);
+
                 return $file
                     ->render()
                     ->with($file->data())
-                    ->with('id', $input['id'] ?? (isset($input['multiple']) ? null : $input['name']))
                     ->render();
 
             case 'radio':

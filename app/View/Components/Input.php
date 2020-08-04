@@ -32,8 +32,38 @@ class Input extends Component
      */
     public function render()
     {
-        return in_array($this->type, ['textarea', 'checkbox'])
-            ? view("hush::components.inputs.$this->type")
-            : view('hush::components.inputs.input');
+        if (in_array($this->type, ['checkbox', 'textarea'])) {
+            return view("hush::components.inputs.$this->type");
+        }
+
+        if ($this->type == 'file') {
+            return $this->isMultiple()
+                ? view('hush::components.inputs.file-multiple')
+                : view('hush::components.inputs.file');
+        }
+
+        return view('hush::components.inputs.input');
+    }
+
+    /**
+     * Get id of file field
+     *
+     * @return string
+     */
+    public function getFileId(): string
+    {
+        return $this->attributes['multiple']
+            ? $this->attributes['id'] ?? 'multiple-image'
+            : $this->attributes['id'] ?? $name ?? 'image';
+    }
+
+    /**
+     * Check if input is multiple
+     *
+     * @return bool
+     */
+    public function isMultiple(): bool
+    {
+        return $this->attributes['multiple'] ?? false;
     }
 }
