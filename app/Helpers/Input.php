@@ -93,7 +93,7 @@ class Input
                     'id' => $input['id'] ?? null,
                     'class' => $input['class'] ?? null,
                     'label' => $input['label'] ?? null,
-                    'placeholder' => $input['placeholder'] ?? null,
+                    'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? null)),
                     'multiple' => $input['multiple'] ?? false
                 ]);
 
