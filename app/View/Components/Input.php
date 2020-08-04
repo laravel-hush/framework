@@ -2,6 +2,7 @@
 
 namespace ScaryLayer\Hush\View\Components;
 
+use Illuminate\Support\Collection;
 use Illuminate\View\Component;
 
 class Input extends Component
@@ -32,7 +33,7 @@ class Input extends Component
      */
     public function render()
     {
-        if (in_array($this->type, ['checkbox', 'radio', 'textarea'])) {
+        if (in_array($this->type, ['checkbox', 'radio', 'select', 'textarea'])) {
             return view("hush::components.inputs.$this->type");
         }
 
@@ -58,6 +59,35 @@ class Input extends Component
     }
 
     /**
+     * Get placeholder
+     *
+     * @return string
+     */
+    public function getPlaceholder(): string
+    {
+        return $this->attributes['placeholder'] ?? $this->attributes['label'] ?? '';
+    }
+
+    /**
+     * Get options list for select
+     *
+     * @return array
+     */
+    public function getSelectOptions(): array
+    {
+        if (!isset($this->attributes['options'])) {
+            return [];
+        }
+
+        $options = $this->attributes['options'];
+        if (is_string($this->attributes['options'])) {
+            $options = json_decode(html_entity_decode($options), true);
+        }
+        
+        return $options ?? [];
+    }
+
+    /**
      * Check if input is multiple
      *
      * @return bool
@@ -65,5 +95,22 @@ class Input extends Component
     public function isMultiple(): bool
     {
         return $this->attributes['multiple'] ?? false;
+    }
+
+    /**
+     * Check if option is selected
+     *
+     * @param mixed $value
+     * @return bool
+     */
+    public function isSelected($value): bool
+    {
+        if ($this->value instanceof Collection) {
+            $this->value = $this->value->all();
+        }
+
+        return is_array($this->value)
+            ? in_array($value, $this->value)
+            : $value == $this->value;
     }
 }

@@ -4,7 +4,6 @@ namespace ScaryLayer\Hush\Helpers;
 
 use ScaryLayer\Hush\View\Components\Input as InputComponent;
 use ScaryLayer\Hush\View\Components\InputMultilingual;
-use ScaryLayer\Hush\View\Components\InputSelect;
 
 class Input
 {
@@ -83,9 +82,9 @@ class Input
                     ->render();
 
             case 'select':
-                $select = new InputSelect(
+                $select = new InputComponent(
+                    'select',
                     $input['name'],
-                    isset($input['data']) ? call_user_func($input['data'], $variables) : [],
                     Constructor::value($variables, $input, $input['default'] ?? [])
                 );
 
@@ -96,6 +95,7 @@ class Input
                     'class' => $input['class'] ?? null,
                     'label' => $input['label'] ?? null,
                     'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? null)),
+                    'options' => isset($input['data']) ? call_user_func($input['data'], $variables) : [],
                     'multiple' => $input['multiple'] ?? false
                 ]);
 
