@@ -2,9 +2,7 @@
 
 namespace ScaryLayer\Hush\Helpers;
 
-use Collective\Html\FormFacade as Form;
 use ScaryLayer\Hush\View\Components\Input as InputComponent;
-use ScaryLayer\Hush\View\Components\InputCheckbox;
 use ScaryLayer\Hush\View\Components\InputFile;
 use ScaryLayer\Hush\View\Components\InputMultilingual;
 use ScaryLayer\Hush\View\Components\InputRadio;
@@ -24,10 +22,19 @@ class Input
         switch ($input['type']) {
 
             case 'checkbox':
-                $checkbox = new InputCheckbox(
+                $checkbox = new InputComponent(
+                    'checkbox',
                     $input['name'],
                     Constructor::value($variables, $input, $input['default'] ?? [])
                 );
+
+                $checkbox->data();
+
+                $checkbox->attributes = $checkbox->attributes->merge([
+                    'checked' => Constructor::value($variables, $input, $input['default'] ?? []),
+                    'class' => $input['class'] ?? '',
+                ]);
+
                 return $checkbox
                     ->render()
                     ->with($checkbox->data())

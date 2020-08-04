@@ -5,7 +5,7 @@
 
             <tr>
                 <th class="check-td">
-                    <x-hush-input-checkbox :name="'all-checker'" :is-checked="0"></x-hush-input-checkbox>
+                    <x-hush-input type="checkbox" name="all-checker" :checked="false"/>
                 </th>
 
                 @foreach ($block['content']['columns'] as $column => $settings)
@@ -42,7 +42,7 @@
             <tr class="table-row">
 
                 <td class="check-td">
-                    <x-hush-input-checkbox :name="'items[]'" :is-checked="0" :value="$row->id"></x-hush-input-checkbox>
+                    <x-hush-input type="checkbox" name="items[]" :checked="false" :value="$row->id"/>
                 </td>
 
                 @foreach ($block['content']['columns'] as $column => $settings)

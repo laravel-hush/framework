@@ -1,8 +1,8 @@
 <label
-    {{ $attributes->filter(fn ($value, $key) => !in_array($key, ['readonly', 'disabled']))->merge(['class' => 'checkbox']) }}>
+    {{ $attributes->filter(fn ($value, $key) => !in_array($key, ['readonly', 'disabled', 'checked']))->merge(['class' => 'checkbox']) }}>
     <input type="checkbox" name="{{ $name }}" class="form-control d-none" value="{{ $value }}"
-        {{ $is_checked ? 'checked' : '' }}
-        {{ $attributes->filter(fn ($value, $key) => in_array($key, ['readonly', 'disabled'])) }}>
+        {{ $attributes->filter(fn ($value, $key) => in_array($key, ['readonly', 'disabled'])) }}
+        {{ ($attributes['checked'] ?? false) ? 'checked' : '' }}>
 
     <div class="replacer">
         <i class="material-icons">done</i>

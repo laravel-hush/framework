@@ -32,8 +32,8 @@ class Input extends Component
      */
     public function render()
     {
-        return $this->type == 'textarea'
-            ? view('hush::components.inputs.textarea')
+        return in_array($this->type, ['textarea', 'checkbox'])
+            ? view("hush::components.inputs.$this->type")
             : view('hush::components.inputs.input');
     }
 }
