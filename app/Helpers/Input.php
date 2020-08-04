@@ -3,7 +3,6 @@
 namespace ScaryLayer\Hush\Helpers;
 
 use ScaryLayer\Hush\View\Components\Input as InputComponent;
-use ScaryLayer\Hush\View\Components\InputMultilingual;
 
 class Input
 {
@@ -107,10 +106,9 @@ class Input
             case 'text':
             case 'textarea':
                 if (isset($input['multilingual']) && $input['multilingual']) {
-                    $field = new InputMultilingual(
+                    $field = new InputComponent(
                         $input['type'],
                         $input['name'],
-                        $input['multirow'] ?? false,
                         Constructor::value($variables, $input, $input['default'] ?? [])
                     );
 
@@ -122,7 +120,9 @@ class Input
                         'slugify' => isset($input['slugify']) && $input['slugify'] && $variables['model']
                             ? $input['slugify']
                             : false,
-                        'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? null))
+                        'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? null)),
+                        'multilingual' => $input['multilingual'] ?? false,
+                        'multirow' => $input['multirow'] ?? false,
                     ]);
 
                     return $field

@@ -4,8 +4,8 @@
         <x-hush-input
             type="text"
             :name="$name . '[' . $lang->code . ']'"
-            :value="$values[$lang->code] ?? ''"
-            :class="$getClassAttribute() . ' '
+            :value="$value[$lang->code] ?? ''"
+            :class="$getMultilingualClassAttribute() . ' '
                 . (!$loop->first ? 'd-none' : '') . ' '
                 . ($isSluggable() && $loop->first ? 'sluggable' : '')"
             :placeholder="$getPlaceholder()"

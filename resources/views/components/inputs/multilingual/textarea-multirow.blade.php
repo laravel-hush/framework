@@ -7,8 +7,8 @@
         <x-hush-input
             type="textarea"
             :name="$name . '[' . $lang->code . ']'"
-            :value="$values[$lang->code] ?? ''"
-            :class="$getClassAttribute()"
+            :value="$value[$lang->code] ?? ''"
+            :class="$getMultilingualClassAttribute()"
             :placeholder="$getPlaceholder()"
             :rows="$attributes['rows'] ?? 5"/>
     </div>

@@ -15,8 +15,8 @@
         <x-hush-input
             type="textarea"
             :name="$name . '[' . $lang->code . ']'"
-            :value="$values[$lang->code] ?? ''"
-            :class="$getClassAttribute() . (!$loop->first ? 'd-none' : '')"
+            :value="$value[$lang->code] ?? ''"
+            :class="$getMultilingualClassAttribute() . (!$loop->first ? 'd-none' : '')"
             :placeholder="$getPlaceholder()"/>
         @endforeach
     </div>

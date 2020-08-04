@@ -4,6 +4,7 @@ namespace ScaryLayer\Hush\View\Components;
 
 use Illuminate\Support\Collection;
 use Illuminate\View\Component;
+use ScaryLayer\Hush\Models\Language;
 
 class Input extends Component
 {
@@ -33,6 +34,12 @@ class Input extends Component
      */
     public function render()
     {
+        if (in_array($this->type, ['text', 'textarea']) && $this->isMultilingual()) {
+            return $this->isMultirow()
+                ? view("hush::components.inputs.multilingual.$this->type-multirow", ['langs' => $this->getLangs()])
+                : view("hush::components.inputs.multilingual.$this->type", ['langs' => $this->getLangs()]);
+        }
+
         if (in_array($this->type, ['checkbox', 'radio', 'select', 'textarea'])) {
             return view("hush::components.inputs.$this->type");
         }
@@ -56,6 +63,36 @@ class Input extends Component
         return $this->attributes['multiple']
             ? $this->attributes['id'] ?? 'multiple-image'
             : $this->attributes['id'] ?? $name ?? 'image';
+    }
+
+    /**
+     * Get field width attribute
+     *
+     * @return string
+     */
+    public function getFieldWidth(): string
+    {
+        return $this->attributes['field-width'] ?? 'col-12';
+    }
+
+    /**
+     * Get list of system languages
+     *
+     * @return Illuminate\Support\Collection
+     */
+    public function getLangs(): Collection
+    {
+        return Language::getList();
+    }
+
+    /**
+     * Get class attribute for multilingual field
+     *
+     * @return string
+     */
+    public function getMultilingualClassAttribute(): string
+    {
+        return 'multilingual-field ' . ($this->attributes['class'] ?? '');
     }
 
     /**
@@ -98,6 +135,26 @@ class Input extends Component
     }
 
     /**
+     * Check if input is multilingual
+     *
+     * @return bool
+     */
+    public function isMultilingual(): bool
+    {
+        return $this->attributes['multilingual'] ?? false;
+    }
+
+    /**
+     * Check if input is multirow
+     *
+     * @return bool
+     */
+    public function isMultirow(): bool
+    {
+        return $this->attributes['multirow'] ?? false;
+    }
+
+    /**
      * Check if option is selected
      *
      * @param mixed $value
@@ -112,5 +169,15 @@ class Input extends Component
         return is_array($this->value)
             ? in_array($value, $this->value)
             : $value == $this->value;
+    }
+
+    /**
+     * Check if string is sluggable
+     *
+     * @return string|bool
+     */
+    public function isSluggable()
+    {
+        return $this->attributes['slugify'] ?? false;
     }
 }
