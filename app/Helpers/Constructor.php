@@ -46,7 +46,7 @@ class Constructor
         } elseif (isset($item['link'])) {
             $link = $item['link'];
         } elseif (isset($item['closure'])) {
-            $link = call_user_func($item['closure']);
+            $link = call_user_func($item['closure'], $variables);
         }
 
         return $link;
