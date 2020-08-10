@@ -4,9 +4,11 @@
         <thead class="head">
 
             <tr>
+                @if (!isset($block['content']['checkboxes']) || $block['content']['checkboxes'])
                 <th class="check-td">
                     <x-hush-input type="checkbox" name="all-checker" :checked="false"/>
                 </th>
+                @endif
 
                 @foreach ($block['content']['columns'] as $column => $settings)
                 <th class="align-middle {{ $column }} {{ $settings['class'] ?? '' }}">
@@ -41,9 +43,11 @@
             @forelse ($rows as $row)
             <tr class="table-row">
 
+                @if (!isset($block['content']['checkboxes']) || $block['content']['checkboxes'])
                 <td class="check-td">
                     <x-hush-input type="checkbox" name="items[]" :checked="false" :value="$row->id"/>
                 </td>
+                @endif
 
                 @foreach ($block['content']['columns'] as $column => $settings)
                 <td class="align-middle {{ $column }} {{ $settings['class'] ?? '' }}">
