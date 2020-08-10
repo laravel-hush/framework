@@ -145,6 +145,7 @@ class Input
                         . (isset($input['slugify']) && !$variables['model']->id ? 'sluggable' : ''),
                     'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? '')),
                     'data-slugify-target' => $input['slugify'] ?? null,
+                    'disabled' => $input['disabled'] ?? false,
                 ])->merge($input['attributes'] ?? []);
 
                 return $field
