@@ -35,7 +35,7 @@
 
         </thead>
 
-        @php ($rows = call_user_func($block['content']['rows']))
+        @php ($rows = call_user_func($block['content']['rows'], get_defined_vars()))
 
         <tbody>
             @forelse ($rows as $row)
