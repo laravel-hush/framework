@@ -123,6 +123,7 @@ class Input
                         'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? null)),
                         'multilingual' => $input['multilingual'] ?? false,
                         'multirow' => $input['multirow'] ?? false,
+                        'class' => $input['class'] ?? ''
                     ]);
 
                     return $field
