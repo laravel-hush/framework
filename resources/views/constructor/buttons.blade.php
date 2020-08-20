@@ -1,6 +1,6 @@
 @isset ($block['title']['add'])
 @if (!is_string($block['title']['add']) || auth()->user()->permitted($block['title']['add']))
-<a href="{{ Constructor::link(['constructor' => $baseUrl . '/edit']) }}"
+<a href="{{ Constructor::link("page:$baseUrl.edit") }}"
     class="btn btn-light {{ Arr::get($block, 'content.modal') ? 'in-modal' : '' }}">
     <i class="material-icons">add</i>
     <span>@lang ('hush::admin.add')</span>
@@ -25,7 +25,7 @@
     <span>@lang ('hush::admin.' . $button['text'])</span>
 </button>
 @else
-<a href="{{ Constructor::link($button) }}" class="btn {{ $button['class'] ?? 'btn-light' }}"
+<a href="{{ Constructor::link($button['link'] ?? '#') }}" class="btn {{ $button['class'] ?? 'btn-light' }}"
     @isset ($button['in_new_tab']) target="_blank" @endisset>
     <i class="material-icons">{{ $button['icon'] }}</i>
     <span>@lang ('hush::admin.' . $button['text'])</span>

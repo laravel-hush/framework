@@ -6,7 +6,7 @@
     @foreach ($menu as $i => $subitem)
 
     @if (!isset($subitem['permission']) || auth()->user()->permitted($subitem['permission']))
-    <a href="{{ Constructor::link($subitem) }}" class="dropdown-item">
+    <a href="{{ Constructor::link($subitem['link'] ?? '#') }}" class="dropdown-item">
         @isset ($subitem['icon'])
         {!! $subitem['icon'] !!}
         @endisset

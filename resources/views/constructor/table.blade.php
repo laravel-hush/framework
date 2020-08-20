@@ -14,10 +14,16 @@
                 <th class="align-middle {{ $column }} {{ $settings['class'] ?? '' }}">
 
                     @isset ($settings['sortable'])
-                    <a href="{{ Constructor::link(['constructor' => collect(request()->except('sort', 'direction'))->merge([
-                        'sort' => $column,
-                        'direction' => $column == request()->sort && request()->direction == 'asc' ? 'desc' : 'asc'
-                    ])->all()]) }}" class="sortable-column d-flex align-items-center">
+                    <a href="{{ Constructor::link(function () use ($column) {
+                        return collect(request()->except('sort', 'direction'))
+                            ->merge([
+                                'type' => 'page',
+                                'name' => request()->url(),
+                                'sort' => $column,
+                                'direction' => $column == request()->sort && request()->direction == 'asc' ? 'desc' : 'asc'
+                            ])
+                            ->all();
+                    }) }}" class="sortable-column d-flex align-items-center">
                         @lang ('hush::admin.' . ($settings['label'] ?? $column))
                         @if (request()->sort == $column)
                         <i class="material-icons">swap_vert</i>
@@ -75,7 +81,8 @@
                     @endif
 
                     @if (!isset($action['permission']) || auth()->user()->permitted($action['permission']))
-                    <a href="{{ Constructor::link($action, get_defined_vars()) }}" class="btn btn-additional {{ isset($action['text']) ? 'btn-rounded' : 'btn-round' }}"
+                    <a href="{{ Constructor::link($action['link'] ?? '#', get_defined_vars()) }}"
+                        class="btn btn-additional {{ isset($action['text']) ? 'btn-rounded' : 'btn-round' }}"
                         @isset ($action['in-new-tab']) target="_blank" @endisset>
                         <i class="material-icons">{{ $action['icon'] }}</i>
                         @isset ($action['text'])
@@ -88,10 +95,8 @@
 
                     @isset ($block['content']['edit'])
                     @if (!is_string($block['content']['edit']) || auth()->user()->permitted($block['content']['edit']))
-                    <a href="{{ Constructor::link(['constructor' => [
-                        'url' => $baseUrl . '/edit',
-                        'id' => $row->id
-                    ]]) }}" class="btn btn-primary btn-round {{ isset($block['content']['modal']) ? 'in-modal' : '' }}">
+                    <a href="{{ Constructor::link("page:$baseUrl.edit|id:$row->id") }}"
+                        class="btn btn-primary btn-round @isset($block['content']['modal']) in-modal @endisset">
                         <i class="material-icons">edit</i>
                     </a>
                     @endif
@@ -99,10 +104,8 @@
 
                     @isset ($block['content']['delete'])
                     @if (!is_string($block['content']['delete']) || auth()->user()->permitted($block['content']['delete']))
-                    <a href="{{ Constructor::link(['constructor' => [
-                        'id' => $row->id,
-                        'action' => 'delete'
-                    ]]) }}" class="btn btn-danger btn-round delete-item">
+                    <a href="{{ Constructor::link("action:delete|id:$row->id") }}"
+                        class="btn btn-danger btn-round delete-item">
                         <i class="material-icons">delete</i>
                     </a>
                     @endif
@@ -124,7 +127,7 @@
 @isset ($block['content']['multiple-actions'])
 <div class="multiple-actions-block" style="display: none">
     @foreach ($block['content']['multiple-actions'] as $action)
-    <a href="{{ Constructor::link($action) }}" data-request_type="{{ $action['type'] }}"
+    <a href="{{ Constructor::link($action['link'] ?? '#') }}" data-request_type="{{ $action['type'] }}"
         class="btn btn-danger {{ $action['confirmation'] ? 'with-confirmation' : '' }}">
         @lang('hush::admin.' . $action['text'])
     </a>

@@ -6,7 +6,7 @@
         @if (!isset($item['permission']) || auth()->user()->permitted($item['permission']))
 
         <div class="nav-item">
-            <a href="{{ Constructor::link($item) }}"
+            <a href="{{ Constructor::link($item['link'] ?? '#') }}"
                 class="nav-link d-flex align-items-center {{ Constructor::isMenuItemActive($item) ? 'active' : '' }}"
                 @isset ($item['submenu'])
                     data-dropdown="#submenu-{{ $i }}"

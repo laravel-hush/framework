@@ -86,10 +86,7 @@ return [
                 'content' => [
                     'type' => 'form',
                     'id' => 'users',
-                    'constructor' => [
-                        'route' => 'admin.constructor.process',
-                        'action' => 'save'
-                    ],
+                    'link' => 'action:save',
                     'grid' => [
                         [
                             'size' => 'col-6',

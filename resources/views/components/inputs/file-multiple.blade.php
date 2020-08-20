@@ -3,12 +3,8 @@
     @foreach ($value as $image)
     <div class="col-2 pb-3 image">
         <img src="{{ $image }}" alt="">
-        <a href="{{ Constructor::link(['constructor' => [
-            'id' => request()->id,
-            'field' => $name,
-            'image' => $image,
-            'action' => 'remove-image'
-        ]]) }}" class="btn btn-danger remove-image">
+        <a href="{{ Constructor::link("action:remove-image|field:$name|image:$image|id:" . request()->id) }}"
+            class="btn btn-danger remove-image">
             <span class="col">@lang('hush::admin.delete')</span>
         </a>
     </div>

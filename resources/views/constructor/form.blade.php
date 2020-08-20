@@ -1,7 +1,7 @@
 <div class="content">
     <form
         accept-charset="UTF-8"
-        action="{{ Constructor::link($block['content']) }}"
+        action="{{ Constructor::link($block['content']['link'] ?? '#') }}"
         class="submitable"
         enctype="multipart/form-data"
         id="{{ $block['content']['id'] ?? '' }}"

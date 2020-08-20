@@ -9,47 +9,70 @@ class Constructor
     /**
      * Generate link by config
      *
-     * @param array $item
+     * @param mixed $link
      * @param array $variables
      * @return string
      */
-    public static function link(array $item, array $variables = []): string
+    public static function link($link, array $variables = []): string
     {
-        $link = '#';
-        if (isset($item['route'])) {
-            $link = is_array($item['route'])
-                ? route($item['route']['name'], call_user_func($item['route']['params'], $variables))
-                : route($item['route']);
-        } elseif (isset($item['constructor'])) {
-            $link = is_string($item['constructor'])
-                ? route('admin.constructor', ['url' => str_replace('.', '/', $item['constructor'])])
-                : route(
-                    $item['constructor']['route'] ?? 'admin.constructor',
-                    collect($item['constructor'])
-                        ->except('route', 'url')
-                        ->merge(['url' => str_replace('.', '/', $item['constructor']['url'] ?? request()->url)])
-                        ->all()
-                );
-        } elseif (isset($item['action'])) {
-            $link = is_string($item['action'])
-                ? route('admin.constructor.process', [
-                    'url' => request()->url,
-                    'action' => $item['action']
-                ])
-                : route(
-                    'admin.constructor.process',
-                    collect($item['action'])
-                        ->except('route', 'url')
-                        ->merge(['url' => str_replace('.', '/', $item['action']['url'] ?? request()->url)])
-                        ->all()
-                );
-        } elseif (isset($item['link'])) {
-            $link = $item['link'];
-        } elseif (isset($item['closure'])) {
-            $link = call_user_func($item['closure'], $variables);
+        if (is_string($link) && strpos($link, ':') !== false) {
+            $params = explode('|', $link);
+            [$type, $name] = explode(':', array_shift($params));
+
+            #if (count($params)) dd($params);
+            $params = collect($params)
+                ->mapWithKeys(function ($param) {
+                    [$name] = explode(':', $param);
+                    [$empty, $value] = explode("$name:", $param);
+                    return [$name => $value];
+                })
+                ->all();
+
+            switch ($type) {
+                case 'route':
+                    return count($params)
+                        ? route($name, $params)
+                        : route($name);
+                case 'page':
+                    $params['url'] = str_replace('.', '/', $name);
+                    return route('admin.constructor', $params);
+                case 'action':
+                    return route(
+                        'admin.constructor.process',
+                        collect(['url' => request()->url, 'action' => $name])
+                            ->merge($params)
+                            ->all()
+                    );
+                case 'link':
+                    return $name;
+
+            }
+        } elseif ($link instanceof Closure) {
+            $result = call_user_func($link, $variables);
+            if (is_string($result)) {
+                return $result;
+            }
+
+            switch ($result['type']) {
+                case 'page':
+                    return route('admin.constructor',
+                        collect($result)
+                            ->except('type', 'name')
+                            ->merge(['url' => str_replace('.', '/', $result['name'] ?? request()->url)])
+                            ->all()
+                    );
+                case 'action':
+                    return route(
+                        'admin.constructor.process',
+                        collect($result)
+                            ->except('type', 'name')
+                            ->merge(['url' => str_replace('.', '/', $result['name'] ?? request()->url)])
+                            ->all()
+                    );
+            }
         }
 
-        return $link;
+        return '#';
     }
 
     /**
@@ -108,14 +131,14 @@ class Constructor
      */
     public static function isMenuItemActive(array $item): bool
     {
-        $link = Constructor::link($item);
+        $link = Constructor::link($item['link'] ?? '#');
         $isActive = self::checkLinkActivity($link);
         if ($isActive || !isset($item['submenu'])) {
             return $isActive;
         }
 
         foreach ($item['submenu'] as $subitem) {
-            $link = Constructor::link($subitem);
+            $link = Constructor::link($subitem['link'] ?? '#');
             if (self::checkLinkActivity($link)) {
                 return true;
             }

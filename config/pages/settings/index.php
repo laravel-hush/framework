@@ -72,10 +72,7 @@ return [
                 'content' => [
                     'type' => 'form',
                     'id' => 'settings',
-                    'constructor' => [
-                        'route' => 'admin.constructor.process',
-                        'action' => 'save'
-                    ],
+                    'link' => 'action:save',
                     'inputs' => [
                         [
                             'width' => 'col-6',

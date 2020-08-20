@@ -83,10 +83,7 @@ return [
                 'content' => [
                     'id' => '{{ plural }}',
                     'type' => 'form',
-                    'constructor' => [
-                        'route' => 'admin.constructor.process',
-                        'action' => 'save'
-                    ],
+                    'link' => 'action:save',
                     'inputs' => [
                         [
                             'type' => 'hidden',
