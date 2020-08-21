@@ -1,13 +1,11 @@
 <div class="content">
-    <form
+    <x-hush-form
         accept-charset="UTF-8"
-        action="{{ Constructor::link($block['content']['link'] ?? '#') }}"
+        :action="Constructor::link($block['content']['link'] ?? '#')"
         class="submitable"
-        enctype="multipart/form-data"
-        id="{{ $block['content']['id'] ?? '' }}"
+        has-images="true"
+        :id="$block['content']['id'] ?? ''"
         method="post">
-
-        @csrf
 
         @isset ($block['content']['grid'])
         <div class="row">
@@ -21,5 +19,5 @@
             @include ('hush::constructor.inputs', ['inputs' => $block['content']['inputs']])
         @endisset
 
-    </form>
+    </x-hush-form>
 </div>

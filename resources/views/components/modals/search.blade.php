@@ -10,7 +10,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="search-form">
+                <x-hush-form id="search-form">
                     <div class="form-group">
                         <x-hush-input
                             type="text"
@@ -18,7 +18,7 @@
                             :placeholder="__('hush::admin.search-query')">
                         </x-hush-input>
                     </div>
-                </form>
+                </x-hush-form>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-light" data-dismiss="modal">

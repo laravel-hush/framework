@@ -12,8 +12,10 @@
                     <span class="h1">@lang ('hush::admin.log-in')</span>
                 </div>
                 <div class="content">
-                    <form action="{{ route('admin.login.post') }}" method="post" accept-charset="UTF-8">
-                        @csrf
+                    <x-hush-form
+                        :action="route('admin.login.post')"
+                        method="post"
+                        accept-charset="UTF-8">
                         <div class="form-group">
                             <x-hush-input
                                 type="email"
@@ -39,7 +41,7 @@
                                 @lang ('hush::admin.login')
                             </button>
                         </div>
-                    </form>
+                    </x-hush-form>
                 </div>
             </div>
         </div>

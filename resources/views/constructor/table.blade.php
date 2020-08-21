@@ -1,4 +1,4 @@
-<form>
+<x-hush-form>
     <table class="table">
 
         <thead class="head">
@@ -122,7 +122,7 @@
             @endforelse
         </tbody>
     </table>
-</form>
+</x-hush-form>
 
 @isset ($block['content']['multiple-actions'])
 <div class="multiple-actions-block" style="display: none">

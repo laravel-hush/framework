@@ -11,6 +11,7 @@ use ScaryLayer\Hush\Commands\HushTranslatable;
 use ScaryLayer\Hush\Helpers\Constructor;
 use ScaryLayer\Hush\Helpers\Input;
 use ScaryLayer\Hush\Middleware\Permission;
+use ScaryLayer\Hush\View\Components\Form;
 use ScaryLayer\Hush\View\Components\Input as InputComponent;
 
 class ServiceProvider extends Provider
@@ -39,6 +40,7 @@ class ServiceProvider extends Provider
 
         $this->loadViewComponentsAs('hush', [
             InputComponent::class,
+            Form::class,
         ]);
 
         app('router')->aliasMiddleware('permission', Permission::class);
