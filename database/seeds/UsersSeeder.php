@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Database\Seeder;
 
 class UsersSeeder extends Seeder
@@ -32,10 +33,9 @@ class UsersSeeder extends Seeder
             ],
         ];
 
-        $userModel = config('hush.app.user.model');
         foreach ($data as $item) {
             $item['password'] = bcrypt($item['password']);
-            $userModel::create($item);
+            User::create($item);
         }
     }
 }

@@ -5,19 +5,12 @@ return [
         'link' => 'page:users.index',
         'icon' => '<i class="material-icons">account_box</i>',
         'text' => 'users',
-        'permission' => 'admin:users',
-        'counter' => [
-            'value' => function () {
-                $model = config('hush.app.user.model');
-                return $model::count();
-            },
-            'color' => 'hsl(269, 100%, 37%)'
-        ]
+        'permission' => 'admin:users'
     ],
     [
         'link' => 'page:settings.index',
         'icon' => '<i class="material-icons">settings</i>',
         'text' => 'settings',
-        'permission' => 'admin:users'
+        'permission' => 'admin:settings'
     ],
 ];
