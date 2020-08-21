@@ -1,6 +1,6 @@
 <nav class="horizontal-nav row no-gutters align-items-center justify-content-between with-margin" id="topbar">
-    <a href="/" class="logo">
-        <img src="{{ asset('vendor/hush/images/long-logo.png') }}" alt="">
+    <a href="{{ config('hush.app.logo.link') }}" class="logo">
+        <img src="{{ asset(config('hush.app.logo.image', 'vendor/hush/images/long-logo.png')) }}" alt="">
     </a>
     <div class="navigation row no-gutters">
 
