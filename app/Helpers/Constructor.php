@@ -19,7 +19,6 @@ class Constructor
             $params = explode('|', $link);
             [$type, $name] = explode(':', array_shift($params));
 
-            #if (count($params)) dd($params);
             $params = collect($params)
                 ->mapWithKeys(function ($param) {
                     [$name] = explode(':', $param);
