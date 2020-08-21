@@ -6,7 +6,7 @@
 
     @isset ($link)
     <li class="breadcrumb-item">
-        <a href="{{ "/" . str_replace('.', '/', $link) }}">{{ $text }}</a>
+        <a href="{{ Constructor::link($link) }}">{{ $text }}</a>
     </li>
     @else
     <li class="breadcrumb-item active" aria-current="page">

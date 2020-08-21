@@ -27,7 +27,7 @@ return [
         'class' => null,
         'title' => 'user',
         'breadcrumbs' => [
-            'users' => '/admin/users',
+            'users' => 'page:admin.users',
             'edit' => null,
         ],
         'permission' => ['admin:users_add', 'admin:users_edit'],

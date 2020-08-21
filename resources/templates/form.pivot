@@ -24,7 +24,7 @@ return [
         'class' => null,
         'title' => '{{ singular }}',
         'breadcrumbs' => [
-            '{{ plural }}' => 'admin.{{ plural }}',
+            '{{ plural }}' => 'page:admin.{{ plural }}',
             'edit' => null,
         ],
         'permission' => ['admin:{{ plural }}_add', 'admin:{{ plural }}_edit'],
