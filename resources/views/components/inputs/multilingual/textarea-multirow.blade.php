@@ -10,7 +10,8 @@
             :value="$value[$lang->code] ?? ''"
             :class="$getMultilingualClassAttribute()"
             :placeholder="$getPlaceholder()"
-            :rows="$attributes['rows'] ?? 5"/>
+            :rows="$attributes['rows'] ?? 5"
+            {{ $attributes->except('field-width', 'label', 'placeholder', 'multilingual', 'multirow', 'class', 'rows') }}/>
     </div>
     @endforeach
 </div>

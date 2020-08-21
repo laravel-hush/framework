@@ -5,7 +5,13 @@
 @endif
 
 <div class="custom-file">
-    <input type="file" name="{{ $name }}" class="custom-file-input" data-image-id="#{{ $getFileId() }}">
+    <input
+        type="file"
+        name="{{ $name }}"
+        class="custom-file-input"
+        data-image-id="#{{ $getFileId() }}"
+        {{ $attributes->except('multiple', 'preview', 'id') }}/>
+
     <label class="custom-file-label">
         @lang('hush::admin.choose-file')
         <span>@lang('hush::admin.browse')</span>

@@ -15,26 +15,28 @@ class Input
      */
     public static function render(array $input, array $variables)
     {
-        switch ($input['type']) {
+        $field = new InputComponent(
+            $input['type'],
+            $input['name'],
+            Constructor::value($variables, $input, $input['default'] ?? null)
+        );
 
+        $field->data();
+
+        $field->attributes = $field->attributes
+            ->merge($input['attributes'] ?? []);
+
+        switch ($input['type']) {
             case 'checkbox':
             case 'radio':
-                $checkbox = new InputComponent(
-                    $input['type'],
-                    $input['name'],
-                    Constructor::value($variables, $input, $input['default'] ?? [])
-                );
+                $field->attributes = $field->attributes
+                    ->merge([
+                        'checked' => Constructor::value($variables, $input, $input['default'] ?? []),
+                    ]);
 
-                $checkbox->data();
-
-                $checkbox->attributes = $checkbox->attributes->merge([
-                    'checked' => Constructor::value($variables, $input, $input['default'] ?? []),
-                    'class' => $input['class'] ?? '',
-                ]);
-
-                return $checkbox
+                return $field
                     ->render()
-                    ->with($checkbox->data())
+                    ->with($field->data())
                     ->with('slot', isset($input['label']) ? __('hush::admin.' . $input['label']) : '')
                     ->render();
 
@@ -42,118 +44,69 @@ class Input
             case 'datetime':
             case 'daterange':
             case 'datetimerange':
-                $field = new InputComponent(
-                    $input['type'],
-                    $input['name'],
-                    Constructor::value($variables, $input, $input['default'] ?? null)
-                );
+                $field->attributes = $field->attributes
+                    ->merge([
+                        'class' => $input['type'] . ' ' . ($input['attributes']['class'] ?? ''),
+                        'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? ''))
+                    ]);
 
-                $field->data();
-
-                $field->attributes = $field->attributes->merge([
-                    'class' => $input['type'] . ' ' . ($input['class'] ?? ''),
-                    'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? ''))
-                ]);
-
-                return $field
-                    ->render()
-                    ->with($field->data())
-                    ->render();
+                break;
 
             case 'file':
-                $file = new InputComponent(
-                    'file',
-                    $input['name'],
-                    Constructor::value($variables, $input, $input['default'] ?? [])
-                );
+                $field->attributes = $field->attributes
+                    ->merge([
+                        'multiple' => $input['multiple'] ?? false,
+                        'preview' => $input['preview'] ?? false,
+                        'id' => $input['attributes']['id'] ?? (isset($input['multiple']) ? null : $input['name'])
+                    ]);
 
-                $file->data();
-
-                $file->attributes = $file->attributes->merge([
-                    'multiple' => $input['multiple'] ?? false,
-                    'preview' => $input['preview'] ?? false,
-                    'id' => $input['id'] ?? (isset($input['multiple']) ? null : $input['name'])
-                ]);
-
-                return $file
-                    ->render()
-                    ->with($file->data())
-                    ->render();
+                break;
 
             case 'select':
-                $select = new InputComponent(
-                    'select',
-                    $input['name'],
-                    Constructor::value($variables, $input, $input['default'] ?? [])
-                );
+                $field->attributes = $field->attributes
+                    ->merge([
+                        'label' => $input['label'] ?? null,
+                        'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? null)),
+                        'options' => isset($input['data']) ? call_user_func($input['data'], $variables) : [],
+                        'multiple' => $input['multiple'] ?? false
+                    ]);
 
-                $select->data();
-
-                $select->attributes = $select->attributes->merge([
-                    'id' => $input['id'] ?? null,
-                    'class' => $input['class'] ?? null,
-                    'label' => $input['label'] ?? null,
-                    'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? null)),
-                    'options' => isset($input['data']) ? call_user_func($input['data'], $variables) : [],
-                    'multiple' => $input['multiple'] ?? false
-                ]);
-
-                return $select
-                    ->render()
-                    ->with($select->data())
-                    ->render();
+                break;
 
             case 'text':
             case 'textarea':
                 if (isset($input['multilingual']) && $input['multilingual']) {
-                    $field = new InputComponent(
-                        $input['type'],
-                        $input['name'],
-                        Constructor::value($variables, $input, $input['default'] ?? [])
-                    );
+                    $field->attributes = $field->attributes
+                        ->merge([
+                            'field-width' => $input['field_width'] ?? 'col-12',
+                            'label' => $input['label'] ?? '',
+                            'slugify' => isset($input['slugify']) && $input['slugify'] && $variables['model']
+                                ? $input['slugify']
+                                : false,
+                            'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? null)),
+                            'multilingual' => $input['multilingual'] ?? false,
+                            'multirow' => $input['multirow'] ?? false,
+                        ]);
 
-                    $field->data();
-
-                    $field->attributes = $field->attributes->merge([
-                        'field-width' => $input['field_width'] ?? 'col-12',
-                        'label' => $input['label'] ?? '',
-                        'slugify' => isset($input['slugify']) && $input['slugify'] && $variables['model']
-                            ? $input['slugify']
-                            : false,
-                        'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? null)),
-                        'multilingual' => $input['multilingual'] ?? false,
-                        'multirow' => $input['multirow'] ?? false,
-                        'class' => $input['class'] ?? ''
-                    ]);
-
-                    return $field
-                        ->render()
-                        ->with($field->data())
-                        ->render();
+                    break;
                 }
 
             default:
-                $field = new InputComponent(
-                    $input['type'],
-                    $input['name'],
-                    Constructor::value($variables, $input, $input['default'] ?? null)
-                );
+                $field->attributes = $field->attributes
+                    ->merge([
+                        'class' => ($input['attributes']['class'] ?? '')
+                            . (isset($input['slugify']) && !$variables['model']->id ? 'sluggable' : ''),
+                        'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? '')),
+                        'data-slugify-target' => $input['slugify'] ?? null,
+                    ]);
 
-                $field->data();
-
-                $field->attributes = $field->attributes->merge([
-                    'class' => ($input['class'] ?? '')
-                        . (isset($input['slugify']) && !$variables['model']->id ? 'sluggable' : ''),
-                    'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? '')),
-                    'data-slugify-target' => $input['slugify'] ?? null,
-                    'disabled' => $input['disabled'] ?? false,
-                ])->merge($input['attributes'] ?? []);
-
-                return $field
-                    ->render()
-                    ->with($field->data())
-                    ->render();
+                break;
 
         }
+
+        return $field
+            ->render()
+            ->with($field->data())
+            ->render();
     }
 }

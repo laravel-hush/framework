@@ -14,7 +14,7 @@
 
 <div class="custom-file">
     <input type="file" name="{{ $name }}[]" class="custom-file-input multiple" multiple
-        data-image-block-id="#{{ $getFileId() }}">
+        data-image-block-id="#{{ $getFileId() }}" {{ $attributes->except('multiple', 'preview', 'id') }}>
     <label class="custom-file-label">
         @lang ('hush::admin.choose-files')
         <span>@lang ('hush::admin.browse')</span>

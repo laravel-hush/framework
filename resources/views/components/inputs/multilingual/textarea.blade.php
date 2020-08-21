@@ -17,7 +17,9 @@
             :name="$name . '[' . $lang->code . ']'"
             :value="$value[$lang->code] ?? ''"
             :class="$getMultilingualClassAttribute() . (!$loop->first ? 'd-none' : '')"
-            :placeholder="$getPlaceholder()"/>
+            :placeholder="$getPlaceholder()"
+            :rows="$attributes['rows'] ?? 5"
+            {{ $attributes->except('field-width', 'label', 'placeholder', 'multilingual', 'multirow', 'class', 'rows') }}/>
         @endforeach
     </div>
 </div>

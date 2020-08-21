@@ -6,7 +6,8 @@ window.functions = class functions {
     });
 
     $('.sluggable').change(function () {
-      var target = $($(this).data('slugify-target'));
+      const element = functions.decodeHTML($(this).data('slugify-target'));
+      const target = $(element);
       target.val(slugify($(this).val(), {
         lower: true,
         strict: true
@@ -327,6 +328,12 @@ window.functions = class functions {
         );
       }
     });
+  }
+
+  static decodeHTML(encoded) {
+    var textarea = document.createElement('textarea');
+    textarea.innerHTML = encoded;
+    return textarea.value;
   }
 
   static async openDynamicModal(link) {
