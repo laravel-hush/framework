@@ -4,14 +4,15 @@
         <label for="{{ $name . "[$lang->code]" }}">
             @lang('hush::admin.' . $attributes['label']) ({{ $lang->name }})
         </label>
-        <x-hush-input
-            type="textarea"
-            :name="$name . '[' . $lang->code . ']'"
-            :value="$value[$lang->code] ?? ''"
-            :class="$getMultilingualClassAttribute()"
-            :placeholder="$getPlaceholder()"
-            :rows="$attributes['rows'] ?? 5"
-            {{ $attributes->except('field-width', 'label', 'placeholder', 'multilingual', 'multirow', 'class', 'rows') }}/>
+        <textarea
+            name="{{ $name . '[' . $lang->code . ']' }}"
+            class="form-control {{ $getMultilingualClassAttribute() }}"
+            placeholder="{{ $getPlaceholder() }}"
+            rows="{{ $attributes['rows'] ?? 5 }}"
+            {{ $attributes->except('field-width', 'label', 'placeholder', 'multilingual', 'multirow', 'class', 'rows') }}>
+
+            {{ $value[$lang->code] ?? '' }}
+        </textarea>
     </div>
     @endforeach
 </div>

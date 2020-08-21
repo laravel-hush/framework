@@ -4,13 +4,13 @@
         <label for="{{ $name . "[$lang->code]" }}">
             @lang('hush::admin.' . $attributes['label']) ({{ $lang->name }})
         </label>
-        <x-hush-input
+        <input
             type="text"
-            :name="$name . '[' . $lang->code . ']'"
-            :value="$value[$lang->code] ?? ''"
-            :class="$getMultilingualClassAttribute() . ' ' . ($isSluggable() && $loop->first ? 'sluggable' : '')"
-            :placeholder="$getPlaceholder()"
-            :data-slugify-target="$isSluggable() && $loop->first ? $attributes['slugify'] : null"
+            name="{{ $name . '[' . $lang->code . ']' }}"
+            value="{{ $value[$lang->code] ?? '' }}"
+            class="form-control {{ $getMultilingualClassAttribute() . ' ' . ($isSluggable() && $loop->first ? 'sluggable' : '') }}"
+            placeholder="{{ $getPlaceholder() }}"
+            data-slugify-target="{{ $isSluggable() && $loop->first ? $attributes['slugify'] : null }}"
             {{ $attributes->except('field-width', 'label', 'slugify', 'placeholder', 'multilingual', 'multirow', 'class') }}/>
     </div>
     @endforeach

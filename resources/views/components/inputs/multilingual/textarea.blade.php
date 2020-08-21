@@ -12,14 +12,15 @@
 
     <div>
         @foreach ($langs as $i => $lang)
-        <x-hush-input
-            type="textarea"
-            :name="$name . '[' . $lang->code . ']'"
-            :value="$value[$lang->code] ?? ''"
-            :class="$getMultilingualClassAttribute() . (!$loop->first ? 'd-none' : '')"
-            :placeholder="$getPlaceholder()"
-            :rows="$attributes['rows'] ?? 5"
-            {{ $attributes->except('field-width', 'label', 'placeholder', 'multilingual', 'multirow', 'class', 'rows') }}/>
+        <textarea
+            name="{{ $name . '[' . $lang->code . ']' }}"
+            class="form-control {{ $getMultilingualClassAttribute() . (!$loop->first ? 'd-none' : '') }}"
+            placeholder="{{ $getPlaceholder() }}"
+            rows="{{ $attributes['rows'] ?? 5 }}"
+            {{ $attributes->except('field-width', 'label', 'placeholder', 'multilingual', 'multirow', 'class', 'rows') }}>
+
+            {{ $value[$lang->code] ?? '' }}
+        </textarea>
         @endforeach
     </div>
 </div>
