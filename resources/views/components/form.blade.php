@@ -2,7 +2,7 @@
     action="{{ $action }}"
     method="{{ $method }}"
     @if ($hasImages())
-    enctype="{{ $imageEnctype }}"
+    enctype="{{ $imagesEnctype() }}"
     @elseif ($attributes['enctype'])
     enctype="{{ $attributes['enctype'] }}"
     @endif
