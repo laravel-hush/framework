@@ -11,7 +11,7 @@
                 @isset ($item['submenu'])
                     data-dropdown="#submenu-{{ $i }}"
                 @endisset
-                @isset ($item['in_new_tab'])
+                @isset ($item['in-new-tab'])
                     target="_blank"
                 @endisset>
 
