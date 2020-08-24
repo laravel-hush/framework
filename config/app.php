@@ -2,6 +2,6 @@
 
 return [
     'prefix' => 'admin',
-    'index_page' => '/admin/users',
+    'index-page' => '/admin/users',
     'uploads_folder' => 'uploads',
 ];
