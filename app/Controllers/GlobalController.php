@@ -9,6 +9,7 @@ use ScaryLayer\Hush\Models\Language;
 class GlobalController extends Controller
 {
     const CONFIG = 'hush.pages';
+    const DEFAULT_ACTION = 'default';
 
     protected $route;
 
@@ -30,13 +31,17 @@ class GlobalController extends Controller
      */
     public function construct()
     {
-        if (!config(self::CONFIG . '.' . $this->route . '.get')) {
-            return config(self::CONFIG . '.' . $this->route . '.index.get')
+        if (request()->action) {
+            return $this->process();
+        }
+
+        if (!config(self::CONFIG . '.' . $this->route . '.' . self::DEFAULT_ACTION)) {
+            return config(self::CONFIG . '.' . $this->route . '.index.' . self::DEFAULT_ACTION)
                 ? redirect(request()->path() . '/index')
                 : abort(404);
         }
 
-        $settings = config(self::CONFIG . '.' . $this->route . '.get');
+        $settings = config(self::CONFIG . '.' . $this->route . '.' . self::DEFAULT_ACTION);
         abort_if(isset($settings['permission']) && !auth()->user()->permitted($settings['permission']), 403);
 
         $response = isset($settings['closure']) ? call_user_func($settings['closure']) : [];
