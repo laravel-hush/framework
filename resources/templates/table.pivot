@@ -12,7 +12,7 @@ return [
         'class' => '',
         'title' => '{{ plural }}',
         'breadcrumbs' => ['{{ plural }}' => null],
-        'permission' => 'admin:{{ plural }}',
+        'permission' => '{{ prefix }}:{{ plural }}',
 
         'blocks' => [
             [
@@ -20,7 +20,7 @@ return [
 
                 'title' => [
                     'text' => '{{ plural }}',
-                    'add' => 'admin:{{ plural }}_add',
+                    'add' => '{{ prefix }}:{{ plural }}_add',
                     'search' => true,
                     'buttons' => [
                         //
@@ -37,8 +37,8 @@ return [
                     'type' => 'table',
                     'pagination' => true,
                     'modal' => true,
-                    'edit' => 'admin:{{ plural }}_edit',
-                    'delete' => 'admin:{{ plural }}_delete',
+                    'edit' => '{{ prefix }}:{{ plural }}_edit',
+                    'delete' => '{{ prefix }}:{{ plural }}_delete',
                     'rows' => function () {
                         // must return array of objects
                     },
@@ -74,7 +74,7 @@ return [
     'delete' => [
 
         'delete' => [
-            'permission' => 'admin:{{ plural }}_delete',
+            'permission' => '{{ prefix }}:{{ plural }}_delete',
             'rules' => [
                 // validation rules
             ],
@@ -85,7 +85,7 @@ return [
         ],
 
         'delete-multiple' => [
-            'permission' => 'admin:{{ plural }}_delete',
+            'permission' => '{{ prefix }}:{{ plural }}_delete',
             'rules' => [
                 // validation rules
             ],

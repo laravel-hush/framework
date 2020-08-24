@@ -1,6 +1,6 @@
 {
     "name": "scary-layer/hush",
-    "description": "Minimalistic framework for admin panels in Laravel",
+    "description": "Minimalistic framework for admin dashboards in Laravel",
     "license": "MIT",
     "authors": [
         {

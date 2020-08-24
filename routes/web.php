@@ -1,6 +1,6 @@
 <?php
 
-Route::prefix('admin')
+Route::prefix(config('hush.app.prefix', 'admin'))
     ->as('admin.')
     ->middleware('web')
     ->namespace('ScaryLayer\\Hush\\Controllers')

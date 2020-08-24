@@ -1,6 +1,8 @@
 @isset ($breadcrumbs)
 <ol class="breadcrumb mb-0">
-    <li class="breadcrumb-item"><a href="/admin">@lang ('hush::admin.home')</a></li>
+    <li class="breadcrumb-item">
+        <a href="/{{ config('hush.app.prefix', 'admin') }}">@lang ('hush::admin.home')</a>
+    </li>
 
     @foreach ($breadcrumbs as $text => $link)
 

@@ -12,10 +12,10 @@ return [
         'class' => null,
         'title' => '{{ singular }}',
         'breadcrumbs' => [
-            '{{ plural }}' => 'page:admin.{{ plural }}',
+            '{{ plural }}' => 'page:{{ prefix }}.{{ plural }}',
             'edit' => null,
         ],
-        'permission' => ['admin:{{ plural }}_add', 'admin:{{ plural }}_edit'],
+        'permission' => ['{{ prefix }}:{{ plural }}_add', '{{ prefix }}:{{ plural }}_edit'],
 
         'closure' => function () {
             // should be returned ['model']
@@ -71,7 +71,7 @@ return [
     'post' => [
 
         'save' => [
-            'permission' => ['admin:{{ plural }}_add', 'admin:{{ plural }}_edit'],
+            'permission' => ['{{ prefix }}:{{ plural }}_add', '{{ prefix }}:{{ plural }}_edit'],
             'rules' => function () {
                 return [
                     // validation rules

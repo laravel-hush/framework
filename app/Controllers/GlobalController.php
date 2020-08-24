@@ -20,7 +20,7 @@ class GlobalController extends Controller
      */
     public function __construct()
     {
-        $this->route = str_replace('admin.', '', str_replace('/', '.', request()->path()));
+        $this->route = str_replace(config('hush.app.prefix', 'admin') . '.', '', str_replace('/', '.', request()->path()));
         abort_if(!config(self::CONFIG . '.' . $this->route), 404);
     }
 

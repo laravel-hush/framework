@@ -124,7 +124,8 @@ class HushPage extends Command
     {
         return [
             '{{ singular }}' => Str::singular($this->argument('path')),
-            '{{ plural }}' => $this->argument('path')
+            '{{ plural }}' => $this->argument('path'),
+            '{{ prefix }}' => config('hush.app.prefix', 'admin')
         ];
     }
 }
