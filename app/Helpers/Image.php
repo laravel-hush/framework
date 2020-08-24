@@ -14,7 +14,7 @@ class Image
     public static function store($file, string $savePath): string
     {
         $filename = sha1(microtime()) . '.' . $file->getClientOriginalExtension();
-        $destinationPath = config('hush.app.uploads_folder') . '/' . $savePath;
+        $destinationPath = config('hush.app.uploads-folder') . '/' . $savePath;
 
         $file->move(public_path($destinationPath), $filename);
 
