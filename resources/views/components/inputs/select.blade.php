@@ -1,5 +1,5 @@
 @php ($options = $getSelectOptions())
-<select name="{{ $name }}"
+<select name="{{ $name }}{{ $isMultiple() ? '[]' : '' }}"
     data-placeholder="{{ $getPlaceholder() }}"
     @if ($isMultiple()) multiple @endif
     {{ $attributes->except('options', 'multiple', 'label', 'placeholder') }}>
