@@ -1,6 +1,6 @@
 <label
     {{ $attributes->filter(fn ($value, $key) => !in_array($key, ['readonly', 'disabled', 'checked']))->merge(['class' => 'radio']) }}>
-    <input type="radio" name="{{ $name }}" class="form-control d-none" value="{{ $value }}"
+    <input type="radio" name="{{ $name }}" class="form-control d-none" value="{{ $value > 0 ? $value : 1 }}"
         {{ $attributes->filter(fn ($value, $key) => in_array($key, ['readonly', 'disabled'])) }}
         {{ ($attributes['checked'] ?? false) ? 'checked' : '' }}>
 
