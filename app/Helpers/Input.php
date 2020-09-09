@@ -67,7 +67,7 @@ class Input
                     ->merge([
                         'label' => $input['label'] ?? null,
                         'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? null)),
-                        'options' => isset($input['options']) ? call_user_func($input['options'], $variables) : [],
+                        'options' => json_encode(isset($input['options']) ? call_user_func($input['options'], $variables) : []),
                         'multiple' => $input['multiple'] ?? false
                     ]);
 
