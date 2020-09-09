@@ -1,6 +1,6 @@
 {
     "name": "scary-layer/hush",
-    "description": "Minimalistic framework for admin dashboards in Laravel",
+    "description": "Framework for admin dashboards in Laravel",
     "license": "MIT",
     "authors": [
         {
@@ -9,7 +9,7 @@
         }
     ],
     "require": {
-        "laravel/framework": "^7.0|^8.0"
+        "laravel/framework": "^8.0"
     },
     "autoload": {
         "psr-4": {

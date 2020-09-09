@@ -3,7 +3,7 @@
 1.  Configure the laravel project and it's database.
 2.  Run in project directory:
 *  `composer require scary-layer/hush`
-*  `php artisan vendor:publish --tag=hush`
+*  `php artisan vendor:publish --tag=hush --force` - be careful, it may replace some of your existing files.
 *  `php artisan migrate --seed` - it will also create dev, admin and simple user.
 3.  Edit User model.
 *  Inherit ```ScaryLayer\Hush\Traits\Permissiable``` trait by your User model.

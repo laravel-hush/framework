@@ -25,7 +25,7 @@ class ServiceProvider extends Provider
 
         $this->publishes([
             __DIR__ . '/../../config'              => config_path('hush'),
-            __DIR__ . '/../../database/seeds'      => database_path('seeds'),
+            __DIR__ . '/../../database/seeders'    => database_path('seeders'),
             __DIR__ . '/../../public'              => public_path('vendor/hush'),
             __DIR__ . '/../../resources/lang'      => resource_path('lang/vendor/hush')
         ], 'hush');
