@@ -11,6 +11,7 @@ return [
     'default' => [
         'class' => null,
         'breadcrumbs' => ['settings' => null],
+
         'blocks' => [
             [
                 'class' => 'col-12',
@@ -38,20 +39,7 @@ return [
                     'id' => 'settings',
                     'link' => 'action:save',
                     'inputs' => [
-                        [
-                            'width' => 'col-6',
-                            'label' => 'sitename',
-                            'placeholder' => 'placeholder',
-                            'type' => 'text',
-                            'name' => 'sitename'
-                        ],
-                        [
-                            'width' => 'col-6',
-                            'label' => 'setting',
-                            'placeholder' => 'placeholder',
-                            'type' => 'select',
-                            'name' => 'setting'
-                        ]
+                        //
                     ]
                 ]
 

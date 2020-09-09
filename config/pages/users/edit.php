@@ -1,6 +1,6 @@
 <?php
 
-use App\User;
+use App\Models\User;
 use ScaryLayer\Hush\Models\Role;
 
 return [
