@@ -8,7 +8,10 @@
     @endif
     {{ $attributes->except('enctype') }}>
 
+    @if ($method != 'get')
     @csrf
+    @endif
+
     {{ $slot }}
 
 </form>
