@@ -137,6 +137,6 @@
 
 @if (isset($block['content']['pagination']) && $rows->hasPages())
 <div class="pagination-block">
-    {!! $rows->appends(request()->except('page'))->render() !!}
+    {!! $rows->appends(request()->except('page'))->render('hush::components.pagination') !!}
 </div>
 @endif
