@@ -18,7 +18,7 @@
                         return collect(request()->except('sort', 'direction'))
                             ->merge([
                                 'type' => 'page',
-                                'name' => request()->url(),
+                                'name' => str_replace('admin/', '', request()->path()),
                                 'sort' => $column,
                                 'direction' => $column == request()->sort && request()->direction == 'asc' ? 'desc' : 'asc'
                             ])
