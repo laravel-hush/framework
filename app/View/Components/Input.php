@@ -34,23 +34,7 @@ class Input extends Component
      */
     public function render()
     {
-        if (in_array($this->type, ['text', 'textarea']) && $this->isMultilingual()) {
-            return $this->isMultirow()
-                ? view("hush::components.inputs.multilingual.$this->type-multirow", ['langs' => $this->getLangs()])
-                : view("hush::components.inputs.multilingual.$this->type", ['langs' => $this->getLangs()]);
-        }
-
-        if (in_array($this->type, ['checkbox', 'radio', 'select', 'textarea'])) {
-            return view("hush::components.inputs.$this->type");
-        }
-
-        if ($this->type == 'file') {
-            return $this->isMultiple()
-                ? view('hush::components.inputs.file-multiple')
-                : view('hush::components.inputs.file');
-        }
-
-        return view('hush::components.inputs.input');
+        return view('hush::components.inputs.common');
     }
 
     /**
