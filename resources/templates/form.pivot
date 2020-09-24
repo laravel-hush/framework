@@ -81,7 +81,16 @@ return [
             },
             'closure' => function () {
                 // some actions
-                // if nothing returned here than will be returned default response
+                
+                return [
+                    'status' => 'success',
+                    'reload' => true,
+                    'swal' => [
+                        'title' => __('hush::admin.saved'),
+                        'text' => __('hush::admin.your-work-has-been-successfully-saved'),
+                        'type' => 'success'
+                    ]
+                ];
             }
         ]
 
