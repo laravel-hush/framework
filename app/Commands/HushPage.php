@@ -122,9 +122,12 @@ class HushPage extends Command
      */
     private function variables(): array
     {
+        $singular = Str::singular($this->argument('path'));
+
         return [
-            '{{ singular }}' => Str::singular($this->argument('path')),
+            '{{ singular }}' => $singular,
             '{{ plural }}' => $this->argument('path'),
+            '{{ studly }}' => Str::studly($singular),
             '{{ prefix }}' => config('hush.app.prefix', 'admin')
         ];
     }

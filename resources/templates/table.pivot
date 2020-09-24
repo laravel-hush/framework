@@ -77,23 +77,36 @@ return [
 
         'delete' => [
             'permission' => '{{ prefix }}:{{ plural }}_delete',
-            'rules' => [
-                // validation rules
-            ],
             'closure' => function () {
-                // some actions
-                // if nothing returned here than will be returned default response
+                {{ studly }}::where('id', request()->id)->delete();
+
+                return [
+                    'status' => 'success',
+                    'reload' => true,
+                    'swal' => [
+                        'title' => __('hush::admin.deleted'),
+                        'text' => __('hush::admin.operation-success'),
+                        'type' => 'success'
+                    ]
+                ];
             }
         ],
 
         'delete-multiple' => [
             'permission' => '{{ prefix }}:{{ plural }}_delete',
-            'rules' => [
-                // validation rules
-            ],
             'closure' => function () {
-                // some actions
-                // if nothing returned here than will be returned default response
+                {{ studly }}::whereIn('id', request()->items)->delete();
+
+                return [
+                    'status' => 'success',
+                    'items' => request()->items,
+                    'reload' => true,
+                    'swal' => [
+                        'title' => __('hush::admin.deleted'),
+                        'text' => __('hush::admin.operation-success'),
+                        'type' => 'success'
+                    ]
+                ];
             }
         ]
 

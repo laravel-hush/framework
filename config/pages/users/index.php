@@ -78,7 +78,6 @@ return [
 
         'delete' => [
             'permission' => 'admin:users_delete',
-            'rules' => [],
             'closure' => function () {
                 User::where('id', request()->id)->delete();
 
@@ -96,7 +95,6 @@ return [
 
         'delete-multiple' => [
             'permission' => 'admin:users_delete',
-            'rules' => [],
             'closure' => function () {
                 User::whereIn('id', request()->items)->delete();
 
