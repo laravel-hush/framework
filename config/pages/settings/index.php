@@ -11,6 +11,11 @@ return [
     'default' => [
         'class' => null,
         'breadcrumbs' => ['settings' => null],
+        'permission' => 'admin:settings',
+
+        'closure' => function () {
+            // should be returned ['model']
+        },
 
         'blocks' => [
             [
@@ -39,7 +44,7 @@ return [
                     'id' => 'settings',
                     'link' => 'action:save',
                     'inputs' => [
-                        //
+                        // list of setting inputs
                     ]
                 ]
 
@@ -61,18 +66,16 @@ return [
             'rules' => [],
             'closure' => function () {
                 //
-            }
-        ]
 
-    ],
-
-
-    'delete' => [
-
-        'delete' => [
-            'rules' => ['id' => 'required|integer|exists:settings,id'],
-            'closure' => function () {
-                //
+                return [
+                    'status' => 'success',
+                    'reload' => true,
+                    'swal' => [
+                        'title' => __('hush::admin.saved'),
+                        'text' => __('hush::admin.your-work-has-been-successfully-saved'),
+                        'type' => 'success'
+                    ]
+                ];
             }
         ]
 
