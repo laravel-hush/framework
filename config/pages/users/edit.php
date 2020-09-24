@@ -91,7 +91,9 @@ return [
                     ],
                 ]
 
-            ]
+            ],
+
+            // another block
         ],
     ],
 

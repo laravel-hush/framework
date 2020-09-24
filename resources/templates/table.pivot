@@ -61,7 +61,9 @@ return [
                     ]
                 ]
 
-            ]
+            ],
+
+            // another block
         ]
     ],
 

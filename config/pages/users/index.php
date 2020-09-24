@@ -62,7 +62,9 @@ return [
                     ]
                 ]
 
-            ]
+            ],
+
+            // another block
         ]
     ],
 
