@@ -1,7 +1,7 @@
 @if ($attributes['preview'] ?? false)
-<div class="images-list text-center row px-2" id="{{ $getFileId() }}">
+<div class="images-list text-center row px-2">
     @foreach ($value as $image)
-    <div class="col-2 pb-3 image">
+    <div class="col-2 pb-3 image saved">
         <img src="{{ $image }}" alt="">
         <a href="{{ Constructor::link("action:remove-image|field:$name|image:$image|id:" . request()->id) }}"
             class="btn btn-danger remove-image">
@@ -10,6 +10,7 @@
     </div>
     @endforeach
 </div>
+<div class="images-list text-center" id="{{ $getFileId() }}"></div>
 @endif
 
 <div class="custom-file">
