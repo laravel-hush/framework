@@ -13,10 +13,8 @@
             class="form-control {{ $getMultilingualClassAttribute() }}"
             placeholder="{{ $getPlaceholder() }} ({{ $lang->name }})"
             rows="{{ $attributes['rows'] ?? 5 }}"
-            {{ $attributes->except('field-width', 'label', 'placeholder', 'multilingual', 'multirow', 'class', 'rows') }}>
-
-            {{ $value[$lang->code] ?? '' }}
-        </textarea>
+            {{ $attributes->except('field-width', 'label', 'placeholder', 'multilingual', 'multirow', 'class', 'rows') }}
+            >{{ $value[$lang->code] ?? '' }}</textarea>
     </div>
     @endforeach
 </div>
