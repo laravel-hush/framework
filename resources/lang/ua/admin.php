@@ -9,6 +9,7 @@ return [
     'cancel' => 'Скасувати',
     'choose-file' => 'Оберіть файл',
     'choose-files' => 'Оберіть файли',
+    'delete' => 'Видалити',
     'delete-selected' => 'Видалити обранi',
     'deleted' => 'Видалено',
     'edit' => 'Редагувати',

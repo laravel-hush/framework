@@ -9,6 +9,7 @@ return [
     'cancel' => 'Cancel',
     'choose-file' => 'Choose file',
     'choose-files' => 'Choose files',
+    'delete' => 'Delete',
     'delete-selected' => 'Delete selected',
     'deleted' => 'Deleted',
     'edit' => 'Edit',
