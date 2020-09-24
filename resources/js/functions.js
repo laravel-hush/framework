@@ -229,6 +229,7 @@ window.functions = class functions {
     $('[data-dropdown]').click(function (event) {
       event.preventDefault();
       let dropdown = $($(this).data('dropdown'));
+      $('.dropped[data-dropdown]').removeClass('dropped');
       $(".dropdown-menu:not(#" + dropdown.attr("id") + ")").slideUp("fast");
       if (dropdown.css('display') == 'block') {
         dropdown.slideUp('fast');
