@@ -19,6 +19,5 @@ class Image
         $file->move(public_path($destinationPath), $filename);
 
         return '/' . $destinationPath . '/' . $filename;
-
     }
 }

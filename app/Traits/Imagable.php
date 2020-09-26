@@ -21,19 +21,21 @@ trait Imagable
 
     public function setAttribute($property, $value)
     {
-        if (in_array($property, $this->imagable ?? []) && !is_string($value)) {
-            $this->attributes[$property] = $this->saveImage($value);
-            return $this->attributes[$property];
-        }
+        if ($value) {
+            if (in_array($property, $this->imagable ?? []) && !is_string($value)) {
+                $this->attributes[$property] = $this->saveImage($value);
+                return $this->attributes[$property];
+            }
 
-        if ($value && in_array($property, $this->imagable_multiple ?? [])) {
-            foreach ($value as $image) {
-                $this->images()->create([
-                    'field' => $property,
-                    'image' => !is_string($image)
-                        ? $this->saveImage($image)
-                        : $image
-                ]);
+            if (in_array($property, $this->imagable_multiple ?? [])) {
+                foreach ($value as $image) {
+                    $this->images()->create([
+                        'field' => $property,
+                        'image' => !is_string($image)
+                            ? $this->saveImage($image)
+                            : $image
+                    ]);
+                }
             }
         }
 
