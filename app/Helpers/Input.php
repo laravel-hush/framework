@@ -57,6 +57,8 @@ class Input
                     ->merge([
                         'multiple' => $input['multiple'] ?? false,
                         'preview' => $input['preview'] ?? false,
+                        'preview-width' => $input['preview-width'] ?? 'col-2',
+                        'delete' => $input['delete'] ?? true,
                         'id' => $input['attributes']['id'] ?? (isset($input['multiple']) ? null : $input['name'])
                     ]);
 
