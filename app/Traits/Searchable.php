@@ -11,6 +11,14 @@ trait Searchable
         }
 
         foreach ($this->searchable as $column) {
+            if ($this->translatable && in_array($column, $this->translatable)) {
+                $query = $this->orWhereHas('translations', function ($query) use ($column) {
+                    return $query->where('field', $column)
+                        ->where('value', 'like', '%' . request()->search . '%');
+                });
+                continue;
+            }
+
             if (mb_strpos($column, '.') !== false) {
                 $relation = explode('.', $column)[0];
                 $query = $this->searchNested(
