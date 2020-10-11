@@ -100,7 +100,7 @@ window.functions = class functions {
           var reader = new FileReader();
 
           reader.onload = function (event) {
-            $(image_block).append(`<div class="col-1 pb-3"><img src="${event.target.result}" alt=""></div>`);
+            $(image_block).append(`<div class="col-2 pb-3"><img src="${event.target.result}" alt=""></div>`);
           }
 
           reader.readAsDataURL(file);
@@ -318,7 +318,7 @@ window.functions = class functions {
                 if (!element || !element.length) {
                   element = form.find(`[name="${index}[]"]`);
                 }
-                
+
                 element
                   .closest('.form-group')
                   .addClass('error')

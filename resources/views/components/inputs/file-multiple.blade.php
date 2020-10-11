@@ -12,7 +12,7 @@
     </div>
     @endforeach
 </div>
-<div class="images-list text-center" id="{{ $getFileId() }}"></div>
+<div class="images-list text-center row px-2" id="{{ $getFileId() }}"></div>
 @endif
 
 <div class="custom-file">
