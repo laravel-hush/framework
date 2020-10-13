@@ -1,5 +1,5 @@
 @php
-if (is_int($value)) {
+if (is_int($value) || empty($value)) {
     $value = $value > 0 ? $value : 1;
 }
 @endphp
