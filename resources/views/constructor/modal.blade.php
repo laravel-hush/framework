@@ -4,7 +4,11 @@
         <div class="modal-content swal2-show">
             <div class="modal-header">
                 @isset ($settings['title'])
-                <h5 class="modal-title">@lang ('hush::admin.' . $settings['title'])</h5>
+                    @if ($settings['title'] instanceof Closure)
+                        <h5 class="modal-title">{{ $settings['title'](get_defined_vars()) }}</h5>
+                    @else
+                        <h5 class="modal-title">@lang ('hush::admin.' . $settings['title'])</h5>
+                    @endif
                 @endisset
 
                 <button type="button" class="close" data-dismiss="modal" aria-label="@lang ('hush::admin.close')">
