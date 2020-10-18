@@ -3,6 +3,7 @@
 namespace ScaryLayer\Hush\Controllers;
 
 use App\Http\Controllers\Controller;
+use Closure;
 use ScaryLayer\Hush\Helpers\Constructor;
 use ScaryLayer\Hush\Models\Language;
 
@@ -56,11 +57,16 @@ class GlobalController extends Controller
             }
         }
 
+        $title = null;
+        if (isset($settings['title'])) {
+            $title = $settings['title'] instanceof Closure
+                ? $settings['title']($response)
+                : __('hush::admin.' . $settings['title']);
+        }
+
         return view('hush::constructor.' . (request()->ajax() ? 'modal' : 'index'), collect($response)->merge([
             'settings' => $settings,
-            'title' => isset($settings['title'])
-                ? __('hush::admin.' . $settings['title'])
-                : null,
+            'title' => $title,
             'langs' => Language::getList(),
             'breadcrumbs' => $breadcrumbs,
             'baseUrl' => str_replace('.', '/', $baseUrl)
