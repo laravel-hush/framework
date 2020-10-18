@@ -1,7 +1,10 @@
 #menu {
+  overflow-x: auto;
+
   .nav {
     align-items: stretch;
     display: flex;
+    width: max-content;
 
     &-item {
       padding-right: 2px;
