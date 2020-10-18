@@ -65,7 +65,8 @@ class Constructor
                         'admin.constructor.process',
                         collect($result)
                             ->except('type', 'name')
-                            ->merge(['url' => str_replace('.', '/', $result['name'] ?? request()->url)])
+                            ->merge(['url' => request()->url])
+                            ->merge(['action' => $result['name']])
                             ->all()
                     );
             }
