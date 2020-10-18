@@ -62,17 +62,15 @@ return [
                                 [
                                     'type' => 'select',
                                     'name' => 'role',
-                                    'data' => function () {
+                                    'options' => function () {
                                         return Role::orderBy('key')->get()->pluck('key', 'key');
                                     },
-                                    'label' => 'role',
-                                    'placeholder' => 'role',
+                                    'label' => 'role'
                                 ],
                                 [
                                     'type' => 'text',
                                     'name' => 'name',
-                                    'label' => 'name',
-                                    'placeholder' => 'name',
+                                    'label' => 'name'
                                 ],
                             ]
                         ],
