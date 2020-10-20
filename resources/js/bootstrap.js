@@ -1,6 +1,3 @@
-
-const LOCALE = 'en';
-
 window._ = require('lodash');
 
 /**
@@ -59,15 +56,3 @@ window.slugify = require('slugify');
 window.Swal = require('sweetalert2');
 
 require('daterangepicker');
-
-require('trumbowyg');
-if (LOCALE != 'en') {
-    require('trumbowyg/dist/langs/' + LOCALE + '.js');
-}
-require('trumbowyg/dist/plugins/cleanpaste/trumbowyg.cleanpaste.min.js');
-require('trumbowyg/dist/plugins/colors/trumbowyg.colors.min.js');
-require('trumbowyg/dist/plugins/emoji/trumbowyg.emoji.min.js');
-require('trumbowyg/dist/plugins/fontfamily/trumbowyg.fontfamily.min.js');
-require('trumbowyg/dist/plugins/fontsize/trumbowyg.fontsize.min.js');
-require('trumbowyg/dist/plugins/table/trumbowyg.table.min.js');
-require('trumbowyg/dist/plugins/upload/trumbowyg.upload.min.js');

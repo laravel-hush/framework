@@ -170,29 +170,32 @@ window.functions = class functions {
             timePicker24Hour: true,
         });
 
-        $.trumbowyg.svgPath = '/vendor/hush/svg/icons.svg';
-        $('.wysiwyg').trumbowyg({
-            lang: document.querySelector('html').lang,
-            btns: [
-                ['viewHTML'],
-                ['undo', 'redo'],
-                ['formatting', 'foreColor', 'backColor'],
-                ['strong', 'em', 'del'],
-                ['fontfamily', 'fontsize'],
-                ['superscript', 'subscript'],
-                ['link', 'emoji'],
-                ['insertImage', 'upload'],
-                ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
-                ['unorderedList', 'orderedList'],
-                ['table'],
-                ['horizontalRule'],
-                ['removeformat'],
-                ['fullscreen']
-            ],
-            plugins: {
-                upload: {
-                    serverPath: '/admin/upload/image',
-                }
+        const locale = $('html').attr('lang');
+
+        let tinymce_lang = 'en';
+
+        if (locale == 'ua') {
+            tinymce_lang = 'uk';
+        } else if (locale != 'en') {
+            tinymce_lang = 'ru';
+        }
+
+        tinymce.init({
+            selector: '.wysiwyg',
+            language: tinymce_lang,
+            language_url: '/vendor/hush/js/tinymce-langs/' + tinymce_lang + '.js',
+            plugins: 'autolink code image imagetools link lists media table',
+            toolbar: 'undo redo removeformat | styleselect | bold italic | alignleft aligncenter alignright alignjustify | numlist bullist | blockquote link table image media code',
+            menubar: 'file edit view format insert table',
+            file_picker_types: 'image',
+            images_upload_handler: function (blobInfo, success, failure) {
+                let data = new FormData();
+                data.append('file', blobInfo.blob(), blobInfo.filename());
+                console.log('mmm...');
+                functions.request('post', upload_file_route, data, function (response) {
+                    console.log(response);
+                    success(response.path);
+                });
             }
         });
     }

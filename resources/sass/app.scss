@@ -7,11 +7,6 @@
 @import "~noty/src/noty.scss";
 @import "~noty/src/themes/metroui.scss";
 
-@import "~trumbowyg/dist/ui/trumbowyg.min.css";
-@import "~trumbowyg/dist/plugins/colors/ui/trumbowyg.colors.css";
-@import "~trumbowyg/dist/plugins/emoji/ui/trumbowyg.emoji.css";
-@import "~trumbowyg/dist/plugins/table/ui/trumbowyg.table.css";
-
 @import 'variables';
 @import 'global';
 @import 'fonts';
@@ -30,6 +25,6 @@
 @import 'plugins/codemirror';
 @import 'plugins/daterangepicker';
 @import 'plugins/swal';
-@import 'plugins/trumbowyg';
+@import 'plugins/tinymce';
 
 @import 'media';

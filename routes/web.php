@@ -1,14 +1,12 @@
 <?php
 
+use ScaryLayer\Hush\Helpers\Image;
+
 Route::prefix(config('hush.app.prefix', 'admin'))
     ->as('admin.')
     ->middleware('web')
     ->namespace('ScaryLayer\\Hush\\Controllers')
     ->group(function () {
-
-        Route::prefix('docs')->as('docs.')->group(function () {
-            Route::view('/', 'hush::docs.inputs');
-        });
 
         Route::middleware(function ($request, Closure $next) {
             return auth()->check()
@@ -35,6 +33,14 @@ Route::prefix(config('hush.app.prefix', 'admin'))
                 Auth::logout();
                 return redirect()->route('admin.index');
             })->name('logout');
+
+            Route::post('upload-wysiwyg-image', function () {
+                $path = Image::store(request()->file, 'vendor/hush/uploads');
+                return [
+                    'status' => 'success',
+                    'path' => $path
+                ];
+            })->name('upload-wysiwyg-image');
 
             Route::redirect('/', config('hush.app.index-page'))->name('index');
             Route::get('{url}', 'GlobalController@construct')
