@@ -93,6 +93,7 @@ window.functions = class functions {
         $('.custom-file-input.multiple').off('change').change(function () {
             if (this.files && this.files.length) {
                 var image_block = $(this).data('image-block-id');
+                var preview_width = $(this).data('preview-width');
                 $(image_block).html("");
 
                 for (let i = 0; i < this.files.length; i++) {
@@ -100,7 +101,7 @@ window.functions = class functions {
                     var reader = new FileReader();
 
                     reader.onload = function (event) {
-                        $(image_block).append(`<div class="col-2 pb-3"><img src="${event.target.result}" alt=""></div>`);
+                        $(image_block).append(`<div class="${preview_width} pb-3"><img src="${event.target.result}" alt=""></div>`);
                     }
 
                     reader.readAsDataURL(file);
