@@ -35,7 +35,7 @@ Route::prefix(config('hush.app.prefix', 'admin'))
             })->name('logout');
 
             Route::post('upload-wysiwyg-image', function () {
-                $path = Image::store(request()->file, 'vendor/hush/uploads');
+                $path = Image::store(request()->file, 'wysiwyg');
                 return [
                     'status' => 'success',
                     'path' => $path
