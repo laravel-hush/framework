@@ -5,22 +5,29 @@
 
     @foreach ($settings['blocks'] as $block)
 
-    @if (isset($block['condition']) && !call_user_func($block['condition'], get_defined_vars()))
-        @continue
-    @endif
+        @if (isset($block['condition']) && !call_user_func($block['condition'], get_defined_vars()))
+            @continue
+        @endif
 
-    <div class="col {{ $block['class'] ?? 'col-12' }}">
-        <div class="block">
+        <div class="col {{ $block['class'] ?? 'col-12' }}">
+            <div class="block">
 
-            @include ('hush::constructor.block-title')
+                @include ('hush::constructor.block-title')
 
-            @isset ($block['content'])
-            @include ('hush::constructor.' . $block['content']['type'])
-            @endisset
+                @isset ($block['content'])
+                    @include ('hush::constructor.' . $block['content']['type'])
+                @endisset
 
+            </div>
         </div>
-    </div>
     @endforeach
-
 </div>
 @endsection
+
+@push ('js')
+    @isset ($settings['scripts'])
+        @foreach ($settings['scripts'] as $script)
+            <script>{!! file_get_contents($script) !!}</script>
+        @endforeach
+    @endisset
+@endpush
