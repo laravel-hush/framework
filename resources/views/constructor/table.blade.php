@@ -50,7 +50,7 @@
 
         <tbody>
             @forelse ($rows as $row)
-                <tr class="table-row">
+                <tr class="table-row" data-id="{{ $row->id }}">
 
                     @if (!isset($block['content']['checkboxes']) || $block['content']['checkboxes'])
                         <td class="check-td">
