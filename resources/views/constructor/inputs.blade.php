@@ -19,6 +19,11 @@
             @continue
         @endif
 
+        @if ($input['type'] == 'iterable')
+            @include('hush::components.iterable')
+            @continue
+        @endif
+
         @if ($input['type'] == 'hidden')
             <x-hush-input
                 type="hidden"
