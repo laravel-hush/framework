@@ -134,6 +134,7 @@ window.functions = class functions {
         $('.codemirror').each(function () {
             var code = CodeMirror.fromTextArea(this, {
                 lineNumbers: true,
+                lineWrapping: true,
                 matchBrackets: true,
                 mode: 'htmlmixed'
             });
