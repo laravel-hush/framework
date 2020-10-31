@@ -24,7 +24,9 @@
 }
 
 .custom-file-image {
-  padding: 0 3px 5px;
+  border-radius: 5px;
+  padding: 0 3px;
+  margin-bottom: 5px;
 
   &[src=""] {
     display: none;
