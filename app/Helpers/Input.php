@@ -15,6 +15,9 @@ class Input
      */
     public static function render(array $input, array $variables)
     {
+        if (isset($input['condition']) && !$input['condition']($variables))
+            return;
+
         $field = new InputComponent(
             $input['type'],
             $input['name'],
