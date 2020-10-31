@@ -85,7 +85,7 @@ class Constructor
      */
     public static function value(array $variables, array $item, $default = null)
     {
-        if (in_array($item['type'], ['text', 'textarea']) && ($item['multilingual'] ?? false)) {
+        if (in_array($item['type'], ['file', 'text', 'textarea']) && ($item['multilingual'] ?? false)) {
             return isset($item['value'])
                 ? self::closureDetector($item['value'], $variables)
                 : $variables['model']->translationArray($item['field'] ?? $item['name']);

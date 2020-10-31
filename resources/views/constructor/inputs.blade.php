@@ -37,7 +37,7 @@
         <div class="col {{ $input['width'] ?? 'col-12' }}">
 
             @if (!in_array($input['type'], ['file', 'text', 'textarea']) || (!isset($input['multilingual']) || !$input['multilingual']))
-            <div class="form-group">
+                <div class="form-group">
             @endif
 
                 @if (
@@ -45,20 +45,20 @@
                     && !in_array($input['type'], ['checkbox', 'radion'])
                     && (!in_array($input['type'], ['file', 'text', 'textarea']) || (!isset($input['multilingual']) || !$input['multilingual']))
                 )
-                <label for="$input['name']">
-                    @lang('hush::admin.' . $input['label'])
-                    {{ isset($input['lang']) ? " ({$langs[$input['lang']]->name})" : '' }}
-                </label>
+                    <label for="$input['name']">
+                        @lang('hush::admin.' . $input['label'])
+                        {{ isset($input['lang']) ? " ({$langs[$input['lang']]->name})" : '' }}
+                    </label>
                 @endif
 
                 {!! Input::render($input, get_defined_vars()) !!}
 
                 @isset ($input['description'])
-                <small class="d-block">@lang ('hush::admin.' . $input['description'])</small>
+                    <small class="d-block">@lang ('hush::admin.' . $input['description'])</small>
                 @endisset
 
             @if (!in_array($input['type'], ['file', 'text', 'textarea']) || (!isset($input['multilingual']) || !$input['multilingual']))
-            </div>
+                </div>
             @endif
         </div>
 
