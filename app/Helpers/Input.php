@@ -55,7 +55,9 @@ class Input
             case 'file':
                 $field->attributes = $field->attributes
                     ->merge([
+                        'label' => $input['label'] ?? null,
                         'multiple' => $input['multiple'] ?? false,
+                        'multilingual' => $input['multilingual'] ?? false,
                         'preview' => $input['preview'] ?? false,
                         'preview-width' => $input['preview-width'] ?? 'col-2',
                         'delete' => $input['delete'] ?? true,

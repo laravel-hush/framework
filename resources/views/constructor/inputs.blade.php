@@ -36,14 +36,14 @@
 
         <div class="col {{ $input['width'] ?? 'col-12' }}">
 
-            @if (!in_array($input['type'], ['text', 'textarea']) || (!isset($input['multilingual']) || !$input['multilingual']))
+            @if (!in_array($input['type'], ['file', 'text', 'textarea']) || (!isset($input['multilingual']) || !$input['multilingual']))
             <div class="form-group">
             @endif
 
                 @if (
                     isset($input['label'])
                     && !in_array($input['type'], ['checkbox', 'radion'])
-                    && (!in_array($input['type'], ['text', 'textarea']) || (!isset($input['multilingual']) || !$input['multilingual']))
+                    && (!in_array($input['type'], ['file', 'text', 'textarea']) || (!isset($input['multilingual']) || !$input['multilingual']))
                 )
                 <label for="$input['name']">
                     @lang('hush::admin.' . $input['label'])

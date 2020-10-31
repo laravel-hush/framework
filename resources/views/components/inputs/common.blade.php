@@ -1,4 +1,4 @@
-@if (in_array($type, ['text', 'textarea']) && $isMultilingual())
+@if (in_array($type, ['file', 'text', 'textarea']) && $isMultilingual())
 
     @if ($isMultirow())
         @include("hush::components.inputs.multilingual.$type-multirow", ['langs' => $getLangs()])
