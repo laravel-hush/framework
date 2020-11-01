@@ -21,7 +21,7 @@ $variables['model'] = $item;
 
     @endforeach
 
-    <div class="col-sm-12 col-xl-2 d-flex justify-content-end">
+    <div class="col-sm-12 col-lg-2 col-xl-2 d-flex justify-content-end">
         <button class="btn btn-danger delete-{{ $input['name'] }}">
             @lang('hush::admin.delete')
         </button>
