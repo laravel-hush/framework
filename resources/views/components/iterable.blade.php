@@ -2,7 +2,7 @@
 $values = Constructor::value(get_defined_vars(), $input, $input['default'] ?? null);
 @endphp
 
-<div class="col {{ $input['width'] ?? 'col-12' }}">
+<div class="col {{ $input['width'] ?? 'col-12' }} mb-3">
 
     @isset($input['label'])
         <label class="ml-1">@lang('hush::admin.' . $input['label'])</label>
