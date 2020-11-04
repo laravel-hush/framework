@@ -87,9 +87,10 @@ class Input
                         ->merge([
                             'field-width' => $input['field_width'] ?? 'col-12',
                             'label' => $input['label'] ?? '',
-                            'slugify' => isset($input['slugify']) && $input['slugify'] && $variables['model']
-                                ? $input['slugify']
-                                : false,
+                            'slugify' => isset($input['slugify']) && $input['slugify']
+                                && (!isset($variables['model']) || !$variables['model']->id)
+                                    ? $input['slugify']
+                                    : false,
                             'placeholder' => __('hush::admin.' . ($input['placeholder'] ?? $input['label'] ?? null)),
                             'multilingual' => $input['multilingual'] ?? false,
                             'multirow' => $input['multirow'] ?? false,
