@@ -41,7 +41,7 @@ trait Imagable
 
         return parent::setAttribute($property, $value);
     }
-    
+
     /**
      * Create table for storing multiple images.
      *
@@ -122,6 +122,7 @@ trait Imagable
     public function saveImage($image): string
     {
         $parts = explode('\\', __CLASS__);
-        return Image::store($image, Str::snake(end($parts)));
+        $name = Str::snake(Str::plural(end($parts)));
+        return Image::store($image, $name);
     }
 }
