@@ -10,7 +10,8 @@
 
             @if ($attributes['preview'] ?? false)
                 <div class="text-center">
-                    <img src="{{ $value[$lang->code] ?? '' }}" alt="" class="custom-file-image" id="{{ $getFileId() }}-{{ $lang->code }}">
+                    <img @isset($value) src="{{ $value[$lang->code] ?? '' }}" @endisset
+                        alt="" class="custom-file-image" id="{{ $getFileId() }}-{{ $lang->code }}">
                 </div>
             @endif
 
