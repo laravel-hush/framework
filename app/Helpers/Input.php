@@ -2,6 +2,7 @@
 
 namespace ScaryLayer\Hush\Helpers;
 
+use Closure;
 use ScaryLayer\Hush\View\Components\Input as InputComponent;
 
 class Input
@@ -26,8 +27,17 @@ class Input
 
         $field->data();
 
-        $field->attributes = $field->attributes
-            ->merge($input['attributes'] ?? []);
+        if (isset($input['attributes'])) {
+            $input['attributes'] = collect($input['attributes'])
+                ->transform(function ($attribute) {
+                    if ($attribute instanceof Closure)
+                        return $attribute();
+                })
+                ->all();
+
+            $field->attributes = $field->attributes
+                ->merge($input['attributes']);
+        }
 
         switch ($input['type']) {
             case 'checkbox':
