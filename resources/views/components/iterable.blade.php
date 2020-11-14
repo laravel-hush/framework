@@ -8,7 +8,7 @@ $values = Constructor::value(get_defined_vars(), $input, $input['default'] ?? nu
         <label class="ml-1">@lang('hush::admin.' . $input['label'])</label>
     @endisset
 
-    <div id="{{ $input['name'] }}">
+    <div id="{{ $input['name'] }}" @isset($input['attributes']) @foreach($input['attributes'] as $attribute => $value) {{ $attribute }}="{{ $value }}" @endforeach @endisset>
         @foreach ($values as $i => $item)
             @include('hush::components.iterable-item')
         @endforeach
