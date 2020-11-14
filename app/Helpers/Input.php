@@ -32,6 +32,8 @@ class Input
                 ->transform(function ($attribute) {
                     if ($attribute instanceof Closure)
                         return $attribute();
+
+                    return $attribute;
                 })
                 ->all();
 
