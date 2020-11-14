@@ -2,10 +2,10 @@
     <x-hush-form
         accept-charset="UTF-8"
         :action="Constructor::link($block['content']['link'] ?? '#')"
-        class="submitable"
+        :class="isset($block['content']['synchronous']) ? '' : 'submitable'"
         has-images="true"
         :id="$block['content']['id'] ?? ''"
-        method="post">
+        :method="$block['content']['method'] ?? 'post'">
 
         @isset ($block['content']['grid'])
         <div class="row">
