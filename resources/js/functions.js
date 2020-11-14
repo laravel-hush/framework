@@ -149,6 +149,7 @@ window.functions = class functions {
             locale: {
                 format: 'YYYY-MM-DD'
             },
+            autoUpdateInput: false,
             singleDatePicker: true,
         });
         $('input.datetime').daterangepicker({
@@ -156,6 +157,7 @@ window.functions = class functions {
                 format: 'YYYY-MM-DD HH:mm'
             },
             singleDatePicker: true,
+            autoUpdateInput: false,
             timePicker: true,
             timePicker24Hour: true,
         });
