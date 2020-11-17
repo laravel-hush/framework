@@ -14,7 +14,7 @@
     <div id="modals"></div>
 
     <script>var __ = @json(__('hush::frontend'));</script>
-    <script>var upload_file_route = '{{ route('admin.upload-wysiwyg-image') }}';</script>
+    <script>var upload_file_route = '{{ route('admin.upload-wysiwyg-image', [], false) }}';</script>
     <script src="{{ asset('vendor/hush/js/app.js') }}"></script>
     @stack ('js')
 @endsection
