@@ -190,6 +190,7 @@ window.functions = class functions {
             toolbar: 'undo redo removeformat | styleselect | bold italic | alignleft aligncenter alignright alignjustify | numlist bullist | blockquote link table image media code',
             menubar: 'file edit view format insert table',
             file_picker_types: 'image',
+            image_dimensions: false,
             images_upload_handler: function (blobInfo, success, failure) {
                 let data = new FormData();
                 data.append('file', blobInfo.blob(), blobInfo.filename());
