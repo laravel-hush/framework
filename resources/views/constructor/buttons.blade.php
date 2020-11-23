@@ -11,6 +11,10 @@
 @isset ($block['title']['buttons'])
     @foreach ($block['title']['buttons'] as $button)
 
+        @if (isset($button['condition']) && !call_user_func($button['condition'], get_defined_vars()))
+            @continue
+        @endif
+
         @if (!isset($button['permission']) || auth()->user()->permitted($button['permission']))
             @isset ($button['form'])
                 <button form="{{ $button['form'] ?? '' }}" class="submit btn {{ $button['class'] ?? 'btn-light' }}">
