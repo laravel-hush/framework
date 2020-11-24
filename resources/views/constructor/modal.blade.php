@@ -44,3 +44,5 @@
         </div>
     </div>
 </div>
+
+@include('hush::constructor.scripts')
