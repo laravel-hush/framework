@@ -6,7 +6,7 @@ $variables['model'] = $item;
 
 <div class="row iterable-item justify-content-center align-items-center">
 
-    <input type="hidden" name="{{ $prefix }}[id]" value="{{ isset($item) ? $item->id : '' }}">
+    <input type="hidden" name="{{ $prefix }}[id]" value="{{ isset($item) ? $item['id'] : '' }}">
 
     @foreach ($input['inputs'] as $subinput)
 
