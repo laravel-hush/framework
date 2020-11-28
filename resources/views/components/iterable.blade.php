@@ -52,6 +52,8 @@ $values = Constructor::value(get_defined_vars(), $input, $input['default'] ?? nu
         ])`);
         i++;
 
+        functions.initialize();
+
         {{ $input['name'] }}Deleter();
     });
 
