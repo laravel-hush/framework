@@ -15,7 +15,7 @@ Route::prefix(config('hush.app.prefix', 'admin'))
         })->group(function () {
             Route::view('login', 'hush::login')->name('login');
             Route::post('login', function () {
-                if (Auth::attempt(request()->only('email', 'password'))) {
+                if (Auth::attempt(request()->only('email', 'password'), true)) {
                     $redirectTo = session('redirect-to', route('admin.index'));
                     session()->flash('redirect-to');
                     return redirect($redirectTo);
