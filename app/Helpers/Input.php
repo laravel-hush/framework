@@ -29,9 +29,9 @@ class Input
 
         if (isset($input['attributes'])) {
             $input['attributes'] = collect($input['attributes'])
-                ->transform(function ($attribute) {
+                ->transform(function ($attribute) use ($variables) {
                     if ($attribute instanceof Closure)
-                        return $attribute();
+                        return $attribute($variables);
 
                     return $attribute;
                 })
