@@ -14,7 +14,7 @@
         <link href="{{ asset(config('hush.app.styles')) }}" rel="stylesheet">
     @endif
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.4.2/tinymce.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.7.0/tinymce.min.js"></script>
 </head>
 
 <body>
