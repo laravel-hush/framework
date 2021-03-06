@@ -35,6 +35,21 @@
           margin-left: 5px;
         }
       }
+
+      .search-form {
+        display: flex;
+
+        .button {
+          background: transparent;
+          border: 0;
+          padding: 5px 0 0 10px;
+        }
+
+        .form-control {
+          background: #f0f0f4;
+          padding: 6px 15px;
+        }
+      }
     }
 
     .content {

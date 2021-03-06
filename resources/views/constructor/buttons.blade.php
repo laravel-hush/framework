@@ -34,8 +34,15 @@
 @endisset
 
 @isset ($block['title']['search'])
-    <a href="#" class="btn btn-light search-button">
-        <i class="material-icons">search</i>
-        <span>@lang ('hush::admin.search')</span>
-    </a>
+    <x-hush-form id="search-form" class="search-form">
+        <x-hush-input
+            type="text"
+            name="search"
+            :placeholder="__('hush::admin.search-query')"
+            :value="request()->search">
+        </x-hush-input>
+        <button class="button">
+            <i class="material-icons">search</i>
+        </button>
+    </x-hush-form>
 @endisset
