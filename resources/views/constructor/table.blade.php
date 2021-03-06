@@ -25,10 +25,14 @@
                                     ->all();
                             }) }}" class="sortable-column d-flex align-items-center">
 
-                                @lang('hush::admin.' . ($settings['label'] ?? $column))
+                                <span class="text">
+                                    @lang('hush::admin.' . ($settings['label'] ?? $column))
+                                </span>
 
                                 @if (request()->sort == $column)
-                                    <i class="material-icons">swap_vert</i>
+                                    <i class="material-icons">
+                                        {{ request()->direction == 'asc' ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}
+                                    </i>
                                 @endif
 
                             </a>
