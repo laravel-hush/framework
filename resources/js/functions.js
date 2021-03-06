@@ -5,6 +5,10 @@ window.functions = class functions {
             no_results_text: __.oops_nothing_found,
         });
 
+        $('.save-and-close-button').click(function () {
+            $('input[name="button"]').val('save-and-close');
+        });
+
         $('.sluggable').change(function () {
             const element = functions.decodeHTML($(this).data('slugify-target'));
             const target = $(element);
@@ -145,32 +149,64 @@ window.functions = class functions {
         });
 
         moment.locale(document.querySelector('html').lang);
-        $('input.date').daterangepicker({
-            locale: {
-                format: 'YYYY-MM-DD'
-            },
-            singleDatePicker: true,
-        });
-        $('input.datetime').daterangepicker({
-            locale: {
-                format: 'YYYY-MM-DD HH:mm'
-            },
-            singleDatePicker: true,
-            timePicker: true,
-            timePicker24Hour: true,
-        });
-        $('input.daterange').daterangepicker({
-            locale: {
-                format: 'YYYY-MM-DD'
-            },
-        });
-        $('input.datetimerange').daterangepicker({
-            locale: {
-                format: 'YYYY-MM-DD HH:mm'
-            },
-            timePicker: true,
-            timePicker24Hour: true,
-        });
+        $('input.date')
+            .daterangepicker({
+                locale: {
+                    format: 'YYYY-MM-DD'
+                },
+                singleDatePicker: true,
+                autoUpdateInput: false
+            })
+            .on('apply.daterangepicker', function (ev, picker) {
+                $(this).val(picker.startDate.format('YYYY-MM-DD'));
+            })
+            .on('cancel.daterangepicker', function (ev, picker) {
+                $(this).val('');
+            });
+        $('input.datetime')
+            .daterangepicker({
+                locale: {
+                    format: 'YYYY-MM-DD HH:mm'
+                },
+                singleDatePicker: true,
+                autoUpdateInput: false,
+                timePicker: true,
+                timePicker24Hour: true,
+            })
+            .on('apply.daterangepicker', function (ev, picker) {
+                $(this).val(picker.startDate.format('YYYY-MM-DD HH:mm'));
+            })
+            .on('cancel.daterangepicker', function (ev, picker) {
+                $(this).val('');
+            });
+        $('input.daterange')
+            .daterangepicker({
+                locale: {
+                    format: 'YYYY-MM-DD'
+                },
+                autoUpdateInput: false,
+            })
+            .on('apply.daterangepicker', function (ev, picker) {
+                $(this).val(picker.startDate.format('YYYY-MM-DD') + ' - ' + picker.endDate.format('YYYY-MM-DD'));
+            })
+            .on('cancel.daterangepicker', function (ev, picker) {
+                $(this).val('');
+            });
+        $('input.datetimerange')
+            .daterangepicker({
+                locale: {
+                    format: 'YYYY-MM-DD HH:mm'
+                },
+                autoUpdateInput: false,
+                timePicker: true,
+                timePicker24Hour: true,
+            })
+            .on('apply.daterangepicker', function (ev, picker) {
+                $(this).val(picker.startDate.format('YYYY-MM-DD HH:mm') + ' - ' + picker.endDate.format('YYYY-MM-DD HH:mm'));
+            })
+            .on('cancel.daterangepicker', function (ev, picker) {
+                $(this).val('');
+            });
 
         const locale = $('html').attr('lang');
 
