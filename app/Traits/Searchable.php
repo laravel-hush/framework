@@ -48,6 +48,14 @@ trait Searchable
     public function searchNested($query, string $relation, string $column)
     {
         return $query->orWhereHas($relation, function ($queryNested) use ($column) {
+            if (str_contains($column, '#trans:')) {
+                $field = explode(':', $column)[1];
+                return $queryNested->whereHas('translations', function ($query) use ($field) {
+                    $query->where('field', $field)
+                        ->where('value', 'like', '%' . request()->search . '%');
+                });
+            }
+
             if (mb_strpos($column, '.') !== false) {
                 $relation = explode('.', $column)[0];
                 $queryNested = $this->searchNested(
