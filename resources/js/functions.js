@@ -135,6 +135,16 @@ window.functions = class functions {
             })
         });
 
+        $('.cleaner').click(function (event) {
+            event.preventDefault();
+            const target = $(this).data('target');
+            $(target).val('');
+
+            if ($(this).hasClass('close-button')) {
+                $(this).closest('form').submit();
+            }
+        });
+
         $('.codemirror').each(function () {
             var code = CodeMirror.fromTextArea(this, {
                 lineNumbers: true,
