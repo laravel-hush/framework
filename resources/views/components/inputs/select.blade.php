@@ -5,10 +5,10 @@
     {{ $attributes->except('options', 'multiple', 'label', 'placeholder') }}>
 
     @if (!$isMultiple())
-    <option value="">{{ $getPlaceholder() }}</option>
+    <option disabled>{{ $getPlaceholder() }}</option>
     @endif
 
     @foreach ($options as $key => $text)
-    <option value="{{ $key }}" @if($isSelected($key)) selected @endif>{{ $text }}</option>
+    <option value="{{ $key }}" @if ($isSelected($key)) selected @endif>{{ $text }}</option>
     @endforeach
 </select>
