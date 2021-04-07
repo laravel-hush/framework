@@ -9,8 +9,8 @@
         @endif
     @endisset
 
-    @isset ($block['title']['search'])
-        <x-hush-form id="search-form" class="search-form col-4">
+    <x-hush-form id="search-form" class="search-form col-4">
+        @isset ($block['title']['search'])
             <x-hush-input
                 type="text"
                 name="search"
@@ -23,8 +23,8 @@
             <button type="submit" class="button">
                 <i class="material-icons">search</i>
             </button>
-        </x-hush-form>
-    @endisset
+        @endisset
+    </x-hush-form>
 
     <div class="buttons col-4">
         @include ('hush::constructor.buttons')
