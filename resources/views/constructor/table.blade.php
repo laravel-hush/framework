@@ -138,7 +138,7 @@
     <div class="multiple-actions-block" style="display: none">
         @foreach ($block['content']['multiple-actions'] as $action)
             <a href="{{ Constructor::link($action['link'] ?? '#') }}" data-request_type="{{ $action['type'] }}"
-                class="btn btn-danger {{ $action['confirmation'] ? 'with-confirmation' : '' }}">
+                class="btn {{ $action['class'] ?? 'btn-danger' }} {{ $action['confirmation'] ? 'with-confirmation' : '' }}">
                 @lang('hush::admin.' . $action['text'])
             </a>
         @endforeach

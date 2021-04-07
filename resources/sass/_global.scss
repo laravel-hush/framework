@@ -132,6 +132,10 @@ label {
   border-color: #f0f3ff;
   display: flex;
   padding: 10px;
+
+  * {
+    margin-right: 5px;
+  }
 }
 
 .pagination-block {
