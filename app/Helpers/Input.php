@@ -73,6 +73,7 @@ class Input
                         'label' => $input['label'] ?? null,
                         'multiple' => $input['multiple'] ?? false,
                         'multilingual' => $input['multilingual'] ?? false,
+                        'field-width' => $input['field_width'] ?? 'col-12',
                         'preview' => $input['preview'] ?? false,
                         'preview-width' => $input['preview-width'] ?? 'col-2',
                         'delete' => $input['delete'] ?? true,
