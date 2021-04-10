@@ -34,7 +34,7 @@
 
         @if ($input['type'] == 'view')
             <div class="col {{ $input['width'] ?? 'col-12' }}">
-                @include ($input['view'])
+                @include ($input['view'], isset($input['vars']) ? $input['vars']() : [])
             </div>
             @continue
         @endif
