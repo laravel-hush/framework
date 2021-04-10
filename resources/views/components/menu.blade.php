@@ -18,10 +18,13 @@
                 <span>@lang('hush::admin.' . $item['text'])</span>
 
                 @isset ($item['counter'])
-                <span class="counter"
-                    style="@isset ($item['counter']['color']) background-color: {{ $item['counter']['color'] }} @endisset">
-                    {!! call_user_func($item['counter']['value'] ?? '') !!}
-                </span>
+                    @php $value = call_user_func($item['counter']['value']); @endphp
+                    @if ($value)
+                        <span class="counter"
+                            style="@isset ($item['counter']['color']) background-color: {{ $item['counter']['color'] }} @endisset">
+                            {!! $value !!}
+                        </span>
+                    @endif
                 @endisset
 
                 @isset ($item['submenu'])
