@@ -5,10 +5,11 @@
     {{ $attributes->except('options', 'multiple', 'label', 'placeholder') }}>
 
     @if (!$isMultiple())
-    <option disabled>{{ $getPlaceholder() }}</option>
+        <option disabled>{{ $getPlaceholder() }}</option>
+        <option>@lang('hush::admin.not-selected')</option>
     @endif
 
     @foreach ($options as $key => $text)
-    <option value="{{ $key }}" @if ($isSelected($key)) selected @endif>{{ $text }}</option>
+        <option value="{{ $key }}" @if ($isSelected($key)) selected @endif>{{ $text }}</option>
     @endforeach
 </select>

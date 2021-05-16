@@ -22,6 +22,7 @@ return [
     'my-profile' => 'My profile',
     'name' => 'Name',
     'no-data' => 'No data',
+    'nothing' => 'Nothing',
     'operation-success' => 'Operation success',
     'password' => 'Password',
     'profile' => 'Profile',

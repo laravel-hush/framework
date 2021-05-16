@@ -21,6 +21,7 @@ return [
     'logout' => 'Выйти',
     'my-profile' => 'Мой профиль',
     'no-data' => 'Нет данных',
+    'not-selected' => 'Отсутствует',
     'name' => 'Имя',
     'operation-success' => 'Операция успешна',
     'password' => 'Пароль',

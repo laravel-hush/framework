@@ -22,6 +22,7 @@ return [
     'my-profile' => 'Мій профіль',
     'name' => 'Ім\'я',
     'no-data' => 'Немає даних',
+    'nothing' => 'Відсутнє',
     'operation-success' => 'Операція успішна',
     'password' => 'Пароль',
     'profile' => 'Профiль',
