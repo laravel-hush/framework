@@ -6,7 +6,7 @@
 
     @if (!$isMultiple())
         <option disabled>{{ $getPlaceholder() }}</option>
-        <option>@lang('hush::admin.not-selected')</option>
+        <option value="">@lang('hush::admin.not-selected')</option>
     @endif
 
     @foreach ($options as $key => $text)
