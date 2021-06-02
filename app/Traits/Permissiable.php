@@ -24,7 +24,7 @@ trait Permissiable
             : collect($permissionKey)->push('god')->all();
 
         return (bool) $this->roleObject
-            ->permissions()
+            ->permissions
             ->whereIn('permission', $permissions)
             ->first();
     }
