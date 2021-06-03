@@ -9,6 +9,19 @@ $values = Constructor::value(get_defined_vars(), $input, $input['default'] ?? nu
     @endisset
 
     <div id="{{ $input['name'] }}" @isset($input['attributes']) @foreach($input['attributes'] as $attribute => $value) {{ $attribute }}="{{ $value }}" @endforeach @endisset>
+
+        @isset ($input['show-labels'])
+            <div class="row iterable-item justify-content-center align-items-center">
+                @foreach ($input['inputs'] as $subinput)
+                    <div class="col {{ $subinput['width'] ?? null }} text-center">
+                        @lang('hush::admin.' . $subinput['label'])
+                    </div>
+                @endforeach
+
+                <div class="col-sm-12 col-lg-2 col-xl-2 d-flex justify-content-end"></div>
+            </div>
+        @endisset
+
         @foreach ($values as $i => $item)
             @include('hush::components.iterable-item')
         @endforeach
