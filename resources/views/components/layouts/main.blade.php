@@ -11,7 +11,9 @@
 
     <link href="{{ asset('vendor/hush/css/app.css') }}" rel="stylesheet">
     @if (config('hush.app.styles'))
-        <link href="{{ asset(config('hush.app.styles')) }}" rel="stylesheet">
+        @foreach (config('hush.app.styles') as $style)
+            <link href="{{ asset($style) }}" rel="stylesheet">
+        @endforeach
     @endif
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/5.7.0/tinymce.min.js"></script>

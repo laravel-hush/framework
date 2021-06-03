@@ -16,5 +16,10 @@
     <script>var __ = @json(__('hush::frontend'));</script>
     <script>var upload_file_route = '{{ route('admin.upload-wysiwyg-image', [], false) }}';</script>
     <script src="{{ asset('vendor/hush/js/app.js') }}"></script>
+    @if (config('hush.app.scripts'))
+        @foreach (config('hush.app.scripts') as $script)
+            <script src="{{ asset($script) }}"></script>
+        @endforeach
+    @endif
     @stack ('js')
 @endsection
