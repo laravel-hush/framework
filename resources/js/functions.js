@@ -243,7 +243,6 @@ window.functions = class functions {
                 data.append('file', blobInfo.blob(), blobInfo.filename());
                 console.log('mmm...');
                 functions.request('post', upload_file_route, data, function (response) {
-                    console.log(response);
                     success(response.path);
                 });
             }
@@ -357,10 +356,12 @@ window.functions = class functions {
                     function (xhr, status, error) {
                         if (xhr.status == 422) {
                             $.each(xhr.responseJSON.errors, function (index, value) {
+                                let parent = $('#' + index);
 
                                 if (index.indexOf('.') !== -1) {
                                     let parts = index.split('.');
                                     index = parts[0];
+                                    parent = $('#' + index);
                                     for (let i = 0; i < parts.length; i++) {
                                         let part = parts[i];
                                         index += i !== 0 ? `[${part}]` : "";
@@ -372,9 +373,13 @@ window.functions = class functions {
                                     element = form.find(`[name="${index}[]"]`);
                                 }
 
-                                element
-                                    .closest('.form-group')
-                                    .addClass('error')
+                                if (parent.length)
+                                    parent.addClass('error');
+
+                                const block = element.closest('.form-group, .col');
+                                block.addClass('error');
+
+                                (parent.length > 0 ? parent : block)
                                     .append('<small class="validation-error">' + value + '</small>');
                             });
                         }
