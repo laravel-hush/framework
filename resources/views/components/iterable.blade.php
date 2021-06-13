@@ -37,7 +37,7 @@ $values = Constructor::value(get_defined_vars(), $input, $input['default'] ?? nu
 
 @push('js')
 <script>
-    var i = {{ $values->count() }};
+    let {{ $input['name'] }}Iterable = {{ $values->count() }};
 
     function {{ $input['name'] }}Deleter() {
         $('.delete-{{ $input['name'] }}').off('click').click(function (event) {
@@ -59,11 +59,12 @@ $values = Constructor::value(get_defined_vars(), $input, $input['default'] ?? nu
 
     $('#add-{{ $input['name'] }}').click(function (event) {
         event.preventDefault();
+        let i = {{ $input['name'] }}Iterable;
         $('#{{ $input['name'] }}').append(`@include('hush::components.iterable-item', [
             'i' => null,
             'item' => null
         ])`);
-        i++;
+        {{ $input['name'] }}Iterable++;
 
         functions.initialize();
 
