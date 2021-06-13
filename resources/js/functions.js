@@ -334,6 +334,7 @@ window.functions = class functions {
     static initializeSubmitter() {
         $('.submitable').off('submit').submit(function (event) {
             event.preventDefault();
+            if ($(this).data('disabled') == 1) return;
 
             var form = $(this);
             var formData = new FormData(this);
@@ -345,15 +346,19 @@ window.functions = class functions {
                     .remove();
             });
 
+            $(this).data('disabled', 0);
+
             if (form.valid()) {
                 functions.request(
                     form.prop('method'),
                     form.prop('action'),
                     formData,
                     function (response) {
-                        // someactions
+                        $(this).data('disabled', 1);
                     },
                     function (xhr, status, error) {
+                        $(this).data('disabled', 0);
+
                         if (xhr.status == 422) {
                             $.each(xhr.responseJSON.errors, function (index, value) {
                                 let parent = $('#' + index);
