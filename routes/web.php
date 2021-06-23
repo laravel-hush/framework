@@ -48,16 +48,13 @@ Route::prefix(config('hush.app.prefix', 'admin'))
                 ->name('constructor');
 
             Route::delete('{url}', 'GlobalController@process')
-                ->where('url', '([A-Za-z0-9\-\/]+)')
-                ->name('constructor.process');
+                ->where('url', '([A-Za-z0-9\-\/]+)');
             Route::patch('{url}', 'GlobalController@process')
-                ->where('url', '([A-Za-z0-9\-\/]+)')
-                ->name('constructor.process');
+                ->where('url', '([A-Za-z0-9\-\/]+)');
             Route::post('{url}', 'GlobalController@process')
                 ->where('url', '([A-Za-z0-9\-\/]+)')
                 ->name('constructor.process');
             Route::put('{url}', 'GlobalController@process')
-                ->where('url', '([A-Za-z0-9\-\/]+)')
-                ->name('constructor.process');
+                ->where('url', '([A-Za-z0-9\-\/]+)');
         });
     });
