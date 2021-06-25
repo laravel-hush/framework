@@ -1,6 +1,6 @@
 window.functions = class functions {
     static initialize() {
-        $('select').chosen({
+        $('select:not(.custom)').chosen({
             disable_search_threshold: 10,
             no_results_text: __.oops_nothing_found,
         });
