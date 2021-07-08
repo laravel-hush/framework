@@ -13,7 +13,7 @@
         {{ $attributes->except('multiple', 'preview', 'id') }}/>
 
     <label class="custom-file-label">
-        @lang('hush::admin.choose-file')
-        <span>@lang('hush::admin.browse')</span>
+        <span class="file">@lang('hush::admin.choose-file')</span>
+        <span class="browse">@lang('hush::admin.browse')</span>
     </label>
 </div>

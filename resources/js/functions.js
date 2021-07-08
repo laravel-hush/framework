@@ -91,6 +91,11 @@ window.functions = class functions {
                 }
 
                 reader.readAsDataURL(this.files[0]);
+
+                const parts = this.value.split(/[\/\\]/);
+                $(this).closest('.custom-file')
+                    .find('.custom-file-label .file')
+                    .text(parts[parts.length - 1]);
             }
         });
 
