@@ -4,7 +4,7 @@ namespace ScaryLayer\Hush\Middleware;
 
 use Closure;
 
-class Admin
+class RedirectAdmin
 {
     /**
      * Handle an incoming request and check if user is permitted

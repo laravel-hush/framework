@@ -10,8 +10,8 @@ use ScaryLayer\Hush\Commands\HushSync;
 use ScaryLayer\Hush\Commands\HushTranslatable;
 use ScaryLayer\Hush\Helpers\Constructor;
 use ScaryLayer\Hush\Helpers\Input;
-use ScaryLayer\Hush\Middleware\Admin;
 use ScaryLayer\Hush\Middleware\Permission;
+use ScaryLayer\Hush\Middleware\RedirectAdmin;
 use ScaryLayer\Hush\View\Components\Form;
 use ScaryLayer\Hush\View\Components\Input as InputComponent;
 
@@ -44,7 +44,7 @@ class ServiceProvider extends Provider
             Form::class,
         ]);
 
-        app('router')->aliasMiddleware('redirect-admin', Admin::class);
+        app('router')->aliasMiddleware('redirect-admin', RedirectAdmin::class);
         app('router')->aliasMiddleware('permission', Permission::class);
 
         if ($this->app->runningInConsole()) {
