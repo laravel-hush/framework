@@ -14,7 +14,7 @@ Route::prefix(config('hush.app.prefix', 'admin'))
         Route::middleware('permission:admin,admin.login')->group(function () {
 
             Route::get('search', 'CommonController@searchView')->name('search');
-            Route::get('logout', 'LogincController@logout')->name('logout');
+            Route::get('logout', 'LoginController@logout')->name('logout');
 
             Route::post('upload-wysiwyg-image', 'CommonController@upload')
                 ->name('upload-wysiwyg-image');
